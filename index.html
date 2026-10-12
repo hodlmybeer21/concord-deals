@@ -1,44 +1,109 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Concord NH Flyer Deals</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f5132" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0b1210" media="(prefers-color-scheme: dark)">
+<title>Concord Deals · Weekly flyer prices, Concord NH</title>
 <style>
-body{font-family:system-ui,sans-serif;margin:0;padding:12px;max-width:640px;margin:auto;background:#f6f7f9;color:#111}
-h1{font-size:1.3rem;margin:4px 0}textarea{width:100%;box-sizing:border-box;height:130px;font-size:16px;padding:8px;border-radius:8px;border:1px solid #bbb}
-button{font-size:16px;padding:10px 16px;border:0;border-radius:8px;background:#0a7d32;color:#fff;margin-top:6px}
-.bar{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.pill{padding:6px 10px;border-radius:14px;font-size:.85rem;background:#e3f5e9}.pill.bad{background:#fde2e2}
-.card{background:#fff;border-radius:10px;padding:10px;margin:8px 0;box-shadow:0 1px 3px #0002}.q{font-weight:700;text-transform:capitalize}
-.row{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-top:1px solid #eee;font-size:.92rem}.best{background:#fff7d1;border-radius:6px;padding:6px}
-.price{font-weight:700;white-space:nowrap}.none{color:#a00}.note{font-size:.8rem;color:#555}small{color:#666}
+:root{--bg:#f3f5f4;--surface:#fff;--surface-2:#f7f9f8;--line:#e3e8e6;--text:#0f1a16;--muted:#5d6b66;--faint:#8a9792;
+--accent:#0f7a43;--accent-ink:#fff;--accent-soft:#e6f5ec;--accent-line:#9fd8b6;--warn:#9a5b00;--warn-soft:#fff4dc;--bad:#b42318;--bad-soft:#fdecea;
+--r-lg:20px;--r-md:14px;--r-sm:10px;--shadow:0 1px 2px rgba(16,24,20,.06),0 4px 16px rgba(16,24,20,.06);
+--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1210;--surface:#121b18;--surface-2:#17221e;--line:#24322d;--text:#eef4f1;--muted:#a3b3ad;--faint:#7b8a85;
+--accent:#34c47c;--accent-ink:#04130b;--accent-soft:#11291d;--accent-line:#1f5a3a;--warn:#f2b54b;--warn-soft:#2a2210;--bad:#ff8a7a;--bad-soft:#2c1512;--shadow:0 1px 2px rgba(0,0,0,.4)}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 var(--font);-webkit-font-smoothing:antialiased;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+a{color:var(--accent)}:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:8px}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top)) 0 10px}
+.logo{width:36px;height:36px;border-radius:11px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:800;font-size:17px;letter-spacing:-.5px}
+.top h1{font-size:18px;line-height:1.1;margin:0;letter-spacing:-.3px}.top p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;margin:0 -16px;scroll-snap-type:x proximity;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{scroll-snap-align:start;flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:44px;padding:6px 12px 6px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font:inherit;color:inherit;cursor:pointer;text-align:left}
+.chip .mono{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:11px;background:var(--b)}
+.chip b{display:block;font-size:13px;line-height:1.15}.chip span.s{display:block;font-size:11.5px;color:var(--muted);line-height:1.2}
+.chip.bad{border-color:var(--bad);background:var(--bad-soft)}.chip[aria-expanded=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;margin:0 0 12px;font-size:13px;color:var(--muted)}.detail b{color:var(--text)}
+.skel{height:44px;width:150px;border-radius:999px;background:linear-gradient(90deg,var(--surface) 0,var(--surface-2) 50%,var(--surface) 100%);background-size:200% 100%;animation:sh 1.2s infinite;flex:0 0 auto}
+@keyframes sh{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){.skel{animation:none}}
+.card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);border:1px solid var(--line);margin:14px 0;overflow:hidden}
+.editor{padding:14px 16px}.editor label{display:flex;justify-content:space-between;font-weight:700;font-size:14px;margin-bottom:8px}.editor label span{font-weight:500;color:var(--faint);font-size:12.5px}
+textarea{width:100%;min-height:128px;resize:vertical;font:16px/1.5 var(--font);color:var(--text);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px}
+textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.note{font-size:12.5px;color:var(--muted);margin:10px 2px}.legend{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.ihead{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px 4px}.ihead h2{margin:0;font-size:19px;text-transform:capitalize;letter-spacing:-.3px}.ihead small{color:var(--faint);font-size:12px}
+.hero{margin:8px 12px 4px;padding:14px;border-radius:var(--r-md);background:var(--accent-soft);border:1px solid var(--accent-line)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:3px 8px;border-radius:999px}
+.srow{display:flex;gap:12px;align-items:flex-start}.srow .mono{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;font-size:10.5px;font-weight:800;margin-top:1px}
+.srow .body{flex:1;min-width:0}.store{font-weight:700;font-size:14.5px}.prod{font-size:14px;color:var(--text);margin-top:1px;overflow-wrap:anywhere}
+.price{font-variant-numeric:tabular-nums;font-weight:800;font-size:20px;white-space:nowrap;letter-spacing:-.4px;text-align:right}.hero .price{font-size:28px;color:var(--accent)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:12px;color:var(--muted);margin-top:6px}
+.tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:2px 7px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
+.src{display:inline-flex;align-items:center;min-height:32px;padding:0 8px;margin:-6px -8px;border-radius:8px;font-weight:600;text-decoration:none}.src:active{background:var(--accent-soft)}
+.warn{display:flex;gap:6px;margin-top:8px;font-size:12px;color:var(--warn);background:var(--warn-soft);padding:6px 9px;border-radius:8px}
+.wicon{font-size:13px;color:var(--warn);margin-left:4px}
+.rows{padding:4px 0 6px}.row{padding:12px 16px;border-top:1px solid var(--line)}.rows .row:first-child{border-top:0}
+.row.muted .store{color:var(--muted);font-weight:600}.row.muted .price{font-size:13px;font-weight:600;color:var(--faint)}.row.unav .price{color:var(--bad)}
+.none-list{padding:4px 16px 14px;display:flex;flex-wrap:wrap;gap:8px}.none-list span{padding:6px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:14px;text-transform:capitalize}
+.empty{padding:28px 20px;text-align:center;color:var(--muted)}.empty .big{font-size:34px}.err{border-color:var(--bad);background:var(--bad-soft);color:var(--bad);padding:14px 16px;font-weight:600}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:6;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 70%,transparent)}
+.dock .in{max-width:640px;margin:0 auto;display:flex;gap:10px}
+#go{flex:1;height:54px;border:0;border-radius:16px;background:var(--accent);color:var(--accent-ink);font:700 17px var(--font);box-shadow:0 6px 20px color-mix(in srgb,var(--accent) 35%,transparent);cursor:pointer}
+#go:active{transform:scale(.985)}#edit{height:54px;width:54px;border-radius:16px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:20px;cursor:pointer}
+@media (min-width:700px){.ihead h2{font-size:21px}}
 </style></head><body>
-<h1>🛒 Concord NH Flyer Deals</h1>
-<div class="note">Prices from weekly flyers via Flipp (unofficial). Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Tags: [flyer] = weekly flyer via Flipp, [web] = store website price. ⚠️ = unit or product match unconfirmed — check the source link. Costco coming next.</div>
-<div id="stores" class="bar">Loading flyers…</div>
-<textarea id="list" placeholder="milk&#10;eggs&#10;chicken, bananas"></textarea>
-<button id="go">Find deals</button>
-<div id="out"></div>
+<header><div class="wrap"><div class="top"><div class="logo" aria-hidden="true">CD</div><div><h1>Concord Deals</h1><p id="sub">Weekly flyer prices · Concord, NH 03301</p></div></div></div></header>
+<main class="wrap">
+<div id="stores" class="chips" role="list" aria-label="Stores"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+<div id="detail" hidden></div>
+<section class="card editor"><label for="list">Your shopping list <span>one per line or commas</span></label>
+<textarea id="list" placeholder="milk&#10;eggs&#10;chicken, bananas" autocomplete="off" autocapitalize="none" spellcheck="false"></textarea>
+<div class="note legend"><span class="tag">flyer</span> weekly flyer via Flipp (unofficial) <span class="tag">web</span> store website price <span>⚠️ unit or product match unconfirmed — check the source link</span></div></section>
+<div id="out" aria-live="polite"></div>
+<p class="note">Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Costco coming next. Flyer prices compare different brands/sizes; check the flyer before you buy.</p>
+</main>
+<div class="dock"><div class="in"><button id="edit" aria-label="Edit list" title="Edit list">✎</button><button id="go">Compare prices</button></div></div>
 <script src="/match.js"></script>
 <script>
 const $=id=>document.getElementById(id);let DATA=null;
 const fmt=s=>s?new Date(s).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'America/New_York'}):'';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const BRAND={'Market Basket':['MB','#1d7a3e'],'Hannaford':['H','#c8102e'],'Aldi':['A','#00205b'],"Shaw's":['S','#d6001c'],"Sam's Club":['SC','#0067a0'],'Walmart':['W','#0071ce']};
+const mono=s=>{const b=BRAND[s]||[s[0],'#555'];return `<span class="mono" style="--b:${b[1]}" aria-hidden="true">${b[0]}</span>`};
+const ts=d=>new Date(d.fetched_at||DATA.fetched_at).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 $('list').value=localStorage.getItem('cd_list')||'milk\neggs\nchicken\nbananas';
+let _t;$('list').addEventListener('input',()=>{localStorage.setItem('cd_list',$('list').value);clearTimeout(_t);_t=setTimeout(render,400)});
+function dealRow(s,d,hero){
+  return `<div class="srow">${mono(s)}<div class="body">${hero?'<span class="badge">★ Cheapest</span>':''}<div class="store"${hero?' style="margin-top:6px"':''}>${esc(s)}</div><div class="prod">${esc(d.item)}</div>
+<div class="meta"><span class="tag">${esc(d.source||'flyer')}</span><span>${d.source==='web'?'web price':fmt(d.valid_from)+'–'+fmt(d.valid_to)}</span><span>fetched ${ts(d)} ET</span><a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener">source ↗</a></div>
+${d.flag?`<div class="warn"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}</div><div class="price">${esc(d.price_text)}${d.flag?'<span class="wicon" title="unit unconfirmed">⚠️</span>':''}</div></div>`}
 function render(){
   if(!DATA)return;const items=$('list').value.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
   localStorage.setItem('cd_list',$('list').value);
-  const okStores=Object.keys(DATA.stores).filter(s=>DATA.stores[s].status==='ok');
-  const none=[];let html='';
+  if(!items.length){$('out').innerHTML='<div class="card empty"><div class="big">🧺</div><b>Your list is empty</b><br>Add items like milk, eggs or bananas, then tap Compare prices.</div>';return}
+  const stores=Object.keys(DATA.stores);const none=[];let html='';
   for(const it of items){const m=DealMatch.match(it,DATA.deals);
     if(!m.best){none.push(it);continue}
-    html+=`<div class="card"><div class="q">${esc(it)}</div>`;
-    for(const s of Object.keys(DATA.stores)){const d=m.byStore[s];
-      if(DATA.stores[s].status!=='ok'){html+=`<div class="row"><span>${s}</span><span class="none">store unavailable</span></div>`;continue}
-      html+=d?`<div class="row ${d===m.best||d.store===m.best.store?'best':''}"><span><b>${s}</b>${d.store===m.best.store?' ⭐ cheapest':''}<br>${esc(d.item)}<br><small>[${d.source||'flyer'}] ${d.source==='web'?'web price':fmt(d.valid_from)+'–'+fmt(d.valid_to)} · fetched ${new Date(d.fetched_at||DATA.fetched_at).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})} ET · <a href="${esc(d.source_url)}" target="_blank">source</a></small>${d.flag?`<br><small style="color:#b45309">⚠️ ${esc(d.flag)}</small>`:''}</span><span class="price">${esc(d.price_text)}${d.flag?' ⚠️':''}</span></div>`
-        :`<div class="row"><span>${s}</span><span class="none">no deal</span></div>`}
-    html+='</div>'}
-  if(none.length)html+=`<div class="card"><div class="q">No deal found this week</div>${none.map(n=>`<div class="row none">${esc(n)}</div>`).join('')}</div>`;
-  $('out').innerHTML=html+'<p class="note">Flyer prices compare different brands/sizes; check the flyer before you buy.</p>';
+    const n=stores.filter(s=>m.byStore[s]).length;
+    html+=`<article class="card"><div class="ihead"><h2>${esc(it)}</h2><small>${n} of ${stores.length} stores</small></div>`;
+    html+=`<div class="hero">${dealRow(m.best.store,m.byStore[m.best.store],true)}</div><div class="rows">`;
+    const rest=stores.filter(s=>s!==m.best.store).sort((a,b)=>{const r=s=>DATA.stores[s].status!=='ok'?2e9+1:(m.byStore[s]?m.byStore[s].price:2e9);return r(a)-r(b)});
+    for(const s of rest){const d=m.byStore[s];
+      if(DATA.stores[s].status!=='ok'){html+=`<div class="row muted unav"><div class="srow">${mono(s)}<div class="body"><div class="store">${esc(s)}</div></div><div class="price">store unavailable</div></div></div>`;continue}
+      html+=d?`<div class="row">${dealRow(s,d,false)}</div>`:`<div class="row muted"><div class="srow">${mono(s)}<div class="body"><div class="store">${esc(s)}</div></div><div class="price">no deal</div></div></div>`}
+    html+='</div></article>'}
+  if(none.length)html+=`<section class="card"><div class="ihead"><h2>No deal found this week</h2></div><div class="none-list">${none.map(n=>`<span>${esc(n)}</span>`).join('')}</div></section>`;
+  $('out').innerHTML=html;
 }
+function showDetail(k,btn){const v=DATA.stores[k],el=$('detail');const open=btn.getAttribute('aria-expanded')==='true';
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-expanded','false'));if(open){el.hidden=true;return}
+  btn.setAttribute('aria-expanded','true');el.hidden=false;
+  el.innerHTML=`<div class="detail"><b>${esc(k)}</b> — ${v.status==='ok'?`<span class="tag">${esc(v.source)}</span> ${v.count} ${v.source==='web'?'web prices':'deals, '+fmt(v.valid_from)+'–'+fmt(v.valid_to)}${v.source_url?` · <a href="${esc(v.source_url)}" target="_blank" rel="noopener">flyer ↗</a>`:''}${v.web_status?`<br>Web: ${esc(v.web_status)}${v.web_reason?' — '+esc(v.web_reason):''}`:''}`:`unavailable${v.reason?' ('+esc(v.reason)+')':''}`}</div>`}
 fetch('/api/deals').then(r=>r.json()).then(d=>{DATA=d;
-  $('stores').innerHTML=Object.entries(d.stores).map(([k,v])=>v.status==='ok'?`<span class="pill">✅ ${k} [${v.source}]: ${v.count} ${v.source==='web'?'web prices':'deals, '+fmt(v.valid_from)+'–'+fmt(v.valid_to)}${v.web_status?' · web '+v.web_status:''}</span>`:`<span class="pill bad">⚠️ ${k}: unavailable${v.reason?' ('+v.reason+')':''}</span>`).join('');
-  render()}).catch(()=>{$('stores').innerHTML='<span class="pill bad">⚠️ Could not load flyers — all stores unavailable</span>'});
-$('go').onclick=render;
+  $('stores').innerHTML=Object.entries(d.stores).map(([k,v])=>v.status==='ok'
+    ?`<button class="chip" role="listitem" aria-expanded="false" data-k="${esc(k)}">${mono(k)}<span><b>${esc(k)}</b><span class="s">✓ ${v.count} ${v.source==='web'?'web prices':'deals · '+fmt(v.valid_from)+'–'+fmt(v.valid_to)} · <span class="tag">${esc(v.source)}</span>${v.web_status?' · web '+esc(v.web_status):''}</span></span></button>`
+    :`<button class="chip bad" role="listitem" aria-expanded="false" data-k="${esc(k)}">${mono(k)}<span><b>${esc(k)}</b><span class="s">⚠️ unavailable${v.reason?' ('+esc(v.reason)+')':''}</span></span></button>`).join('');
+  document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>showDetail(b.dataset.k,b));
+  render()}).catch(()=>{$('stores').innerHTML='';$('out').innerHTML='<div class="card err">⚠️ Could not load flyers — all stores unavailable. Check your connection and reload.</div>'});
+$('go').onclick=()=>{render();const f=document.querySelector('#out .card');if(f)f.scrollIntoView({behavior:'smooth',block:'start'})};
+$('edit').onclick=()=>{$('list').scrollIntoView({behavior:'smooth',block:'center'});$('list').focus()};
 </script></body></html>
