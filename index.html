@@ -10,7 +10,7 @@ button{font-size:16px;padding:10px 16px;border:0;border-radius:8px;background:#0
 .price{font-weight:700;white-space:nowrap}.none{color:#a00}.note{font-size:.8rem;color:#555}small{color:#666}
 </style></head><body>
 <h1>🛒 Concord NH Flyer Deals</h1>
-<div class="note">Prices from weekly flyers via Flipp (unofficial). Sam's Club, Costco, Shaw's, and Walmart coming next.</div>
+<div class="note">Prices from weekly flyers via Flipp (unofficial). Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Costco coming next.</div>
 <div id="stores" class="bar">Loading flyers…</div>
 <textarea id="list" placeholder="milk&#10;eggs&#10;chicken, bananas"></textarea>
 <button id="go">Find deals</button>
@@ -38,7 +38,7 @@ function render(){
   $('out').innerHTML=html+'<p class="note">Flyer prices compare different brands/sizes; check the flyer before you buy.</p>';
 }
 fetch('/api/deals').then(r=>r.json()).then(d=>{DATA=d;
-  $('stores').innerHTML=Object.entries(d.stores).map(([k,v])=>v.status==='ok'?`<span class="pill">✅ ${k}: ${v.count} deals, ${fmt(v.valid_from)}–${fmt(v.valid_to)}</span>`:`<span class="pill bad">⚠️ ${k}: unavailable</span>`).join('');
+  $('stores').innerHTML=Object.entries(d.stores).map(([k,v])=>v.status==='ok'?`<span class="pill">✅ ${k}: ${v.count} deals, ${fmt(v.valid_from)}–${fmt(v.valid_to)}</span>`:`<span class="pill bad">⚠️ ${k}: unavailable${v.reason?' ('+v.reason+')':''}</span>`).join('');
   render()}).catch(()=>{$('stores').innerHTML='<span class="pill bad">⚠️ Could not load flyers — all stores unavailable</span>'});
 $('go').onclick=render;
 </script></body></html>
