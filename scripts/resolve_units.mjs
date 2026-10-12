@@ -22,7 +22,7 @@ for (const [store, s] of Object.entries(data.stores)) {
     if (i < 0) { st.no_match++; continue; }
     const it = pool.splice(i, 1)[0]; d.flipp_item_id = it.id;
     let det; try { det = await cached(`${C}/items/${it.id}.json`, `${BASE}/items/${it.id}`); } catch { st.fetch_err++; continue; }
-    let r = resolveUnit(det.item || det); const ov = OV[it.id];
+    let r = resolveUnit(det.item || det); const ov = OV[it.id] && OV[it.id].unit ? OV[it.id] : null;
     if (!r && !ov && (store === 'Walmart' || store === "Sam's Club")) {
       const n = resolveFromName(d.item);
       if (n) { d.unit = n.unit; d.unit_source = `item name: "${d.item}" (states "${n.text.trim()}") via ${BASE}/items/${it.id}`; d.flag = null; st.resolved++; st.by_name = (st.by_name || 0) + 1; map[it.id] = { unit: d.unit, unit_source: d.unit_source }; continue; }
