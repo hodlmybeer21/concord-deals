@@ -1,7 +1,378 @@
 {
  "_note": "Units read by eye from the Flipp flyer cutout images (Read tool). Only units printed on the image are recorded.",
- "1047071820": {"unit": "lb", "note": "image shows '9.99 lb.' and 'Save $1.00lb.'", "image": "https://f.wishabi.net/page_items/437096369/1791710467/extra_large.jpg"},
- "1047071848": {"unit": "3 lb bag", "note": "image shows '3-LB. BAG' next to 2.49 (no per-lb marker)", "image": "https://f.wishabi.net/page_items/437096397/1791710470/extra_large.jpg"},
- "1047071882": {"unit": "lb", "note": "image shows '1.49 lb.' and 'Save 50¢lb.'", "image": "https://f.wishabi.net/page_items/437096431/1791710474/extra_large.jpg"},
- "1047071823": {"unit": "lb", "note": "image shows '1.99 lb.' and 'Save $1.00lb.'", "image": "https://f.wishabi.net/page_items/437096372/1791710469/extra_large.jpg"}
+ "1047071820": {
+  "unit": "lb",
+  "note": "image shows '9.99 lb.' and 'Save $1.00lb.'",
+  "image": "https://f.wishabi.net/page_items/437096369/1791710467/extra_large.jpg"
+ },
+ "1047071848": {
+  "unit": "3 lb bag",
+  "note": "image shows '3-LB. BAG' next to 2.49 (no per-lb marker)",
+  "image": "https://f.wishabi.net/page_items/437096397/1791710470/extra_large.jpg"
+ },
+ "1047071882": {
+  "unit": "lb",
+  "note": "image shows '1.49 lb.' and 'Save 50\u00a2lb.'",
+  "image": "https://f.wishabi.net/page_items/437096431/1791710474/extra_large.jpg"
+ },
+ "1047071823": {
+  "unit": "lb",
+  "note": "image shows '1.99 lb.' and 'Save $1.00lb.'",
+  "image": "https://f.wishabi.net/page_items/437096372/1791710469/extra_large.jpg"
+ },
+ "1047071827": {
+  "unit": "4/$5.00",
+  "note": "image: \"4 $5 for\", 16.3 oz.",
+  "image": "https://f.wishabi.net/page_items/437096376/1791710472/extra_large.jpg"
+ },
+ "1047072143": {
+  "unit": "20 oz pkg",
+  "note": "image: \"20 oz. $6.99\" (40 oz. $13.79)",
+  "image": "https://f.wishabi.net/page_items/437096692/1791710482/extra_large.jpg"
+ },
+ "1047071838": {
+  "unit": "19.1-24.7 oz pkg",
+  "note": "image: \"19.1-24.7 oz. PKG.\" next to 5.99",
+  "image": "https://f.wishabi.net/page_items/437096387/1791710478/extra_large.jpg"
+ },
+ "1047071834": {
+  "unit": "6 pack",
+  "note": "image: \"6 PACK\" next to 9.99",
+  "image": "https://f.wishabi.net/page_items/437096383/1791710476/extra_large.jpg"
+ },
+ "1047071819": {
+  "unit": "16 oz bag",
+  "note": "image: \"9.99 16 oz. BAG\" (2-lb bag $18.99)",
+  "image": "https://f.wishabi.net/page_items/437096368/1791710467/extra_large.jpg"
+ },
+ "1047071833": {
+  "unit": "10 count",
+  "note": "image: \"10 COUNT\" next to 6.99",
+  "image": "https://f.wishabi.net/page_items/437096382/1791710475/extra_large.jpg"
+ },
+ "1047071972": {
+  "unit": "4/$5.00",
+  "note": "image: \"4 $5 for\", 4.4-5.3 oz. cont.",
+  "image": "https://f.wishabi.net/page_items/437096639/1791710504/extra_large.jpg"
+ },
+ "1047071923": {
+  "unit": "2 lb pkg",
+  "note": "image: \"14.99 2-LB.\" frozen",
+  "image": "https://f.wishabi.net/page_items/437096473/1791710484/extra_large.jpg"
+ },
+ "1047072030": {
+  "unit": "8.5-8.8 oz pkg",
+  "note": "image: \"8.5 - 8.8 oz.\" next to 4.99",
+  "image": "https://f.wishabi.net/page_items/437096507/1791710485/extra_large.jpg"
+ },
+ "1047071863": {
+  "unit": "2/$5.00",
+  "note": "image: \"2 $5 for\", 12 oz.",
+  "image": "https://f.wishabi.net/page_items/437096412/1791710478/extra_large.jpg"
+ },
+ "1047071867": {
+  "unit": "2 lb pkg",
+  "note": "image: \"2 lb. PKG.\" next to 12.99",
+  "image": "https://f.wishabi.net/page_items/437096416/1791710481/extra_large.jpg"
+ },
+ "1047071840": {
+  "unit": "2/$5.00",
+  "note": "image: \"2 $5 for\", 16 oz.",
+  "image": "https://f.wishabi.net/page_items/437096389/1791710466/extra_large.jpg"
+ },
+ "1047071876": {
+  "unit": "48 oz pkg",
+  "note": "image: \"4.99 48 oz.\"",
+  "image": "https://f.wishabi.net/page_items/437096425/1791710470/extra_large.jpg"
+ },
+ "1047071872": {
+  "unit": "14 oz pkg",
+  "note": "image: \"14 oz.\" next to 5.99",
+  "image": "https://f.wishabi.net/page_items/437096421/1791710467/extra_large.jpg"
+ },
+ "1047071883": {
+  "unit": "3 lb bag",
+  "note": "image: \"3-LB. Frozen\" next to 5.99",
+  "image": "https://f.wishabi.net/page_items/437096432/1791710475/extra_large.jpg"
+ },
+ "1047071878": {
+  "unit": "16 oz pkg",
+  "note": "image: \"16 oz.\" next to 7.99",
+  "image": "https://f.wishabi.net/page_items/437096427/1791710472/extra_large.jpg"
+ },
+ "1047071888": {
+  "unit": "16 oz pkg",
+  "note": "image: \"16 oz.\" next to 7.99",
+  "image": "https://f.wishabi.net/page_items/437096437/1791710478/extra_large.jpg"
+ },
+ "1047071884": {
+  "unit": "13.6-18.8 oz pkg",
+  "note": "image: \"13.6-18.8 oz.\" next to 6.49",
+  "image": "https://f.wishabi.net/page_items/437096433/1791710476/extra_large.jpg"
+ },
+ "1047071870": {
+  "unit": "12 oz pkg",
+  "note": "image: \"12 oz.\" next to 6.99",
+  "image": "https://f.wishabi.net/page_items/437096419/1791710466/extra_large.jpg"
+ },
+ "1047071877": {
+  "unit": "2 lb pkg",
+  "note": "image: \"2-LB.\" next to 3.49",
+  "image": "https://f.wishabi.net/page_items/437096426/1791710471/extra_large.jpg"
+ },
+ "1047071889": {
+  "unit": "16-18 oz pkg",
+  "note": "image: \"16-18 oz.\" next to 6.49",
+  "image": "https://f.wishabi.net/page_items/437096438/1791710479/extra_large.jpg"
+ },
+ "1047071873": {
+  "unit": "2/$7.00",
+  "note": "image: \"2 $7 for\", 10 oz.",
+  "image": "https://f.wishabi.net/page_items/437096422/1791710468/extra_large.jpg"
+ },
+ "1047071911": {
+  "unit": "8 oz pkg",
+  "note": "image: \"8 oz.\" next to 4.99",
+  "image": "https://f.wishabi.net/page_items/437096461/1791710476/extra_large.jpg"
+ },
+ "1047071906": {
+  "unit": "7.6 oz pkg",
+  "note": "image: \"7.6 oz.\" next to 3.99",
+  "image": "https://f.wishabi.net/page_items/437096456/1791710473/extra_large.jpg"
+ },
+ "1047071971": {
+  "unit": "48-60 oz pkg",
+  "note": "image: \"48 - 60 oz. PKG.\" next to 9.49",
+  "image": "https://f.wishabi.net/page_items/437096638/1791710503/extra_large.jpg"
+ },
+ "1047071974": {
+  "unit": "dozen",
+  "note": "image: \"3.99 DOZ.\"",
+  "image": "https://f.wishabi.net/page_items/437096641/1791710506/extra_large.jpg"
+ },
+ "1047071982": {
+  "unit": "18.25-19.25 oz pkg",
+  "note": "image: \"18.25 - 19.25 oz.\" next to 3.99",
+  "image": "https://f.wishabi.net/page_items/437096649/1791710513/extra_large.jpg"
+ },
+ "1047071955": {
+  "unit": "6 pack (16 oz)",
+  "note": "image: \"6 PACK\", \"6 - 16 oz.\"",
+  "image": "https://f.wishabi.net/page_items/437096622/1791710489/extra_large.jpg"
+ },
+ "1047071993": {
+  "unit": "6 pack",
+  "note": "image: \"Smartwater 6 Pack\" 7.99",
+  "image": "https://f.wishabi.net/page_items/437096660/1791710522/extra_large.jpg"
+ },
+ "1047071958": {
+  "unit": "21.8-24 oz pkg",
+  "note": "image: \"21.8 - 24 oz.\" next to 5.99",
+  "image": "https://f.wishabi.net/page_items/437096625/1791710491/extra_large.jpg"
+ },
+ "1047072058": {
+  "unit": "10-12 pack",
+  "note": "image: \"10 - 12 PACK\" next to 6.99",
+  "image": "https://f.wishabi.net/page_items/437096535/1791710504/extra_large.jpg"
+ },
+ "1047072051": {
+  "unit": "4 pack",
+  "note": "image: \"4 PACK\", 4-12 oz.",
+  "image": "https://f.wishabi.net/page_items/437096528/1791710499/extra_large.jpg"
+ },
+ "1047072008": {
+  "unit": "24 oz jar",
+  "note": "image: \"24 oz. JAR\" next to 5.99",
+  "image": "https://f.wishabi.net/page_items/437096485/1791710470/extra_large.jpg"
+ },
+ "1047072060": {
+  "unit": "50.7 oz bottle",
+  "note": "image: \"50.7 oz. BTL.\" next to 12.99",
+  "image": "https://f.wishabi.net/page_items/437096537/1791710466/extra_large.jpg"
+ },
+ "1047072144": {
+  "unit": "8 inch pie (24 oz)",
+  "note": "image: \"5.79 8 INCH 24 oz.\" (half pie 12 oz. $4.29)",
+  "image": "https://f.wishabi.net/page_items/437096693/1791710482/extra_large.jpg"
+ },
+ "1047072125": {
+  "unit": "lb",
+  "note": "image: \"7.99 lb.\"",
+  "image": "https://f.wishabi.net/page_items/437096674/1791710470/extra_large.jpg"
+ },
+ "1047072124": {
+  "unit": "lb",
+  "note": "image: \"5.99 lb.\"",
+  "image": "https://f.wishabi.net/page_items/437096673/1791710469/extra_large.jpg"
+ },
+ "1046585793": {
+  "unit": "0.14 oz pkg",
+  "note": "image: \".14 Oz.\" above 79\u00a2",
+  "image": "https://f.wishabi.net/page_items/436504992/1791210031/extra_large.jpg"
+ },
+ "1046586596": {
+  "unit": "12 oz pkg",
+  "note": "image: \"12 Oz.\" above 4.89",
+  "image": "https://f.wishabi.net/page_items/436505893/1791210027/extra_large.jpg"
+ },
+ "1046585248": {
+  "unit": "each",
+  "note": "image: \"78\u00a2\" with \"SAVE 10\u00a2 EA.\"",
+  "image": "https://f.wishabi.net/page_items/436504673/1791210027/extra_large.jpg"
+ },
+ "1046586315": {
+  "unit": "10-pack (7.5 oz cans)",
+  "note": "image: \"7.5 Oz. Cans\", \"10-Pack\", \"SAVE $1.20 EA.\"",
+  "image": "https://f.wishabi.net/page_items/436505540/1791210018/extra_large.jpg"
+ },
+ "1046586410": {
+  "unit": "1 liter",
+  "note": "image: \"1-Liter\" above 79\u00a2",
+  "image": "https://f.wishabi.net/page_items/436505686/1791210027/extra_large.jpg"
+ },
+ "1046586866": {
+  "unit": "15.5 oz can",
+  "note": "image: \"15.5 Oz.\" above 1.65",
+  "image": "https://f.wishabi.net/page_items/436506148/1791210035/extra_large.jpg"
+ },
+ "1045120655": {
+  "unit": "per 3-pack",
+  "note": "image: \"$2.99 Per 3-Pack\"",
+  "image": "https://f.wishabi.net/page_items/436313122/1790915801/extra_large.jpg"
+ },
+ "1045121723": {
+  "unit": "lb",
+  "note": "image: \"$7.79 Per Lb.\"",
+  "image": "https://f.wishabi.net/page_items/436313151/1790915817/extra_large.jpg"
+ },
+ "1045121133": {
+  "unit": "per 6-pack",
+  "note": "image: \"$2.89 Per 6-Pack\"",
+  "image": "https://f.wishabi.net/page_items/436313140/1790915811/extra_large.jpg"
+ },
+ "1044809948": {
+  "unit": "1 liter (33.8 oz)",
+  "note": "image: \"1 Liter 33.8 oz.\" next to 69\u00a2",
+  "image": "https://f.wishabi.net/page_items/436058147/1790797918/extra_large.jpg"
+ },
+ "1044809975": {
+  "unit": "6-8 oz pkg (sour cream 16 oz)",
+  "note": "image: \"6-8 oz., Sour Cream 16 oz.\" next to 1.79",
+  "image": "https://f.wishabi.net/page_items/436058149/1790797920/extra_large.jpg"
+ },
+ "1044809857": {
+  "unit": "lb",
+  "note": "image: \"4.99 lb.\"",
+  "image": "https://f.wishabi.net/page_items/436057664/1790797919/extra_large.jpg"
+ },
+ "1044809716": {
+  "unit": "5 inch cake",
+  "note": "image: \"$5 Mini Cake 5 inch\"",
+  "image": "https://f.wishabi.net/page_items/436057493/1790797916/extra_large.jpg"
+ },
+ "1044809882": {
+  "unit": "lb",
+  "note": "image: \"8.99 lb.\"",
+  "image": "https://f.wishabi.net/page_items/436057666/1790797920/extra_large.jpg"
+ },
+ "1044810393": {
+  "unit": "each",
+  "note": "image: \"$5 Loaf Cake Slices ea.\"",
+  "image": "https://f.wishabi.net/page_items/436058208/1790797923/extra_large.jpg"
+ },
+ "1044810505": {
+  "unit": "23 oz pkg / 16 oz jar",
+  "note": "image: \"Tortillas 23 oz. ... Salsa 16 oz.\" next to 3.49",
+  "image": "https://f.wishabi.net/page_items/436058590/1790797923/extra_large.jpg"
+ },
+ "1044810251": {
+  "unit": "16-18 oz / 10.75 oz pkg",
+  "note": "image: \"Hot Pockets 16-18 oz. Super Soft Pretzel 10.75 oz.\" next to 4.99",
+  "image": "https://f.wishabi.net/page_items/436058196/1790797917/extra_large.jpg"
+ },
+ "1044810743": {
+  "unit": "per pack (when you buy 5+)",
+  "note": "image: 8/10/6 packs listed, \"WHEN YOU BUY 5 OR MORE PARTICIPATING ITEMS\", single item price $6.99",
+  "image": "https://f.wishabi.net/page_items/436057709/1790797919/extra_large.jpg"
+ },
+ "1044810698": {
+  "unit": "per pack (when you buy 5+)",
+  "note": "image: Red Bull 4 Pack / Fiji 6 Pack, \"WHEN YOU BUY 5 OR MORE\", single item price $8.99",
+  "image": "https://f.wishabi.net/page_items/436057705/1790797916/extra_large.jpg"
+ },
+ "1044810621": {
+  "unit": "each bottle (limit 6)",
+  "note": "image: single bottles 16-28 oz./700 ml listed, \"88\u00a2 Limit 6 Each\"",
+  "image": "https://f.wishabi.net/page_items/436057697/1790797910/extra_large.jpg"
+ },
+ "1044811917": {
+  "unit": "per package (sizes as listed), when you buy 2+",
+  "note": "image: \"42 oz.\" / \"4-8 ct.\" next to 4.99 \"When You Buy 2 or More\"",
+  "image": "https://f.wishabi.net/page_items/436058100/1790797930/extra_large.jpg"
+ },
+ "1044811935": {
+  "unit": "per package (sizes as listed)",
+  "note": "image: \"Creamer 64 oz. Non Dairy Creamer 35.3 oz.\" next to 5.99",
+  "image": "https://f.wishabi.net/page_items/436058102/1790797932/extra_large.jpg"
+ },
+ "1044812445": {
+  "unit": "10 pack (7.5 oz cans)",
+  "note": "image: \"Polar Seltzer 10 Pack 7.5 oz. mini cans\" 3.99",
+  "image": "https://f.wishabi.net/page_items/436058224/1790797916/extra_large.jpg"
+ },
+ "1044810819": {
+  "unit": "per package (sizes as listed), when you buy 5+",
+  "note": "image: \"14.12-14.2 oz.\" / \"5.5 oz.\", \"WHEN YOU BUY 5 OR MORE\", single item price $8.99",
+  "image": "https://f.wishabi.net/page_items/436057717/1790797924/extra_large.jpg"
+ },
+ "1044811017": {
+  "unit": "per package (sizes as listed), when you buy 5+",
+  "note": "image: \"30 oz.\" / \"32 oz.\", \"WHEN YOU BUY 5 OR MORE\", single item price $4.99",
+  "image": "https://f.wishabi.net/page_items/436057732/1790797933/extra_large.jpg"
+ },
+ "1044811092": {
+  "unit": "per package (sizes as listed), when you buy 5+",
+  "note": "image: \"9.31-20.5 oz.\" / \"5.5-8 oz.\", \"WHEN YOU BUY 5 OR MORE\", single item price $4.99",
+  "image": "https://f.wishabi.net/page_items/436057737/1790797937/extra_large.jpg"
+ },
+ "1044811432": {
+  "unit": "per package (sizes as listed)",
+  "note": "image: \"16 oz.\" / \"16 oz.\" / \"14 oz.\" next to 5.99",
+  "image": "https://f.wishabi.net/page_items/436057956/1790797913/extra_large.jpg"
+ },
+ "1044811454": {
+  "unit": "per package (sizes as listed)",
+  "note": "image: \"7-8 oz.\" / \"4-5 oz.\" next to 3.99",
+  "image": "https://f.wishabi.net/page_items/436057958/1790797914/extra_large.jpg"
+ },
+ "1044810367": {
+  "unit": "per package (sizes as listed)",
+  "note": "image: \"18 ct.\" / \"12 ct.\" next to 5.99",
+  "image": "https://f.wishabi.net/page_items/436058206/1790797922/extra_large.jpg"
+ },
+ "1044810683": {
+  "unit": "per package (sizes as listed), when you buy 5+",
+  "note": "image: \"12-16 ct.\" / \"11.5 oz.\", \"WHEN YOU BUY 5 OR MORE\", single item price $4.99",
+  "image": "https://f.wishabi.net/page_items/436057702/1790797914/extra_large.jpg"
+ },
+ "1044810029": {
+  "unit": "per package (sizes as listed)",
+  "note": "image: \"4.25-12.4 oz.\" / \"9-13 oz.\" next to 2.49, Limit 2 Each",
+  "image": "https://f.wishabi.net/page_items/436058153/1790797922/extra_large.jpg"
+ },
+ "1044812081": {
+  "unit": "5 or 6 ct box",
+  "note": "image: \"Clif or Luna Bars 5 or 6 ct.\" 6.99",
+  "image": "https://f.wishabi.net/page_items/436058499/1790797919/extra_large.jpg"
+ },
+ "1044812605": {
+  "unit": "per package (sizes as listed)",
+  "note": "image: \"7.5-11.5 oz.\" / \"11-12 oz.\" next to 4.99",
+  "image": "https://f.wishabi.net/page_items/436058246/1790797929/extra_large.jpg"
+ },
+ "1044810322": {
+  "unit": "per package (sizes as listed)",
+  "note": "image: \"10 oz.\" / \"7oz.\" / \"11 oz.\" / \"15 oz.\" next to 5.49",
+  "image": "https://f.wishabi.net/page_items/436058202/1790797920/extra_large.jpg"
+ }
 }

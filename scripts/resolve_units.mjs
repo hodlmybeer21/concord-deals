@@ -1,6 +1,6 @@
 // Pass 1: resolve units for data/deals.json from Flipp item-detail fields. Throttled + cached.
 import fs from 'fs'; import { createRequire } from 'module';
-const require = createRequire(import.meta.url); const { resolveUnit } = require('../lib/units.js');
+const require = createRequire(import.meta.url); const { resolveUnit, resolveFromName } = require('../lib/units.js');
 const BASE = 'https://backflipp.wishabi.com/flipp', UA = { 'User-Agent': 'Mozilla/5.0 concord-deals' };
 const C = '.cache'; fs.mkdirSync(`${C}/flyers`, { recursive: true }); fs.mkdirSync(`${C}/items`, { recursive: true });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -22,13 +22,18 @@ for (const [store, s] of Object.entries(data.stores)) {
     if (i < 0) { st.no_match++; continue; }
     const it = pool.splice(i, 1)[0]; d.flipp_item_id = it.id;
     let det; try { det = await cached(`${C}/items/${it.id}.json`, `${BASE}/items/${it.id}`); } catch { st.fetch_err++; continue; }
-    const r = resolveUnit(det.item || det), ov = OV[it.id];
+    let r = resolveUnit(det.item || det); const ov = OV[it.id];
+    if (!r && !ov && (store === 'Walmart' || store === "Sam's Club")) {
+      const n = resolveFromName(d.item);
+      if (n) { d.unit = n.unit; d.unit_source = `item name: "${d.item}" (states "${n.text.trim()}") via ${BASE}/items/${it.id}`; d.flag = null; st.resolved++; st.by_name = (st.by_name || 0) + 1; map[it.id] = { unit: d.unit, unit_source: d.unit_source }; continue; }
+    }
     if (r || ov) {
       d.unit = r ? r.unit : ov.unit;
-      d.unit_source = r ? `${BASE}/items/${it.id} field ${r.field}: "${r.text.replace(/\s+/g, ' ').slice(0, 120)}"` : `${ov.image} (flyer image: ${ov.note})`;
+      d.unit_source = r ? `${BASE}/items/${it.id} field ${r.field}: "${r.text.replace(/\s+/g, ' ').slice(0, 120)}"` : `${ov.image} (flyer image read: ${ov.note})`;
       if (r && ov) d.unit_source += ` | confirmed by flyer image ${ov.image}: ${ov.note}`;
       if (r && ov && r.unit !== ov.unit) { d.unit = null; d.unit_source = null; d.flag = `conflicting unit sources (${r.unit} vs ${ov.unit})`; st.total; continue; }
       map[it.id] = { unit: d.unit, unit_source: d.unit_source };
+      if (ov && !r) st.by_image = (st.by_image || 0) + 1;
       d.flag = null; st.resolved++;
     } else { d.unit = null; d.unit_source = null; d.flag = 'unit not stated in flyer (per-lb vs each unclear)'; }
     if (0) { d.unit = null; d.unit_source = null; d.flag = 'unit not stated in flyer (per-lb vs each unclear)'; }
