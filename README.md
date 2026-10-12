@@ -43,3 +43,27 @@ Store-by-store checklist: every list item goes under the store with its cheapest
 
 ## PWA (branch `pwa`)
 Installable: `manifest.webmanifest`, icons in `/icons` (192, 512, maskable 512, apple-touch 180). `/sw.js` is served by `api/sw.js` (rewrite in `vercel.json`) with the deploy's commit sha as the cache version, so each deploy installs a new shell cache, deletes old ones, and shows "New deals available, tap to refresh". App shell + recipes/estimates are precached; `/api/deals` is network-first with a cached fallback marked `X-CD-Cache: offline`, which shows an "Offline, showing deals fetched …" banner (and says when flyers have expired). Lists, meal selections and trip check state are in localStorage, so they work offline.
+
+## Weekly email (branch `weekly-email`)
+Double opt-in signup → confirmed subscribers get a digest twice a week. **Nothing sends until every env var below is set**; missing vars return a clear 503 and no email.
+
+**Storage: Resend Audiences/Contacts (no database).** Signup is stateless: `/api/subscribe` emails an HMAC-signed confirm link (72 h); only `/api/confirm` creates the contact; `/api/unsubscribe` sets Resend's `unsubscribed` flag. Resend is the sender anyway, so the list, suppression and unsubscribe state live in one free place (free plan: 3,000 emails/month, 100/day, 1 domain), with no table, migrations or PII in our own DB.
+
+Endpoints: `POST /api/subscribe` (honeypot `website`, min fill time, 5 req / 10 min per IP per instance) · `GET /api/confirm?token=` · `GET|POST /api/unsubscribe?token=` (one-click; digest sends `List-Unsubscribe` + `List-Unsubscribe-Post: List-Unsubscribe=One-Click`) · `GET /api/digest` (needs `Authorization: Bearer $CRON_SECRET` or `?key=`; `?dry=1` renders without sending, `&format=text|json`).
+
+Schedule (`vercel.json`): `18 15 * * 0,3` = Sun + Wed 15:18 UTC = 11:18 ET in daylight time (10:18 ET in winter). Hobby runs each cron at most once a day and may fire anywhere within that hour.
+
+Env vars (set in Vercel → Project → Settings → Environment Variables, Production):
+| var | what |
+|---|---|
+| `RESEND_API_KEY` | Resend API key (Sending + Contacts access) |
+| `RESEND_AUDIENCE_ID` | Resend Audience id for NH Cart subscribers |
+| `MAIL_FROM` | e.g. `deals@nhcart.goodbotai.tech` (domain verified in Resend) |
+| `MAIL_POSTAL_ADDRESS` | **required by CAN-SPAM**: a real postal address (street, PO box or registered mailbox) |
+| `EMAIL_TOKEN_SECRET` | random 32+ byte string (`openssl rand -base64 32`) |
+| `CRON_SECRET` | random string; Vercel Cron sends it as a Bearer token |
+| `SITE_URL` | optional, defaults to https://concord-deals.vercel.app |
+
+Setup: 1) sign up at resend.com; 2) Domains → add `nhcart.goodbotai.tech` (or the sending domain you choose) and add the DNS records Resend shows (a TXT `resend._domainkey…` DKIM record, an MX + TXT SPF record on the `send.` subdomain, optional DMARC TXT `_dmarc`) at Hostinger; wait for Verified; 3) API Keys → create a key; 4) Audiences → create "NH Cart" and copy its id; 5) set the env vars above; 6) redeploy. Test with `curl -H "Authorization: Bearer $CRON_SECRET" "$SITE/api/digest?dry=1"`.
+
+Tests: `npm test` (token sign/verify, tamper/expiry, missing-env fail-safe, honeypot, digest auth). Samples: `node scripts/render_email_samples.js /tmp/em`.
