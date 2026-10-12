@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Concord NH Flyer Deals</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;padding:12px;max-width:640px;margin:auto;background:#f6f7f9;color:#111}
+h1{font-size:1.3rem;margin:4px 0}textarea{width:100%;box-sizing:border-box;height:130px;font-size:16px;padding:8px;border-radius:8px;border:1px solid #bbb}
+button{font-size:16px;padding:10px 16px;border:0;border-radius:8px;background:#0a7d32;color:#fff;margin-top:6px}
+.bar{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.pill{padding:6px 10px;border-radius:14px;font-size:.85rem;background:#e3f5e9}.pill.bad{background:#fde2e2}
+.card{background:#fff;border-radius:10px;padding:10px;margin:8px 0;box-shadow:0 1px 3px #0002}.q{font-weight:700;text-transform:capitalize}
+.row{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-top:1px solid #eee;font-size:.92rem}.best{background:#fff7d1;border-radius:6px;padding:6px}
+.price{font-weight:700;white-space:nowrap}.none{color:#a00}.note{font-size:.8rem;color:#555}small{color:#666}
+</style></head><body>
+<h1>🛒 Concord NH Flyer Deals</h1>
+<div class="note">Prices from weekly flyers via Flipp (unofficial). Sam's Club, Costco, Shaw's, and Walmart coming next.</div>
+<div id="stores" class="bar">Loading flyers…</div>
+<textarea id="list" placeholder="milk&#10;eggs&#10;chicken, bananas"></textarea>
+<button id="go">Find deals</button>
+<div id="out"></div>
+<script src="/match.js"></script>
+<script>
+const $=id=>document.getElementById(id);let DATA=null;
+const fmt=s=>s?new Date(s).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'America/New_York'}):'';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$('list').value=localStorage.getItem('cd_list')||'milk\neggs\nchicken\nbananas';
+function render(){
+  if(!DATA)return;const items=$('list').value.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
+  localStorage.setItem('cd_list',$('list').value);
+  const okStores=Object.keys(DATA.stores).filter(s=>DATA.stores[s].status==='ok');
+  const none=[];let html='';
+  for(const it of items){const m=DealMatch.match(it,DATA.deals);
+    if(!m.best){none.push(it);continue}
+    html+=`<div class="card"><div class="q">${esc(it)}</div>`;
+    for(const s of Object.keys(DATA.stores)){const d=m.byStore[s];
+      if(DATA.stores[s].status!=='ok'){html+=`<div class="row"><span>${s}</span><span class="none">store unavailable</span></div>`;continue}
+      html+=d?`<div class="row ${d===m.best||d.store===m.best.store?'best':''}"><span><b>${s}</b>${d.store===m.best.store?' ⭐ cheapest':''}<br>${esc(d.item)}<br><small>${fmt(d.valid_from)}–${fmt(d.valid_to)}</small></span><span class="price">${esc(d.price_text)}</span></div>`
+        :`<div class="row"><span>${s}</span><span class="none">no deal</span></div>`}
+    html+='</div>'}
+  if(none.length)html+=`<div class="card"><div class="q">No deal found this week</div>${none.map(n=>`<div class="row none">${esc(n)}</div>`).join('')}</div>`;
+  $('out').innerHTML=html+'<p class="note">Flyer prices compare different brands/sizes; check the flyer before you buy.</p>';
+}
+fetch('/api/deals').then(r=>r.json()).then(d=>{DATA=d;
+  $('stores').innerHTML=Object.entries(d.stores).map(([k,v])=>v.status==='ok'?`<span class="pill">✅ ${k}: ${v.count} deals, ${fmt(v.valid_from)}–${fmt(v.valid_to)}</span>`:`<span class="pill bad">⚠️ ${k}: unavailable</span>`).join('');
+  render()}).catch(()=>{$('stores').innerHTML='<span class="pill bad">⚠️ Could not load flyers — all stores unavailable</span>'});
+$('go').onclick=render;
+</script></body></html>

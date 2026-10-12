@@ -1,0 +1,1 @@
+{"name":"concord-deals","private":true,"scripts":{"snapshot":"node scripts/snapshot.mjs"},"engines":{"node":">=18"}}
