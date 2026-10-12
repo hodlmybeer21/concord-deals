@@ -3,7 +3,7 @@
 (function (root) {
   const DM = root.DealMatch || (typeof require !== 'undefined' ? require('./match.js') : null);
   // prepared/processed foods that should never stand in for a raw ingredient (unless the query names them)
-  const BLOCK = ['chip','pie','soup','sandwich','nugget','dip','salad','burger','juice','cider','candy','muffin','bar','waffle','pancake','cake','doughnut','strudel','breaded','wine','entree','dinner','bite','popcorn','cookie','pop','treat','gummy','croissant','biscuit','patty','pattie','dipper','cooked','mix','filled','wrap','bowl','meal','kit','cup','snack','marinade','seasoned','glazed','rubbed','stuffed','parmesan','frozen','pizza','dog','crab','lunch','pulled','spread'];
+  const BLOCK = ['chip','pie','soup','sandwich','nugget','dip','salad','burger','juice','cider','candy','muffin','bar','waffle','pancake','cake','doughnut','strudel','breaded','wine','entree','dinner','bite','popcorn','cookie','pop','treat','gummy','croissant','biscuit','patty','pattie','dipper','cooked','mix','filled','wrap','bowl','meal','kit','cup','snack','marinade','seasoned','glazed','rubbed','stuffed','parmesan','frozen','pizza','dog','crab','lunch','pulled','spread','creamer'];
   const r2 = n => Math.round(n * 100) / 100;
   function dealUnit(d) {
     const u = String(d.unit || '').toLowerCase().trim();
@@ -72,6 +72,6 @@
     return { recipe, lines, pantry, byStore, estimateTotal: r2(est), total: r2(total), partial: nUnk > 0, nDeal, nEst, nUnk, wellMatched: nDeal >= 2 && nDeal / lines.length >= 0.5 };
   }
   function priceAll(recipes, deals, EST, stores) { return recipes.map(r => price(r, deals, EST, stores)).sort((a, b) => a.total - b.total); }
-  root.Meals = { priceAll, price, dealUnit, candidates };
+  root.Meals = { priceAll, price, dealUnit, candidates, costFor, estimateFor };
   if (typeof module !== 'undefined') module.exports = root.Meals;
 })(typeof window !== 'undefined' ? window : globalThis);
