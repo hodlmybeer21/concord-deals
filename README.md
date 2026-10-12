@@ -1,4 +1,6 @@
-# Concord NH Flyer Deals (prototype)
+# NH Cart (formerly Concord Deals)
+
+New Hampshire grocery deals, meals and a store-by-store trip list. **Flyers are currently sourced for the Concord, NH area (03301)**; prices can differ at other NH locations. Repo, Vercel project and domain keep the `concord-deals` name.
 
 Mobile-first demo: paste a shopping list and see the cheapest store this week for each item, using the current weekly flyers for **Market Basket**, **Hannaford**, **Aldi**, **Shaw's**, **Sam's Club**, and **Walmart** in Concord, NH (03301).
 

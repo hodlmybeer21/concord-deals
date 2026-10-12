@@ -1,7 +1,7 @@
 {
- "name": "Concord Deals",
- "short_name": "Deals",
- "description": "Weekly flyer prices, meals and a store-by-store trip list for Concord, NH.",
+ "name": "NH Cart",
+ "short_name": "NH Cart",
+ "description": "New Hampshire grocery flyer deals, meals and a store-by-store trip list. Flyers currently sourced for the Concord, NH area (03301).",
  "id": "/",
  "start_url": "/?source=pwa",
  "scope": "/",

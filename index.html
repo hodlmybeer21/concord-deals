@@ -2,8 +2,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f5132" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0b1210" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icons/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Deals"><meta name="description" content="Weekly flyer prices, meals and a store-by-store trip list for Concord, NH.">
-<title>Concord Deals · Weekly flyer prices, Concord NH</title>
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="NH Cart"><meta name="description" content="NH Cart: New Hampshire grocery flyer deals, meals and a store-by-store trip list. Flyers currently sourced for the Concord, NH area (03301).">
+<title>NH Cart · New Hampshire grocery deals, meals & trip list</title>
+<meta property="og:type" content="website"><meta property="og:site_name" content="NH Cart"><meta property="og:title" content="NH Cart · New Hampshire grocery deals"><meta property="og:description" content="Compare this week's flyer prices at Market Basket, Hannaford, Aldi, Shaw's, Sam's Club and Walmart, plan meals and shop store by store. Flyers currently sourced for the Concord, NH area (03301)."><meta property="og:image" content="https://concord-deals.vercel.app/icons/icon-512.png"><meta name="twitter:card" content="summary"><meta name="application-name" content="NH Cart">
 <style>
 :root{--bg:#f3f5f4;--surface:#fff;--surface-2:#f7f9f8;--line:#e3e8e6;--text:#0f1a16;--muted:#5d6b66;--faint:#8a9792;
 --accent:#0f7a43;--accent-ink:#fff;--accent-soft:#e6f5ec;--accent-line:#9fd8b6;--warn:#9a5b00;--warn-soft:#fff4dc;--bad:#b42318;--bad-soft:#fdecea;
@@ -106,8 +107,9 @@ body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
 .pbar.ios{background:var(--surface);color:var(--text);border-color:var(--line)}
 #install{margin-left:auto;min-height:40px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 13px var(--font);cursor:pointer}
 @media print{.pbar,#install{display:none!important}}
+.wm{font-weight:800}.wm span{color:var(--accent)}
 </style></head><body>
-<header><div class="wrap"><div class="top"><div class="logo" aria-hidden="true">CD</div><div><h1>Concord Deals</h1><p id="sub">Weekly flyer prices · Concord, NH 03301</p></div><button id="install" hidden>Install app</button></div><div id="pwabars"></div></div></header>
+<header><div class="wrap"><div class="top"><div class="logo" aria-hidden="true"><svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 24h11l10 36h40l8-26H30"/></g><g fill="currentColor"><circle cx="42" cy="77" r="7"/><circle cx="70" cy="77" r="7"/></g></svg></div><div><h1 class="wm">NH <span>Cart</span></h1><p id="sub">New Hampshire grocery deals · flyers for Concord area (03301)</p></div><button id="install" hidden>Install app</button></div><div id="pwabars"></div></div></header>
 <main class="wrap">
 <div id="stores" class="chips" role="list" aria-label="Stores"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
 <div id="detail" hidden></div>
@@ -120,7 +122,7 @@ body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
 </div>
 <div id="tripview" hidden></div>
 <div id="mealsview" hidden aria-live="polite"><div class="card empty" aria-busy="true">Loading meals…</div></div>
-<p class="note">Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Costco coming next. Flyer prices compare different brands/sizes; check the flyer before you buy.</p>
+<p class="note">NH Cart covers New Hampshire grocery chains; flyers are currently sourced for the Concord, NH area (03301), so prices may differ at other locations. Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Costco coming next. Flyer prices compare different brands/sizes; check the flyer before you buy.</p>
 </main>
 <div class="dock"><div class="in"><button id="edit" aria-label="Edit list" title="Edit list">✎</button><button id="go">Compare prices</button></div></div>
 <div class="dock" id="mdock"><div class="in"><label class="ptog"><input type="checkbox" id="mpantry"> Include pantry staples (salt, oil…)</label><div class="r"><button id="mclear">Clear</button><button id="madd">Add meals to list</button></div></div></div>
@@ -304,7 +306,7 @@ function renderTrip(){const v=$('tripview');if(!DATA){v.innerHTML='<div class="c
   $('tmode').onclick=()=>{localStorage.setItem('cd_instore',instore?'0':'1');renderTrip()};
   $('tclear').onclick=()=>{localStorage.setItem('cd_trip_done','{}');renderTrip();toast('Cleared checked items')};
   $('tprint').onclick=()=>window.print();
-  $('tcopy').onclick=()=>{let t='Concord Deals trip list\n';for(const s of order)t+=`\n${s}\n`+groups[s].map(l=>`[${done[l.key]?'x':' '}] ${l.name}${l.P.cost!=null?' · '+money(l.P.cost):''}`).join('\n')+'\n';
+  $('tcopy').onclick=()=>{let t='NH Cart trip list\n';for(const s of order)t+=`\n${s}\n`+groups[s].map(l=>`[${done[l.key]?'x':' '}] ${l.name}${l.P.cost!=null?' · '+money(l.P.cost):''}`).join('\n')+'\n';
     if(groups.__any)t+='\nAnywhere (no flyer deal)\n'+groups.__any.map(l=>`[ ] ${l.name}`).join('\n')+'\n';
     (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('List copied'),()=>toast('Copy not available on this browser'))}}
 
