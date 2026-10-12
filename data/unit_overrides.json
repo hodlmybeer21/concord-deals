@@ -1,0 +1,7 @@
+{
+ "_note": "Units read by eye from the Flipp flyer cutout images (Read tool). Only units printed on the image are recorded.",
+ "1047071820": {"unit": "lb", "note": "image shows '9.99 lb.' and 'Save $1.00lb.'", "image": "https://f.wishabi.net/page_items/437096369/1791710467/extra_large.jpg"},
+ "1047071848": {"unit": "3 lb bag", "note": "image shows '3-LB. BAG' next to 2.49 (no per-lb marker)", "image": "https://f.wishabi.net/page_items/437096397/1791710470/extra_large.jpg"},
+ "1047071882": {"unit": "lb", "note": "image shows '1.49 lb.' and 'Save 50¢lb.'", "image": "https://f.wishabi.net/page_items/437096431/1791710474/extra_large.jpg"},
+ "1047071823": {"unit": "lb", "note": "image shows '1.99 lb.' and 'Save $1.00lb.'", "image": "https://f.wishabi.net/page_items/437096372/1791710469/extra_large.jpg"}
+}

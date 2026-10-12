@@ -50,6 +50,7 @@ textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(
 #go{flex:1;height:54px;border:0;border-radius:16px;background:var(--accent);color:var(--accent-ink);font:700 17px var(--font);box-shadow:0 6px 20px color-mix(in srgb,var(--accent) 35%,transparent);cursor:pointer}
 #go:active{transform:scale(.985)}#edit{height:54px;width:54px;border-radius:16px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:20px;cursor:pointer}
 @media (min-width:700px){.ihead h2{font-size:21px}}
+.unit{font-size:.7em;font-weight:500;opacity:.75;margin-left:2px}
 </style></head><body>
 <header><div class="wrap"><div class="top"><div class="logo" aria-hidden="true">CD</div><div><h1>Concord Deals</h1><p id="sub">Weekly flyer prices · Concord, NH 03301</p></div></div></div></header>
 <main class="wrap">
@@ -75,7 +76,7 @@ let _t;$('list').addEventListener('input',()=>{localStorage.setItem('cd_list',$(
 function dealRow(s,d,hero){
   return `<div class="srow">${mono(s)}<div class="body">${hero?'<span class="badge">★ Cheapest</span>':''}<div class="store"${hero?' style="margin-top:6px"':''}>${esc(s)}</div><div class="prod">${esc(d.item)}</div>
 <div class="meta"><span class="tag">${esc(d.source||'flyer')}</span><span>${d.source==='web'?'web price':fmt(d.valid_from)+'–'+fmt(d.valid_to)}</span><span>fetched ${ts(d)} ET</span><a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener">source ↗</a></div>
-${d.flag?`<div class="warn"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}</div><div class="price">${esc(d.price_text)}${d.flag?'<span class="wicon" title="unit unconfirmed">⚠️</span>':''}</div></div>`}
+${d.flag?`<div class="warn"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}</div><div class="price">${esc(d.price_text)}${d.unit&&!d.flag?`<span class="unit" title="${esc(d.unit_source||'')}"> / ${esc(d.unit)}</span>`:''}${d.flag?'<span class="wicon" title="unit unconfirmed">⚠️</span>':''}</div></div>`}
 function render(){
   if(!DATA)return;const items=$('list').value.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
   localStorage.setItem('cd_list',$('list').value);
