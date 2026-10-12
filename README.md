@@ -1,4 +1,6 @@
-# Concord NH Flyer Deals (prototype)
+# NH Cart (formerly Concord Deals)
+
+New Hampshire grocery deals, meals and a store-by-store trip list. **Flyers are currently sourced for the Concord, NH area (03301)**; prices can differ at other NH locations. Repo, Vercel project and domain keep the `concord-deals` name.
 
 Mobile-first demo: paste a shopping list and see the cheapest store this week for each item, using the current weekly flyers for **Market Basket**, **Hannaford**, **Aldi**, **Shaw's**, **Sam's Club**, and **Walmart** in Concord, NH (03301).
 
@@ -38,3 +40,6 @@ We do not use proxies, header spoofing, or browser automation to get around bot 
 
 ## Trip tab (branch `shopping-trip`)
 Store-by-store checklist: every list item goes under the store with its cheapest confirmed-unit deal, in pick order (produce, bakery, deli, meat & seafood, pantry, household, other, then dairy and frozen). Merges recipe ingredients (quantities combined, "for:" recipes note) with deals pinned via "+ add to list" (pinned to that deal and store). Sale / est. regular (BLS, cited) / price unknown tags; per-store and trip totals (partial when an item has no price or quantity); have-it/skip; in-store mode; "Anywhere: no flyer deal" section; one store vs split; clear checked; copy as text; print stylesheet. State lives in localStorage (`cd_meta`, `cd_pins`, `cd_trip_done`, `cd_trip_owned`, `cd_instore`).
+
+## PWA (branch `pwa`)
+Installable: `manifest.webmanifest`, icons in `/icons` (192, 512, maskable 512, apple-touch 180). `/sw.js` is served by `api/sw.js` (rewrite in `vercel.json`) with the deploy's commit sha as the cache version, so each deploy installs a new shell cache, deletes old ones, and shows "New deals available, tap to refresh". App shell + recipes/estimates are precached; `/api/deals` is network-first with a cached fallback marked `X-CD-Cache: offline`, which shows an "Offline, showing deals fetched …" banner (and says when flyers have expired). Lists, meal selections and trip check state are in localStorage, so they work offline.
