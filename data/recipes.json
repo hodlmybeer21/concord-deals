@@ -1,0 +1,2851 @@
+{
+ "week": "2026-10-11",
+ "note": "Recipes written for this week's Concord NH flyer deals. Ingredient q = deal search terms; est = key in price_estimates.json.",
+ "recipes": [
+  {
+   "name": "Taco Night",
+   "serves": 4,
+   "tags": [
+    "beef",
+    "quick"
+   ],
+   "ingredients": [
+    {
+     "name": "ground beef",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "ground beef",
+     "est": "ground beef"
+    },
+    {
+     "name": "flour tortillas",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "flour tortilla"
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 8,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "avocados",
+     "qty": 2,
+     "unit": "each",
+     "q": "avocado"
+    },
+    {
+     "name": "roma tomatoes",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "roma tomato",
+     "est": "tomatoes"
+    },
+    {
+     "name": "lettuce",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "lettuce",
+     "est": "lettuce"
+    },
+    {
+     "name": "taco seasoning",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Brown beef, drain, add seasoning and a splash of water.",
+    "Warm tortillas.",
+    "Fill with beef, cheese, diced tomato, lettuce and sliced avocado."
+   ]
+  },
+  {
+   "name": "Sheet-Pan Chicken & Broccoli",
+   "serves": 4,
+   "tags": [
+    "chicken",
+    "sheet pan"
+   ],
+   "ingredients": [
+    {
+     "name": "boneless chicken breast",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "chicken breast",
+     "est": "chicken breast",
+     "not": [
+      "ground",
+      "caesar",
+      "salad"
+     ]
+    },
+    {
+     "name": "broccoli",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "broccoli",
+     "not": [
+      "rabe"
+     ]
+    },
+    {
+     "name": "potatoes",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "garlic powder",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Heat oven to 425\u00b0F.",
+    "Toss cubed potatoes in oil; roast 15 min.",
+    "Add chicken chunks and broccoli, season, roast 20 min more."
+   ]
+  },
+  {
+   "name": "Lemon Garlic Chicken",
+   "serves": 4,
+   "tags": [
+    "chicken"
+   ],
+   "ingredients": [
+    {
+     "name": "boneless chicken breast",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "chicken breast",
+     "est": "chicken breast",
+     "not": [
+      "ground",
+      "caesar",
+      "salad"
+     ]
+    },
+    {
+     "name": "lemons",
+     "qty": 2,
+     "unit": "each",
+     "q": "lemon",
+     "est": "lemons",
+     "not": [
+      "lemonade"
+     ]
+    },
+    {
+     "name": "white rice",
+     "qty": 1,
+     "unit": "lb",
+     "q": "white rice",
+     "est": "rice",
+     "not": [
+      "fried",
+      "cup"
+     ]
+    },
+    {
+     "name": "garlic",
+     "pantry": true
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    },
+    {
+     "name": "dried oregano",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook rice.",
+    "Sear seasoned chicken 6 min per side.",
+    "Finish with lemon juice and garlic; serve over rice."
+   ]
+  },
+  {
+   "name": "Chicken Fajitas",
+   "serves": 4,
+   "tags": [
+    "chicken",
+    "quick"
+   ],
+   "ingredients": [
+    {
+     "name": "boneless chicken breast",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "chicken breast",
+     "est": "chicken breast",
+     "not": [
+      "ground",
+      "caesar",
+      "salad"
+     ]
+    },
+    {
+     "name": "onion",
+     "qty": 1,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "bell peppers",
+     "qty": 1,
+     "unit": "lb",
+     "q": "bell pepper",
+     "est": "peppers",
+     "not": [
+      "roasted"
+     ]
+    },
+    {
+     "name": "flour tortillas",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "flour tortilla"
+    },
+    {
+     "name": "chili powder",
+     "pantry": true
+    },
+    {
+     "name": "cumin",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Slice chicken, onion and peppers.",
+    "Sear chicken with spices, then add vegetables.",
+    "Serve in warm tortillas."
+   ]
+  },
+  {
+   "name": "Chicken Parmesan Pasta",
+   "serves": 4,
+   "tags": [
+    "chicken",
+    "pasta"
+   ],
+   "ingredients": [
+    {
+     "name": "boneless chicken breast",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "chicken breast",
+     "est": "chicken breast",
+     "not": [
+      "ground",
+      "caesar",
+      "salad"
+     ]
+    },
+    {
+     "name": "pasta",
+     "qty": 1,
+     "unit": "lb",
+     "q": "pasta",
+     "est": "pasta",
+     "not": [
+      "sauce",
+      "protein",
+      "filled",
+      "canned",
+      "chef",
+      "konjac",
+      "salad",
+      "alfredo"
+     ]
+    },
+    {
+     "name": "pasta sauce",
+     "qty": 1,
+     "unit": "jar",
+     "q": "pasta sauce",
+     "not": [
+      "alfredo"
+     ]
+    },
+    {
+     "name": "parmesan",
+     "qty": 3,
+     "unit": "oz",
+     "q": "parmesan",
+     "not": [
+      "cup",
+      "encrusted",
+      "peppercorn",
+      "rao"
+     ]
+    },
+    {
+     "name": "flour",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    },
+    {
+     "name": "Italian seasoning",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook pasta.",
+    "Dredge thin chicken in flour, pan-fry until golden.",
+    "Top with sauce and parmesan; serve over pasta."
+   ]
+  },
+  {
+   "name": "Roast Whole Chicken & Squash",
+   "serves": 4,
+   "tags": [
+    "chicken",
+    "roast"
+   ],
+   "ingredients": [
+    {
+     "name": "whole chicken",
+     "qty": 4.5,
+     "unit": "lb",
+     "q": "whole chicken",
+     "est": "chicken whole",
+     "not": [
+      "rotisserie",
+      "organic"
+     ]
+    },
+    {
+     "name": "winter squash",
+     "qty": 2,
+     "unit": "lb",
+     "q": "squash"
+    },
+    {
+     "name": "onion",
+     "qty": 1,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "thyme",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Heat oven to 425\u00b0F.",
+    "Rub chicken with butter and seasoning; surround with squash and onion chunks.",
+    "Roast about 75 min to 165\u00b0F."
+   ]
+  },
+  {
+   "name": "Baked Chicken Leg Quarters",
+   "serves": 4,
+   "tags": [
+    "chicken",
+    "budget"
+   ],
+   "ingredients": [
+    {
+     "name": "chicken leg quarters",
+     "qty": 3,
+     "unit": "lb",
+     "q": "chicken leg quarter",
+     "est": "chicken thighs"
+    },
+    {
+     "name": "potatoes",
+     "qty": 2,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "green beans",
+     "qty": 12,
+     "unit": "oz",
+     "q": "green bean"
+    },
+    {
+     "name": "paprika",
+     "pantry": true
+    },
+    {
+     "name": "garlic powder",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Season chicken; roast at 400\u00b0F 45 min.",
+    "Roast potatoes alongside.",
+    "Steam green beans to serve."
+   ]
+  },
+  {
+   "name": "Buffalo Wings Night",
+   "serves": 4,
+   "tags": [
+    "chicken",
+    "game day"
+   ],
+   "ingredients": [
+    {
+     "name": "chicken wings",
+     "qty": 3,
+     "unit": "lb",
+     "q": "chicken wing",
+     "not": [
+      "nugget",
+      "boneless",
+      "bite",
+      "air"
+     ]
+    },
+    {
+     "name": "hot sauce",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "hot sauce"
+    },
+    {
+     "name": "mini carrots",
+     "qty": 16,
+     "unit": "oz",
+     "q": "carrot",
+     "not": [
+      "cake"
+     ]
+    },
+    {
+     "name": "celery",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "celery"
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "baking powder",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Toss wings with baking powder and salt; bake at 425\u00b0F 45 min, flipping once.",
+    "Toss in hot sauce melted with butter.",
+    "Serve with carrots and celery."
+   ]
+  },
+  {
+   "name": "Chicken Thigh Rice Bowls",
+   "serves": 4,
+   "tags": [
+    "chicken",
+    "bowl"
+   ],
+   "ingredients": [
+    {
+     "name": "boneless chicken thighs",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "chicken thigh",
+     "est": "chicken thighs",
+     "not": [
+      "drumstick"
+     ]
+    },
+    {
+     "name": "white rice",
+     "qty": 1,
+     "unit": "lb",
+     "q": "white rice",
+     "est": "rice",
+     "not": [
+      "fried",
+      "cup"
+     ]
+    },
+    {
+     "name": "broccoli",
+     "qty": 1,
+     "unit": "lb",
+     "q": "broccoli",
+     "not": [
+      "rabe"
+     ]
+    },
+    {
+     "name": "cucumbers",
+     "qty": 2,
+     "unit": "each",
+     "q": "cucumber",
+     "est": "cucumbers"
+    },
+    {
+     "name": "soy sauce",
+     "pantry": true
+    },
+    {
+     "name": "honey",
+     "pantry": true
+    },
+    {
+     "name": "garlic",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook rice.",
+    "Sear thighs, glaze with soy, honey and garlic.",
+    "Serve with steamed broccoli and sliced cucumber."
+   ]
+  },
+  {
+   "name": "Rotisserie Chicken Salad Wraps",
+   "serves": 4,
+   "tags": [
+    "chicken",
+    "no cook"
+   ],
+   "ingredients": [
+    {
+     "name": "rotisserie chicken",
+     "qty": 1,
+     "unit": "each",
+     "q": "rotisserie chicken",
+     "not": [
+      "salad"
+     ]
+    },
+    {
+     "name": "flour tortillas",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "flour tortilla"
+    },
+    {
+     "name": "grapes",
+     "qty": 1,
+     "unit": "lb",
+     "q": "grape",
+     "est": "grapes"
+    },
+    {
+     "name": "Greek yogurt",
+     "qty": 8,
+     "unit": "oz",
+     "q": "greek yogurt",
+     "est": "yogurt",
+     "not": [
+      "bar",
+      "multipack"
+     ]
+    },
+    {
+     "name": "mayonnaise",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Shred chicken.",
+    "Mix with yogurt, mayo and halved grapes.",
+    "Wrap in tortillas."
+   ]
+  },
+  {
+   "name": "Classic Spaghetti & Meat Sauce",
+   "serves": 4,
+   "tags": [
+    "beef",
+    "pasta"
+   ],
+   "ingredients": [
+    {
+     "name": "ground beef",
+     "qty": 1,
+     "unit": "lb",
+     "q": "ground beef",
+     "est": "ground beef"
+    },
+    {
+     "name": "pasta",
+     "qty": 1,
+     "unit": "lb",
+     "q": "pasta",
+     "est": "pasta",
+     "not": [
+      "sauce",
+      "protein",
+      "filled",
+      "canned",
+      "chef",
+      "konjac",
+      "salad",
+      "alfredo"
+     ]
+    },
+    {
+     "name": "pasta sauce",
+     "qty": 1,
+     "unit": "jar",
+     "q": "pasta sauce",
+     "not": [
+      "alfredo"
+     ]
+    },
+    {
+     "name": "onion",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "parmesan",
+     "qty": 2,
+     "unit": "oz",
+     "q": "parmesan",
+     "not": [
+      "cup",
+      "encrusted",
+      "peppercorn",
+      "rao"
+     ]
+    },
+    {
+     "name": "garlic",
+     "pantry": true
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Brown beef with onion and garlic.",
+    "Add sauce and simmer 15 min.",
+    "Toss with cooked pasta; top with parmesan."
+   ]
+  },
+  {
+   "name": "Cheeseburgers & Potato Wedges",
+   "serves": 4,
+   "tags": [
+    "beef",
+    "grill"
+   ],
+   "ingredients": [
+    {
+     "name": "ground beef",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "ground beef",
+     "est": "ground beef"
+    },
+    {
+     "name": "hamburger buns",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "bun"
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 6,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "potatoes",
+     "qty": 2,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    },
+    {
+     "name": "ketchup",
+     "pantry": true
+    },
+    {
+     "name": "mustard",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cut potatoes into wedges; roast at 425\u00b0F 35 min.",
+    "Form 4 patties; grill or sear 4 min per side, top with cheese.",
+    "Serve on buns."
+   ]
+  },
+  {
+   "name": "Beef Chili",
+   "serves": 4,
+   "tags": [
+    "beef",
+    "slow"
+   ],
+   "ingredients": [
+    {
+     "name": "ground beef",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "ground beef",
+     "est": "ground beef"
+    },
+    {
+     "name": "black beans",
+     "qty": 32,
+     "unit": "oz",
+     "q": "black bean",
+     "not": [
+      "chili"
+     ]
+    },
+    {
+     "name": "canned tomatoes",
+     "qty": 2,
+     "unit": "can",
+     "q": "canned tomato"
+    },
+    {
+     "name": "onion",
+     "qty": 1,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "chili powder",
+     "pantry": true
+    },
+    {
+     "name": "cumin",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Brown beef and onion.",
+    "Add beans, tomatoes and spices.",
+    "Simmer 30 min."
+   ]
+  },
+  {
+   "name": "Shepherd's Pie",
+   "serves": 4,
+   "tags": [
+    "beef",
+    "comfort"
+   ],
+   "ingredients": [
+    {
+     "name": "ground beef",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "ground beef",
+     "est": "ground beef"
+    },
+    {
+     "name": "potatoes",
+     "qty": 2.5,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "mini carrots",
+     "qty": 16,
+     "unit": "oz",
+     "q": "carrot",
+     "not": [
+      "cake"
+     ]
+    },
+    {
+     "name": "corn",
+     "qty": 1,
+     "unit": "can",
+     "q": "whole kernel corn"
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "milk",
+     "pantry": true
+    },
+    {
+     "name": "flour",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Boil and mash potatoes with butter.",
+    "Brown beef with chopped carrots; stir in corn and a little flour and water.",
+    "Top with potatoes; bake at 400\u00b0F 20 min."
+   ]
+  },
+  {
+   "name": "Beef Stew",
+   "serves": 4,
+   "tags": [
+    "beef",
+    "slow"
+   ],
+   "ingredients": [
+    {
+     "name": "stew beef",
+     "qty": 2,
+     "unit": "lb",
+     "q": "stew beef",
+     "est": "beef roast"
+    },
+    {
+     "name": "potatoes",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "mini carrots",
+     "qty": 16,
+     "unit": "oz",
+     "q": "carrot",
+     "not": [
+      "cake"
+     ]
+    },
+    {
+     "name": "onion",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "flour",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    },
+    {
+     "name": "tomato paste",
+     "pantry": true
+    },
+    {
+     "name": "thyme",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Brown floured beef in oil.",
+    "Add vegetables, paste and water to cover.",
+    "Simmer 2 hours until tender."
+   ]
+  },
+  {
+   "name": "Pot Roast",
+   "serves": 4,
+   "tags": [
+    "beef",
+    "slow"
+   ],
+   "ingredients": [
+    {
+     "name": "eye of round roast",
+     "qty": 3,
+     "unit": "lb",
+     "q": "eye round roast",
+     "est": "beef roast"
+    },
+    {
+     "name": "potatoes",
+     "qty": 2,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "mini carrots",
+     "qty": 16,
+     "unit": "oz",
+     "q": "carrot",
+     "not": [
+      "cake"
+     ]
+    },
+    {
+     "name": "onion",
+     "qty": 1,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    },
+    {
+     "name": "thyme",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Sear roast on all sides.",
+    "Add vegetables and 1 cup water; cover.",
+    "Braise at 300\u00b0F about 3 hours."
+   ]
+  },
+  {
+   "name": "Philly Cheesesteaks",
+   "serves": 4,
+   "tags": [
+    "beef",
+    "sandwich"
+   ],
+   "ingredients": [
+    {
+     "name": "shaved steak",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "shaved steak",
+     "not": [
+      "ribeye"
+     ]
+    },
+    {
+     "name": "provolone",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "provolone"
+    },
+    {
+     "name": "onion",
+     "qty": 1,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "Italian bread",
+     "qty": 2,
+     "unit": "pkg",
+     "q": "italian bread"
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Saut\u00e9 onions until soft.",
+    "Sear shaved steak quickly, season.",
+    "Top with provolone, melt, pile into bread."
+   ]
+  },
+  {
+   "name": "Steak & Roast Potatoes",
+   "serves": 4,
+   "tags": [
+    "beef"
+   ],
+   "ingredients": [
+    {
+     "name": "top round steak",
+     "qty": 2,
+     "unit": "lb",
+     "q": "top round steak",
+     "est": "beef steak"
+    },
+    {
+     "name": "potatoes",
+     "qty": 2,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "broccoli",
+     "qty": 1,
+     "unit": "lb",
+     "q": "broccoli",
+     "not": [
+      "rabe"
+     ]
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "garlic",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Roast potatoes at 425\u00b0F 35 min.",
+    "Sear steak 4-5 min per side; rest and slice thin.",
+    "Serve with broccoli."
+   ]
+  },
+  {
+   "name": "Pan-Seared Pork Chops & Apples",
+   "serves": 4,
+   "tags": [
+    "pork",
+    "fall"
+   ],
+   "ingredients": [
+    {
+     "name": "pork chops",
+     "qty": 2,
+     "unit": "lb",
+     "q": "pork chop",
+     "est": "pork chops"
+    },
+    {
+     "name": "apples",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "apple",
+     "not": [
+      "caramel",
+      "pie",
+      "juice",
+      "cider",
+      "sauce",
+      "doughnut",
+      "strudel",
+      "pop",
+      "applewood"
+     ]
+    },
+    {
+     "name": "onion",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "cinnamon",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Season and sear chops 5 min per side; set aside.",
+    "Saut\u00e9 sliced apples and onion in butter with cinnamon.",
+    "Return chops to warm through."
+   ]
+  },
+  {
+   "name": "Pulled Pork Sandwiches",
+   "serves": 4,
+   "tags": [
+    "pork",
+    "slow"
+   ],
+   "ingredients": [
+    {
+     "name": "pork picnic",
+     "qty": 4,
+     "unit": "lb",
+     "q": "pork picnic",
+     "est": "pork other"
+    },
+    {
+     "name": "BBQ sauce",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "bbq sauce",
+     "not": [
+      "marinade",
+      "wing"
+     ]
+    },
+    {
+     "name": "hamburger buns",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "bun"
+    },
+    {
+     "name": "brown sugar",
+     "pantry": true
+    },
+    {
+     "name": "paprika",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Rub pork with sugar, paprika, salt.",
+    "Slow cook 8 hours (or 300\u00b0F oven 5 hours).",
+    "Shred, mix with BBQ sauce, pile on buns."
+   ]
+  },
+  {
+   "name": "Pork Loin Roast & Squash",
+   "serves": 4,
+   "tags": [
+    "pork",
+    "roast"
+   ],
+   "ingredients": [
+    {
+     "name": "boneless pork loin",
+     "qty": 2.5,
+     "unit": "lb",
+     "q": "pork loin",
+     "est": "pork other"
+    },
+    {
+     "name": "winter squash",
+     "qty": 2,
+     "unit": "lb",
+     "q": "squash"
+    },
+    {
+     "name": "apples",
+     "qty": 1,
+     "unit": "lb",
+     "q": "apple",
+     "not": [
+      "caramel",
+      "pie",
+      "juice",
+      "cider",
+      "sauce",
+      "doughnut",
+      "strudel",
+      "pop",
+      "applewood"
+     ]
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "sage",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Heat oven to 400\u00b0F.",
+    "Roast seasoned pork with squash and apple wedges about 60 min to 145\u00b0F.",
+    "Rest 10 min and slice."
+   ]
+  },
+  {
+   "name": "Ham Steak, Eggs & Potatoes",
+   "serves": 4,
+   "tags": [
+    "pork",
+    "breakfast for dinner"
+   ],
+   "ingredients": [
+    {
+     "name": "ham steak",
+     "qty": 2,
+     "unit": "pkg",
+     "q": "ham steak"
+    },
+    {
+     "name": "eggs",
+     "qty": 8,
+     "unit": "each",
+     "q": "egg",
+     "est": "eggs"
+    },
+    {
+     "name": "potatoes",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Pan-fry diced potatoes until crisp.",
+    "Sear ham steaks.",
+    "Fry eggs; serve together."
+   ]
+  },
+  {
+   "name": "Bacon Potato Soup",
+   "serves": 4,
+   "tags": [
+    "pork",
+    "soup"
+   ],
+   "ingredients": [
+    {
+     "name": "bacon",
+     "qty": 12,
+     "unit": "oz",
+     "q": "bacon",
+     "not": [
+      "chicken",
+      "cheddar",
+      "bit",
+      "burnt"
+     ]
+    },
+    {
+     "name": "potatoes",
+     "qty": 3,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "onion",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "milk",
+     "qty": 2,
+     "unit": "cup",
+     "q": "milk",
+     "est": "milk",
+     "not": [
+      "almond",
+      "creamer",
+      "oat"
+     ]
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 4,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "flour",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook bacon crisp; crumble.",
+    "Soften onion in butter, add flour, potatoes and water; simmer 20 min.",
+    "Add milk, mash partly, top with cheese and bacon."
+   ]
+  },
+  {
+   "name": "Sausage, Peppers & Onions",
+   "serves": 4,
+   "tags": [
+    "pork",
+    "quick"
+   ],
+   "ingredients": [
+    {
+     "name": "Italian sausage",
+     "qty": 16,
+     "unit": "oz",
+     "q": "italian sausage",
+     "not": [
+      "chicken"
+     ]
+    },
+    {
+     "name": "bell peppers",
+     "qty": 1,
+     "unit": "lb",
+     "q": "bell pepper",
+     "est": "peppers",
+     "not": [
+      "roasted"
+     ]
+    },
+    {
+     "name": "onion",
+     "qty": 1,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "Italian bread",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "italian bread"
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Brown sausages; slice.",
+    "Saut\u00e9 peppers and onions until soft.",
+    "Return sausage; serve with bread."
+   ]
+  },
+  {
+   "name": "Chorizo & Potato Hash",
+   "serves": 4,
+   "tags": [
+    "pork",
+    "skillet"
+   ],
+   "ingredients": [
+    {
+     "name": "chorizo sausage",
+     "qty": 12,
+     "unit": "oz",
+     "q": "chorizo"
+    },
+    {
+     "name": "potatoes",
+     "qty": 2,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "onion",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "eggs",
+     "qty": 4,
+     "unit": "each",
+     "q": "egg",
+     "est": "eggs"
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "paprika",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Brown chorizo; remove.",
+    "Crisp diced potatoes and onion in the fat.",
+    "Return chorizo, top with fried eggs."
+   ]
+  },
+  {
+   "name": "Crispy Pork Belly Rice Bowls",
+   "serves": 4,
+   "tags": [
+    "pork"
+   ],
+   "ingredients": [
+    {
+     "name": "pork belly",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "pork belly"
+    },
+    {
+     "name": "white rice",
+     "qty": 1,
+     "unit": "lb",
+     "q": "white rice",
+     "est": "rice",
+     "not": [
+      "fried",
+      "cup"
+     ]
+    },
+    {
+     "name": "cucumbers",
+     "qty": 2,
+     "unit": "each",
+     "q": "cucumber",
+     "est": "cucumbers"
+    },
+    {
+     "name": "soy sauce",
+     "pantry": true
+    },
+    {
+     "name": "sugar",
+     "pantry": true
+    },
+    {
+     "name": "garlic",
+     "pantry": true
+    },
+    {
+     "name": "vinegar",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Slice and roast pork belly at 425\u00b0F 30 min.",
+    "Glaze with soy, sugar and garlic.",
+    "Serve over rice with quick-pickled cucumber."
+   ]
+  },
+  {
+   "name": "Baked Salmon & Rice",
+   "serves": 4,
+   "tags": [
+    "fish",
+    "quick"
+   ],
+   "ingredients": [
+    {
+     "name": "salmon fillet",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "salmon",
+     "not": [
+      "smoked",
+      "burger",
+      "cube",
+      "encrusted",
+      "center"
+     ]
+    },
+    {
+     "name": "white rice",
+     "qty": 1,
+     "unit": "lb",
+     "q": "white rice",
+     "est": "rice",
+     "not": [
+      "fried",
+      "cup"
+     ]
+    },
+    {
+     "name": "lemons",
+     "qty": 2,
+     "unit": "each",
+     "q": "lemon",
+     "est": "lemons",
+     "not": [
+      "lemonade"
+     ]
+    },
+    {
+     "name": "broccoli",
+     "qty": 1,
+     "unit": "lb",
+     "q": "broccoli",
+     "not": [
+      "rabe"
+     ]
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "dill",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook rice.",
+    "Bake salmon at 400\u00b0F 12-15 min with lemon slices.",
+    "Serve with steamed broccoli."
+   ]
+  },
+  {
+   "name": "Swordfish Steaks & Roma Tomato Salad",
+   "serves": 4,
+   "tags": [
+    "fish"
+   ],
+   "ingredients": [
+    {
+     "name": "swordfish",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "swordfish"
+    },
+    {
+     "name": "roma tomatoes",
+     "qty": 1,
+     "unit": "lb",
+     "q": "roma tomato",
+     "est": "tomatoes"
+    },
+    {
+     "name": "cucumbers",
+     "qty": 2,
+     "unit": "each",
+     "q": "cucumber",
+     "est": "cucumbers"
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "lemon juice",
+     "pantry": true
+    },
+    {
+     "name": "oregano",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Grill or sear swordfish 4 min per side.",
+    "Toss chopped tomato and cucumber with oil and salt.",
+    "Serve together."
+   ]
+  },
+  {
+   "name": "New England Fish Chowder",
+   "serves": 4,
+   "tags": [
+    "fish",
+    "soup"
+   ],
+   "ingredients": [
+    {
+     "name": "chowder fish",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "chowder fish"
+    },
+    {
+     "name": "potatoes",
+     "qty": 2,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "onion",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "milk",
+     "qty": 3,
+     "unit": "cup",
+     "q": "milk",
+     "est": "milk",
+     "not": [
+      "almond",
+      "creamer",
+      "oat"
+     ]
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "flour",
+     "pantry": true
+    },
+    {
+     "name": "thyme",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Soften onion in butter; add diced potatoes and water to cover; simmer 15 min.",
+    "Add fish and milk; simmer gently 8 min.",
+    "Season and serve."
+   ]
+  },
+  {
+   "name": "Baked Cod & Potatoes",
+   "serves": 4,
+   "tags": [
+    "fish"
+   ],
+   "ingredients": [
+    {
+     "name": "cod fillets",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "cod fillet"
+    },
+    {
+     "name": "potatoes",
+     "qty": 2,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "lemons",
+     "qty": 2,
+     "unit": "each",
+     "q": "lemon",
+     "est": "lemons",
+     "not": [
+      "lemonade"
+     ]
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "breadcrumbs",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Roast potato slices at 425\u00b0F 20 min.",
+    "Top with cod, butter and crumbs; bake 12-15 min more.",
+    "Serve with lemon."
+   ]
+  },
+  {
+   "name": "Garlic Shrimp Pasta",
+   "serves": 4,
+   "tags": [
+    "seafood",
+    "pasta",
+    "quick"
+   ],
+   "ingredients": [
+    {
+     "name": "raw shrimp",
+     "qty": 16,
+     "unit": "oz",
+     "q": "peeled deveined shrimp",
+     "not": [
+      "cooked",
+      "breaded",
+      "tempura",
+      "gourmet"
+     ]
+    },
+    {
+     "name": "pasta",
+     "qty": 1,
+     "unit": "lb",
+     "q": "pasta",
+     "est": "pasta",
+     "not": [
+      "sauce",
+      "protein",
+      "filled",
+      "canned",
+      "chef",
+      "konjac",
+      "salad",
+      "alfredo"
+     ]
+    },
+    {
+     "name": "parmesan",
+     "qty": 2,
+     "unit": "oz",
+     "q": "parmesan",
+     "not": [
+      "cup",
+      "encrusted",
+      "peppercorn",
+      "rao"
+     ]
+    },
+    {
+     "name": "lemons",
+     "qty": 1,
+     "unit": "each",
+     "q": "lemon",
+     "est": "lemons",
+     "not": [
+      "lemonade"
+     ]
+    },
+    {
+     "name": "garlic",
+     "pantry": true
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "red pepper flakes",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook pasta.",
+    "Saut\u00e9 garlic in butter and oil; add shrimp 3 min.",
+    "Toss with pasta, lemon and parmesan."
+   ]
+  },
+  {
+   "name": "Shrimp Tacos",
+   "serves": 4,
+   "tags": [
+    "seafood",
+    "quick"
+   ],
+   "ingredients": [
+    {
+     "name": "raw shrimp",
+     "qty": 16,
+     "unit": "oz",
+     "q": "peeled deveined shrimp",
+     "not": [
+      "cooked",
+      "breaded",
+      "tempura",
+      "gourmet"
+     ]
+    },
+    {
+     "name": "flour tortillas",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "flour tortilla"
+    },
+    {
+     "name": "avocados",
+     "qty": 2,
+     "unit": "each",
+     "q": "avocado"
+    },
+    {
+     "name": "cabbage",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "cabbage"
+    },
+    {
+     "name": "chili powder",
+     "pantry": true
+    },
+    {
+     "name": "lime juice",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Season and sear shrimp 2 min per side.",
+    "Warm tortillas.",
+    "Fill with shrimp, cabbage and avocado."
+   ]
+  },
+  {
+   "name": "Tuna Pasta Bake",
+   "serves": 4,
+   "tags": [
+    "pantry",
+    "budget"
+   ],
+   "ingredients": [
+    {
+     "name": "tuna",
+     "qty": 3,
+     "unit": "can",
+     "q": "tuna"
+    },
+    {
+     "name": "pasta",
+     "qty": 1,
+     "unit": "lb",
+     "q": "pasta",
+     "est": "pasta",
+     "not": [
+      "sauce",
+      "protein",
+      "filled",
+      "canned",
+      "chef",
+      "konjac",
+      "salad",
+      "alfredo"
+     ]
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 8,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "milk",
+     "qty": 1,
+     "unit": "cup",
+     "q": "milk",
+     "est": "milk",
+     "not": [
+      "almond",
+      "creamer",
+      "oat"
+     ]
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "flour",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook pasta.",
+    "Make a quick cheese sauce with butter, flour, milk and cheese.",
+    "Fold in tuna and pasta; bake at 375\u00b0F 20 min."
+   ]
+  },
+  {
+   "name": "Ground Turkey Taco Bowls",
+   "serves": 4,
+   "tags": [
+    "turkey",
+    "bowl"
+   ],
+   "ingredients": [
+    {
+     "name": "lean ground turkey",
+     "qty": 19.2,
+     "unit": "oz",
+     "q": "lean turkey"
+    },
+    {
+     "name": "white rice",
+     "qty": 1,
+     "unit": "lb",
+     "q": "white rice",
+     "est": "rice",
+     "not": [
+      "fried",
+      "cup"
+     ]
+    },
+    {
+     "name": "black beans",
+     "qty": 32,
+     "unit": "oz",
+     "q": "black bean",
+     "not": [
+      "chili"
+     ]
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 6,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "taco seasoning",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook rice.",
+    "Brown turkey with seasoning.",
+    "Serve over rice with warmed beans and cheese."
+   ]
+  },
+  {
+   "name": "Turkey Breast Dinner",
+   "serves": 4,
+   "tags": [
+    "turkey",
+    "roast"
+   ],
+   "ingredients": [
+    {
+     "name": "whole turkey breast",
+     "qty": 5,
+     "unit": "lb",
+     "q": "whole turkey breast",
+     "not": [
+      "oven",
+      "roasted",
+      "sharp"
+     ]
+    },
+    {
+     "name": "potatoes",
+     "qty": 3,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "green beans",
+     "qty": 12,
+     "unit": "oz",
+     "q": "green bean"
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "sage",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Roast turkey breast at 350\u00b0F about 2 hours to 165\u00b0F.",
+    "Boil and mash potatoes.",
+    "Steam green beans."
+   ]
+  },
+  {
+   "name": "Veggie Frittata",
+   "serves": 4,
+   "tags": [
+    "vegetarian",
+    "eggs"
+   ],
+   "ingredients": [
+    {
+     "name": "eggs",
+     "qty": 10,
+     "unit": "each",
+     "q": "egg",
+     "est": "eggs"
+    },
+    {
+     "name": "mushrooms",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "sliced mushroom"
+    },
+    {
+     "name": "onion",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "onion",
+     "not": [
+      "dip",
+      "green",
+      "ring"
+     ]
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 4,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Saut\u00e9 mushrooms and onion in an oven-safe pan.",
+    "Pour in beaten eggs and cheese.",
+    "Cook 5 min then bake at 375\u00b0F 12 min."
+   ]
+  },
+  {
+   "name": "Baked Ziti",
+   "serves": 4,
+   "tags": [
+    "vegetarian",
+    "pasta"
+   ],
+   "ingredients": [
+    {
+     "name": "pasta",
+     "qty": 1,
+     "unit": "lb",
+     "q": "pasta",
+     "est": "pasta",
+     "not": [
+      "sauce",
+      "protein",
+      "filled",
+      "canned",
+      "chef",
+      "konjac",
+      "salad",
+      "alfredo"
+     ]
+    },
+    {
+     "name": "pasta sauce",
+     "qty": 1,
+     "unit": "jar",
+     "q": "pasta sauce",
+     "not": [
+      "alfredo"
+     ]
+    },
+    {
+     "name": "ricotta",
+     "qty": 16,
+     "unit": "oz",
+     "q": "ricotta"
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 8,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "parmesan",
+     "qty": 2,
+     "unit": "oz",
+     "q": "parmesan",
+     "not": [
+      "cup",
+      "encrusted",
+      "peppercorn",
+      "rao"
+     ]
+    },
+    {
+     "name": "Italian seasoning",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook pasta just short of done.",
+    "Mix with sauce and ricotta.",
+    "Top with cheese; bake at 375\u00b0F 25 min."
+   ]
+  },
+  {
+   "name": "Black Bean Quesadillas",
+   "serves": 4,
+   "tags": [
+    "vegetarian",
+    "quick"
+   ],
+   "ingredients": [
+    {
+     "name": "black beans",
+     "qty": 32,
+     "unit": "oz",
+     "q": "black bean",
+     "not": [
+      "chili"
+     ]
+    },
+    {
+     "name": "flour tortillas",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "flour tortilla"
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 8,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "salsa",
+     "qty": 1,
+     "unit": "jar",
+     "q": "salsa"
+    },
+    {
+     "name": "cumin",
+     "pantry": true
+    },
+    {
+     "name": "oil",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Mash beans with cumin.",
+    "Spread on tortillas with cheese; fold.",
+    "Crisp in a pan; serve with salsa."
+   ]
+  },
+  {
+   "name": "Stuffed Acorn Squash",
+   "serves": 4,
+   "tags": [
+    "vegetarian",
+    "fall"
+   ],
+   "ingredients": [
+    {
+     "name": "acorn squash",
+     "qty": 3,
+     "unit": "lb",
+     "q": "squash"
+    },
+    {
+     "name": "white rice",
+     "qty": 0.5,
+     "unit": "lb",
+     "q": "white rice",
+     "est": "rice",
+     "not": [
+      "fried",
+      "cup"
+     ]
+    },
+    {
+     "name": "apples",
+     "qty": 1,
+     "unit": "lb",
+     "q": "apple",
+     "not": [
+      "caramel",
+      "pie",
+      "juice",
+      "cider",
+      "sauce",
+      "doughnut",
+      "strudel",
+      "pop",
+      "applewood"
+     ]
+    },
+    {
+     "name": "feta",
+     "qty": 5,
+     "unit": "oz",
+     "q": "feta"
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "maple syrup",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Halve and roast squash at 400\u00b0F 30 min.",
+    "Fill with cooked rice and diced apple.",
+    "Top with feta; bake 10 min more."
+   ]
+  },
+  {
+   "name": "Tomato & Mushroom Pasta",
+   "serves": 4,
+   "tags": [
+    "vegetarian",
+    "pasta"
+   ],
+   "ingredients": [
+    {
+     "name": "pasta",
+     "qty": 1,
+     "unit": "lb",
+     "q": "pasta",
+     "est": "pasta",
+     "not": [
+      "sauce",
+      "protein",
+      "filled",
+      "canned",
+      "chef",
+      "konjac",
+      "salad",
+      "alfredo"
+     ]
+    },
+    {
+     "name": "roma tomatoes",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "roma tomato",
+     "est": "tomatoes"
+    },
+    {
+     "name": "mushrooms",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "baby bella mushroom"
+    },
+    {
+     "name": "parmesan",
+     "qty": 2,
+     "unit": "oz",
+     "q": "parmesan",
+     "not": [
+      "cup",
+      "encrusted",
+      "peppercorn",
+      "rao"
+     ]
+    },
+    {
+     "name": "garlic",
+     "pantry": true
+    },
+    {
+     "name": "olive oil",
+     "pantry": true
+    },
+    {
+     "name": "basil",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook pasta.",
+    "Saut\u00e9 mushrooms, then chopped tomatoes and garlic until saucy.",
+    "Toss with pasta and parmesan."
+   ]
+  },
+  {
+   "name": "Apple Grape Chicken Salad",
+   "serves": 4,
+   "tags": [
+    "chicken",
+    "salad"
+   ],
+   "ingredients": [
+    {
+     "name": "boneless chicken breast",
+     "qty": 1.5,
+     "unit": "lb",
+     "q": "chicken breast",
+     "est": "chicken breast",
+     "not": [
+      "ground",
+      "caesar",
+      "salad"
+     ]
+    },
+    {
+     "name": "apples",
+     "qty": 1,
+     "unit": "lb",
+     "q": "apple",
+     "not": [
+      "caramel",
+      "pie",
+      "juice",
+      "cider",
+      "sauce",
+      "doughnut",
+      "strudel",
+      "pop",
+      "applewood"
+     ]
+    },
+    {
+     "name": "grapes",
+     "qty": 1,
+     "unit": "lb",
+     "q": "grape",
+     "est": "grapes"
+    },
+    {
+     "name": "lettuce",
+     "qty": 1,
+     "unit": "lb",
+     "q": "lettuce",
+     "est": "lettuce"
+    },
+    {
+     "name": "mayonnaise",
+     "pantry": true
+    },
+    {
+     "name": "lemon juice",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Poach or grill chicken; chop.",
+    "Mix with diced apple, halved grapes and mayo.",
+    "Serve over lettuce."
+   ]
+  },
+  {
+   "name": "Breakfast Burritos",
+   "serves": 4,
+   "tags": [
+    "eggs",
+    "breakfast"
+   ],
+   "ingredients": [
+    {
+     "name": "eggs",
+     "qty": 8,
+     "unit": "each",
+     "q": "egg",
+     "est": "eggs"
+    },
+    {
+     "name": "breakfast sausage",
+     "qty": 7.5,
+     "unit": "oz",
+     "q": "breakfast sausage"
+    },
+    {
+     "name": "potatoes",
+     "qty": 1,
+     "unit": "lb",
+     "q": "potato",
+     "est": "potatoes",
+     "not": [
+      "chip",
+      "mashed",
+      "frozen",
+      "hashbrown",
+      "bread",
+      "sweet"
+     ]
+    },
+    {
+     "name": "flour tortillas",
+     "qty": 1,
+     "unit": "pkg",
+     "q": "flour tortilla"
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 4,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    },
+    {
+     "name": "pepper",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Brown sausage; set aside.",
+    "Crisp diced potatoes.",
+    "Scramble eggs; fill tortillas with everything and cheese."
+   ]
+  },
+  {
+   "name": "Mac & Cheese with Broccoli",
+   "serves": 4,
+   "tags": [
+    "vegetarian",
+    "comfort"
+   ],
+   "ingredients": [
+    {
+     "name": "pasta",
+     "qty": 1,
+     "unit": "lb",
+     "q": "pasta",
+     "est": "pasta",
+     "not": [
+      "sauce",
+      "protein",
+      "filled",
+      "canned",
+      "chef",
+      "konjac",
+      "salad",
+      "alfredo"
+     ]
+    },
+    {
+     "name": "shredded cheese",
+     "qty": 12,
+     "unit": "oz",
+     "q": "shredded cheese",
+     "est": "cheddar cheese"
+    },
+    {
+     "name": "milk",
+     "qty": 2,
+     "unit": "cup",
+     "q": "milk",
+     "est": "milk",
+     "not": [
+      "almond",
+      "creamer",
+      "oat"
+     ]
+    },
+    {
+     "name": "broccoli",
+     "qty": 1,
+     "unit": "lb",
+     "q": "broccoli",
+     "not": [
+      "rabe"
+     ]
+    },
+    {
+     "name": "butter",
+     "pantry": true
+    },
+    {
+     "name": "flour",
+     "pantry": true
+    },
+    {
+     "name": "mustard powder",
+     "pantry": true
+    },
+    {
+     "name": "salt",
+     "pantry": true
+    }
+   ],
+   "steps": [
+    "Cook pasta; steam broccoli.",
+    "Make cheese sauce with butter, flour, milk and cheese.",
+    "Combine everything."
+   ]
+  }
+ ]
+}
