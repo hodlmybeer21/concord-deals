@@ -80,18 +80,38 @@ body.meals .dock{display:none}body.meals{padding-bottom:calc(24px + env(safe-are
 #mclear{height:54px;padding:0 14px;border-radius:16px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 14px var(--font);cursor:pointer}
 .ptog{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:14px;cursor:pointer}.ptog input{width:22px;height:22px;accent-color:var(--accent)}
 .toast{position:fixed;left:16px;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:9;max-width:608px;margin:0 auto;padding:14px 16px;border-radius:14px;background:var(--text);color:var(--bg);font-weight:600;box-shadow:var(--shadow)}
+.tline{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-top:1px solid var(--line)}.tsec .tline:first-of-type{border-top:0}
+.ck{flex:0 0 auto;width:48px;height:48px;border-radius:50%;border:2px solid var(--line);background:var(--surface-2);display:grid;place-items:center;font-size:22px;color:transparent;cursor:pointer}
+.tline.done .ck{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}.tline.done .tn{text-decoration:line-through;color:var(--faint)}.tline.done{opacity:.7}
+.tb{flex:1;min-width:0}.tn{font-size:18px;font-weight:700;line-height:1.25;overflow-wrap:break-word;text-transform:capitalize}
+.tq{font-size:13.5px;color:var(--muted);margin-top:2px;overflow-wrap:break-word}.tfor{font-size:12.5px;color:var(--accent);margin-top:3px;overflow-wrap:break-word}
+.tp{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;margin-top:4px;font-size:13px;color:var(--muted)}.tp b{font-size:17px;color:var(--text);font-variant-numeric:tabular-nums}
+.tag.sale{color:var(--accent);background:var(--accent-soft);border-color:transparent}
+.tact{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}.tbtn{min-height:36px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font:600 13px var(--font);cursor:pointer}
+.tsh{display:flex;align-items:center;gap:10px;padding:14px 14px 10px;border-bottom:1px solid var(--line)}.tsh h2{margin:0;font-size:19px;flex:1;min-width:0}.tsh .sub{font-size:13px;color:var(--muted);white-space:nowrap}.tsh .mono{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px;background:var(--b)}
+.cat{padding:8px 14px 2px;font-size:11.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--faint)}
+.tbar{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}.tbar::-webkit-scrollbar{display:none}.tbar .tbtn{flex:0 0 auto;min-height:44px;color:var(--text)}.tbar .tbtn[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tot{padding:14px 16px}.tot .g{display:flex;justify-content:space-between;align-items:baseline}.tot .g b{font-size:26px;color:var(--accent);font-variant-numeric:tabular-nums}
+.cmp{padding:0 16px 14px}.cmp .bl{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:14px}.cmp .bl b{white-space:nowrap;font-variant-numeric:tabular-nums}
+body.instore .tp,body.instore .tact,body.instore .tfor,body.instore .tot,body.instore .cmp-card,body.instore .tsh .sub{display:none}body.instore .tn{font-size:21px}
+.pin{min-height:36px;padding:0 10px;margin-top:8px;border-radius:10px;border:1px solid var(--accent-line);background:var(--accent-soft);color:var(--accent);font:700 13px var(--font);cursor:pointer}.pin[aria-pressed=true]{background:var(--accent);color:var(--accent-ink)}
+body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
+@media print{header,.tabs,.chips,#detail,.dock,.tbar,.toast,.note,.tot,.cmp-card,.tact,.tp,#listview,#mealsview{display:none!important}body{background:#fff;color:#000;padding:0;font-size:12pt}
+.card{box-shadow:none;border:1px solid #999;break-inside:avoid;page-break-inside:avoid;margin:0 0 12pt}.tsh .mono{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.ck{width:16pt;height:16pt;border-radius:3pt;border:1.5pt solid #000;background:#fff;color:#000;font-size:11pt}.tline{padding:5pt 8pt}.tn{font-size:13pt}.tline.done{opacity:1}.tfor{color:#444}}
 </style></head><body>
 <header><div class="wrap"><div class="top"><div class="logo" aria-hidden="true">CD</div><div><h1>Concord Deals</h1><p id="sub">Weekly flyer prices · Concord, NH 03301</p></div></div></div></header>
 <main class="wrap">
 <div id="stores" class="chips" role="list" aria-label="Stores"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
 <div id="detail" hidden></div>
-<div class="tabs" role="tablist" aria-label="View"><button role="tab" id="tab-list" aria-selected="true">Shopping list</button><button role="tab" id="tab-meals" aria-selected="false">Meals</button></div>
+<div class="tabs" role="tablist" aria-label="View"><button role="tab" id="tab-list" aria-selected="true">Shopping list</button><button role="tab" id="tab-meals" aria-selected="false">Meals</button><button role="tab" id="tab-trip" aria-selected="false">Trip</button></div>
 <div id="listview">
 <section class="card editor"><label for="list">Your shopping list <span>one per line or commas</span></label>
 <textarea id="list" placeholder="milk&#10;eggs&#10;chicken, bananas" autocomplete="off" autocapitalize="none" spellcheck="false"></textarea>
 <div class="note legend"><span class="lg"><span class="tag">flyer</span> weekly flyer via Flipp (unofficial)</span> <span class="lg"><span class="tag">web</span> store website price</span> <span>⚠️ unit or product match unconfirmed — check the source link</span></div></section>
 <div id="out" aria-live="polite"><div class="card empty" aria-busy="true">Loading this week's flyers…</div></div>
 </div>
+<div id="tripview" hidden></div>
 <div id="mealsview" hidden aria-live="polite"><div class="card empty" aria-busy="true">Loading meals…</div></div>
 <p class="note">Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Costco coming next. Flyer prices compare different brands/sizes; check the flyer before you buy.</p>
 </main>
@@ -108,10 +128,10 @@ const mono=s=>{const b=BRAND[s]||[s[0],'#555'];return `<span class="mono" style=
 const ts=d=>new Date(d.fetched_at||DATA.fetched_at).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 $('list').value=localStorage.getItem('cd_list')||'milk\neggs\nchicken\nbananas';
 let _t;$('list').addEventListener('input',()=>{localStorage.setItem('cd_list',$('list').value);clearTimeout(_t);_t=setTimeout(render,400)});
-function dealRow(s,d,hero){
+function dealRow(s,d,hero,q){
   return `<div class="srow">${mono(s)}<div class="body">${hero?'<span class="badge">★ Cheapest</span>':''}<div class="store"${hero?' style="margin-top:6px"':''}>${esc(s)}</div><div class="pline"><span class="price">${esc(d.price_text)}</span>${d.unit&&!d.flag?`<span class="unit" title="${esc(d.unit_source||'')}">/ ${esc(d.unit)}</span>`:''}${d.flag?'<span class="wicon" title="unit unconfirmed">⚠️</span>':''}</div><div class="prod">${esc(d.item)}</div>
 <div class="meta"><span class="tag">${esc(d.source||'flyer')}</span><span>${d.source==='web'?'web price':fmt(d.valid_from)+'–'+fmt(d.valid_to)}</span><span>fetched ${ts(d)} ET</span><a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener">source ↗</a></div>
-${d.flag?`<div class="warn"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}</div></div>`}
+${d.flag?`<div class="warn"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}${q!=null&&d.flipp_item_id?pinBtn(d,q):''}</div></div>`}
 function render(){
   if(!DATA)return;const items=$('list').value.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
   localStorage.setItem('cd_list',$('list').value);
@@ -121,14 +141,14 @@ function render(){
     if(!m.best){none.push(it);continue}
     const n=stores.filter(s=>m.byStore[s]).length;
     html+=`<article class="card"><div class="ihead"><h2>${esc(it)}</h2><small>${n} of ${stores.length} stores</small></div>`;
-    html+=`<div class="hero">${dealRow(m.best.store,m.byStore[m.best.store],true)}</div><div class="rows">`;
+    html+=`<div class="hero">${dealRow(m.best.store,m.byStore[m.best.store],true,it)}</div><div class="rows">`;
     const rest=stores.filter(s=>s!==m.best.store).sort((a,b)=>{const r=s=>DATA.stores[s].status!=='ok'?2e9+1:(m.byStore[s]?m.byStore[s].price:2e9);return r(a)-r(b)});
     for(const s of rest){const d=m.byStore[s];
       if(DATA.stores[s].status!=='ok'){html+=`<div class="row muted unav"><div class="srow">${mono(s)}<div class="body"><div class="store">${esc(s)}</div></div><div class="price">store unavailable</div></div></div>`;continue}
-      html+=d?`<div class="row">${dealRow(s,d,false)}</div>`:`<div class="row muted"><div class="srow">${mono(s)}<div class="body"><div class="store">${esc(s)}</div></div><div class="price">no deal</div></div></div>`}
+      html+=d?`<div class="row">${dealRow(s,d,false,it)}</div>`:`<div class="row muted"><div class="srow">${mono(s)}<div class="body"><div class="store">${esc(s)}</div></div><div class="price">no deal</div></div></div>`}
     html+='</div></article>'}
   if(none.length)html+=`<section class="card"><div class="ihead"><h2 style="text-transform:none">No deal found this week</h2></div><div class="none-list">${none.map(n=>`<span>${esc(n)}</span>`).join('')}</div></section>`;
-  $('out').innerHTML=html;
+  $('out').innerHTML=html;wirePins($('out'));
 }
 function showDetail(k,btn){const v=DATA.stores[k],el=$('detail');const open=btn.getAttribute('aria-expanded')==='true';
   document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-expanded','false'));if(open){el.hidden=true;return}
@@ -174,12 +194,13 @@ function mealDetail(i){const m=MEALS[i],v=$('mealsview');if(!m){mealList();retur
   <h3 class="sec">Steps</h3><ol class="steps">${m.recipe.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></article>
   <p class="note">Package and multi-buy deals are counted in full even if the recipe uses part. Estimates are U.S. average regular prices from the Bureau of Labor Statistics, never counted as savings.</p>`;
   wireSel(v);$('mback').onclick=()=>{history.length>1?history.back():(location.hash='meals')};window.scrollTo(0,0)}
-function route(){const h=location.hash.slice(1),meals=h==='meals'||h.startsWith('meal-');
+function route(){const h=location.hash.slice(1),meals=h==='meals'||h.startsWith('meal-'),trip=h==='trip';
+  document.body.classList.toggle('trip',trip);$('tripview').hidden=!trip;$('tab-trip').setAttribute('aria-selected',trip);if(trip){$('toast').hidden=true;document.body.classList.remove('meals');$('listview').hidden=true;$('mealsview').hidden=true;$('tab-list').setAttribute('aria-selected',false);$('tab-meals').setAttribute('aria-selected',false);renderTrip();return}
   document.body.classList.toggle('meals',meals);$('listview').hidden=meals;$('mealsview').hidden=!meals;
   $('tab-list').setAttribute('aria-selected',!meals);$('tab-meals').setAttribute('aria-selected',meals);
   if(!meals)return;loadMeals().then(()=>{if(!MEALS)computeMeals();h.startsWith('meal-')?mealDetail(+h.slice(5)):mealList()}).catch(()=>{$('mealsview').innerHTML='<div class="card err">⚠️ Could not load recipes.</div>'})}
 $('tab-list').onclick=()=>{history.replaceState(null,'',location.pathname);route()};$('tab-meals').onclick=()=>{location.hash='meals'};
-window.addEventListener('hashchange',route);
+window.addEventListener('hashchange',route);$('tab-trip').onclick=()=>{location.hash='trip'};
 
 // ---- meal multi-select -> shopping list ----
 let SEL=new Set(JSON.parse(localStorage.getItem('cd_meal_sel')||'[]').filter(Boolean));
@@ -191,12 +212,94 @@ function updDock(){const n=SEL.size;document.body.classList.toggle('hassel',n>0)
 const normI=s=>String(s).toLowerCase().replace(/[^a-z0-9 ]+/g,' ').split(/\s+/).filter(Boolean).map(w=>w.length>3&&w.endsWith('es')&&/(oes|ches|shes)$/.test(w)?w.slice(0,-2):w.length>3&&w.endsWith('s')&&!w.endsWith('ss')?w.slice(0,-1):w).join(' ');
 function addSelected(){if(!REC)return;const inc=$('mpantry').checked;const recs=REC.recipes.filter(r=>SEL.has(r.name));
   const cur=$('list').value.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);const have=new Set(cur.map(normI));const add=[];
-  for(const r of recs)for(const i of r.ingredients){if(i.pantry&&!inc)continue;const k=normI(i.name);if(have.has(k))continue;have.add(k);add.push(i.name)}
-  $('list').value=cur.concat(add).join('\n');localStorage.setItem('cd_list',$('list').value);
+  const META=getMeta();for(const r of recs)for(const i of r.ingredients){if(i.pantry&&!inc)continue;const k=normI(i.name);const mm=META[k]||(META[k]={name:i.name,for:[],q:[]});if(!mm.for.includes(r.name)){mm.for.push(r.name);if(i.qty)mm.q.push({qty:i.qty,unit:i.unit,r:r.name})}if(have.has(k))continue;have.add(k);add.push(i.name)}
+  localStorage.setItem('cd_meta',JSON.stringify(META));$('list').value=cur.concat(add).join('\n');localStorage.setItem('cd_list',$('list').value);
   const n=recs.length;SEL.clear();saveSel();toast(`Added ${add.length} item${add.length===1?'':'s'} from ${n} meal${n===1?'':'s'}`);
   history.replaceState(null,'',location.pathname);route();render();window.scrollTo(0,0)}
 function toast(t){const el=$('toast');el.textContent=t;el.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>el.hidden=true,3500)}
 $('madd').onclick=addSelected;$('mclear').onclick=()=>{SEL.clear();saveSel();route()};updDock();
+
+// ---- Shopping trip: store-by-store list ----
+const LS=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const getMeta=()=>LS('cd_meta',{}),getPins=()=>LS('cd_pins',[]);
+const pinKey=d=>String(d.flipp_item_id);
+function pinBtn(d,q){const on=getPins().some(p=>p.id===pinKey(d));return `<button class="pin" data-pid="${esc(pinKey(d))}" data-q="${esc(q)}" aria-pressed="${on}">${on?'✓ On trip list':'＋ add to list'}</button>`}
+function wirePins(root){root.querySelectorAll('.pin').forEach(b=>b.onclick=()=>{let P=getPins();const id=b.dataset.pid,i=P.findIndex(p=>p.id===id);
+  if(i>=0)P.splice(i,1);else{const d=DATA.deals.find(x=>pinKey(x)===id);if(!d)return;P.push({id,store:d.store,item:d.item,q:b.dataset.q})}
+  localStorage.setItem('cd_pins',JSON.stringify(P));const on=i<0;b.setAttribute('aria-pressed',on);b.textContent=on?'✓ On trip list':'＋ add to list';if(on)toast(`Pinned to ${d0(id).store} on your trip list`)})}
+const d0=id=>DATA.deals.find(x=>pinKey(x)===id)||{};
+const CATS=[['Produce',/\b(apple|grape|banana|lemon|lime|orange|avocado|tomato|potato|onion|garlic|pepper|broccoli|carrot|celery|lettuce|cabbage|cucumber|squash|mushroom|berr|spinach|bean(s)? green|green bean|herb|cilantro|parsley|fruit|salad|kale|corn on)/],
+ ['Bakery',/\b(bread|bun|roll|bagel|tortilla|muffin|croissant|pita|cake|pie)/],['Deli',/\b(deli|provolone|ham\b|ham steak|rotisserie|salami|turkey breast|swiss|american cheese|hummus)/],
+ ['Meat & seafood',/\b(chicken|beef|steak|pork|sausage|bacon|chorizo|turkey|lamb|salmon|cod|haddock|shrimp|fish|swordfish|tuna steak|roast|wing|thigh|picnic|belly|meat)/],
+ ['Pantry',/\b(pasta|rice|sauce|salsa|bean|can|tomatoes canned|canned|soup|broth|flour|sugar|oil|vinegar|spice|seasoning|salt|pepper|cereal|oat|peanut|tuna|corn|chip|cracker|honey|syrup|coffee|tea)/],
+ ['Household',/\b(paper|towel|tissue|detergent|soap|trash|bag|foil|wrap|clean|dish|laundry|diaper|shampoo|toothpaste|downy|tide)/],
+ ['Dairy & eggs',/\b(milk|egg|cheese|butter|yogurt|cream|ricotta|feta|parmesan|sour cream)/],['Frozen',/\b(frozen|ice cream|waffle|pizza)/]];
+const CORDER=CATS.map(c=>c[0]).concat('Other');
+function cat(n){n=String(n).toLowerCase();if(/\bcanned\b|\btuna\b/.test(n))return 'Pantry';if(/\b(milk|eggs?|cheese|butter|yogurt|ricotta|feta|parmesan)\b/.test(n))return 'Dairy & eggs';
+  if(/\bfrozen\b/.test(n))return 'Frozen';for(const[c,re]of CATS)if(re.test(n))return c;return 'Other'}
+const uFam=u=>u==='lb'||u==='oz'?['lb',u==='oz'?1/16:1]:u==='each'||u==='dozen'?['each',u==='dozen'?12:1]:[u,1];
+function sumQ(qs){const m={};for(const q of qs){const[f,k]=uFam(q.unit);m[f]=(m[f]||0)+q.qty*k}return Object.entries(m).map(([unit,qty])=>unit==='lb'&&qty<1?{qty:Math.round(qty*1600)/100,unit:'oz'}:{qty:Math.round(qty*100)/100,unit})}
+const qTxt=qs=>qs.map(q=>`${+q.qty.toFixed(2)} ${q.unit}`).join(' + ');
+const tok=n=>DealMatch.toks(n);
+function pinMatches(name,p){const d=d0(p.id);if(!d.item)return false;const t=tok(d.item),q=tok(name);return normI(p.q)===normI(name)||(q.length&&q.every(w=>t.includes(w)))}
+function estFor(name,qs){if(!EST)return null;const t=tok(name);let best=null;for(const[k,e]of Object.entries(EST.estimates)){const kt=tok(k);if(kt.every(w=>t.includes(w))&&(!best||kt.length>best[1]))best=[e,kt.length,k]}
+  if(!best)return null;const e=best[0];const q=qs.length===1?qs[0]:null;let c=null;if(q){const r=Meals.estimateFor({qty:q.qty,unit:q.unit,est:best[2]},EST);if(r)c=r.cost}return{e,cost:c}}
+function priceLine(L){// returns {store,deal,cost,kind:'sale'|'est'|'unknown',note}
+  const qs=L.qs;const one=qs.length===1?qs[0]:null;
+  const costOf=d=>{const u=Meals.dealUnit(d);if(one){const c=Meals.costFor(one,d);if(c)return{cost:c.cost,share:c.share}}
+    if(u&&u.kind==='lb')return{cost:null,share:`$${d.price.toFixed(2)}/lb · qty not set, not in total`};return{cost:d.price,share:`1 × ${d.unit||'item'} (counted once)`}};
+  if(L.pin){const d=d0(L.pin.id);if(d.item){const c=costOf(d);return{store:d.store,deal:d,...c,kind:'sale',pinned:true,warn:d.flag}}}
+  const ok=s=>DATA.stores[s]&&DATA.stores[s].status==='ok';
+  const cand=Meals.candidates({q:L.name},DATA.deals).filter(d=>!d.flag&&ok(d.store));
+  let best=null;for(const d of cand){const c=costOf(d);const v=c.cost??d.price;if(!best||v<best.v)best={d,v,c}}
+  if(best)return{store:best.d.store,deal:best.d,...best.c,kind:'sale',alt:cand};
+  const e=estFor(L.name,qs);if(e)return{store:null,kind:'est',est:e.e,cost:e.cost,share:e.cost==null?`$${e.e.value.toFixed(2)}/${e.e.unit} U.S. avg · qty not set, not in total`:`${qTxt(qs)} at BLS avg $${e.e.value.toFixed(2)}/${e.e.unit}`};
+  return{store:null,kind:'unknown',cost:null}}
+function buildTrip(){const names=$('list').value.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean),META=getMeta(),pins=getPins(),used=new Set(),seen=new Set(),L=[];
+  for(const n of names){const k=normI(n);if(seen.has(k))continue;seen.add(k);const m=META[k]||{for:[],q:[]};
+    const p=pins.find(p=>!used.has(p.id)&&pinMatches(n,p));if(p)used.add(p.id);
+    const qs=sumQ(m.q||[]);let showQ=qTxt(qs);if(p){const d=d0(p.id),one=qs.length===1?qs[0]:null,comp=one&&d.item&&Meals.costFor(one,d);showQ=qs.length?(comp?`${showQ} (recipes, pinned deal covers it)`:`${showQ} (recipes) + 1 × ${d.unit||'item'} (pinned)`):`1 × ${d.unit||'item'} (pinned)`}
+    L.push({key:k,name:n,qs,showQ,for:m.for||[],pin:p})}
+  for(const p of pins)if(!used.has(p.id)){const d=d0(p.id);L.push({key:'pin:'+p.id,name:d.item||p.item,qs:[],showQ:`1 × ${d.unit||'item'} (pinned)`,for:[],pin:p})}
+  for(const l of L){Object.assign(l,{P:priceLine(l)});l.cat=cat(l.pin?(l.name+' '+(d0(l.pin.id).item||'')):l.name)}
+  return L}
+const CK=()=>LS('cd_trip_done',{}),OW=()=>LS('cd_trip_owned',{});
+const money=n=>'$'+n.toFixed(2);
+function tripLine(l,done,owned){const P=l.P,d=P.deal;const tag=P.kind==='sale'?`<span class="tag sale">sale</span>`:P.kind==='est'?`<span class="tag est">est. regular</span>`:`<span class="tag unk">price unknown</span>`;
+  const price=P.cost!=null?`<b>${money(P.cost)}</b>`:'';
+  const src=d?`<a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener">source ↗</a>`:P.est?`<a class="src" href="${esc(P.est.source_url)}" target="_blank" rel="noopener">BLS ${esc(P.est.series_id)} ↗</a>`:'';
+  return `<div class="tline${done?' done':''}" data-k="${esc(l.key)}"><button class="ck" aria-pressed="${!!done}" aria-label="${done?'Uncheck':'Check off'} ${esc(l.name)}">✓</button><div class="tb">
+  <div class="tn">${esc(l.name)}</div>${l.showQ?`<div class="tq">${esc(l.showQ)}</div>`:''}${l.for.length?`<div class="tfor">for: ${esc(l.for.join(', '))}</div>`:''}
+  <div class="tp">${price}${tag}${d?`<span>${esc(d.price_text)}${d.unit&&!d.flag?' / '+esc(d.unit):''}</span>`:''}${P.pinned?'<span class="tag">📌 pinned</span>':''}${P.warn?'<span title="unit unconfirmed">⚠️ unit unconfirmed</span>':''}</div>
+  ${d?`<div class="tq">${esc(d.item)}</div>`:''}${P.share?`<div class="tq">${esc(P.share)}</div>`:''}<div class="tact">${src}<button class="tbtn" data-own="${esc(l.key)}">${owned?'↩ Need it':'Have it / skip'}</button></div></div></div>`}
+function renderTrip(){const v=$('tripview');if(!DATA){v.innerHTML='<div class="card empty" aria-busy="true">Loading this week\'s flyers…</div>';return}
+  if(!EST){loadMeals().then(renderTrip).catch(()=>{EST={estimates:{}};renderTrip()});return}
+  const L=buildTrip(),done=CK(),own=OW();const instore=localStorage.getItem('cd_instore')==='1';document.body.classList.toggle('instore',instore);
+  if(!L.length){v.innerHTML='<div class="card empty"><div class="big">🛒</div><b>Your trip list is empty</b><br>Add meals or deals, or type items on the Shopping list tab.</div>';return}
+  const act=L.filter(l=>!own[l.key]),groups={};for(const l of act){const g=l.P.store||'__any';(groups[g]=groups[g]||[]).push(l)}
+  const order=Object.keys(DATA.stores).filter(s=>groups[s]);
+  let sale=0,est=0,partial=0;const sub={};for(const l of act){if(l.P.cost==null){partial++;continue}if(l.P.kind==='est')est+=l.P.cost;else{sale+=l.P.cost;sub[l.P.store]=(sub[l.P.store]||0)+l.P.cost}}
+  let h=`<div class="tbar"><button class="tbtn" id="tmode" aria-pressed="${instore}">🛒 In-store mode</button><button class="tbtn" id="tclear">Clear checked</button><button class="tbtn" id="tcopy">Copy as text</button><button class="tbtn" id="tprint">Print</button></div>`;
+  h+=`<section class="card tot"><div class="g"><span><b style="font-size:15px;color:var(--text)">Trip total${partial?' (partial)':''}</b></span><b>${money(sale+est)}</b></div><div class="tq">${money(sale)} on sale across ${order.length} store${order.length===1?'':'s'}${est?` + ${money(est)} estimated regular (BLS U.S. avg)`:''}${partial?` · ${partial} item${partial>1?'s':''} not in total (price unknown or no quantity)`:''}. No savings shown: flyers don't list regular prices.</div></section>`;
+  const sec=(title,mono_,list,subtxt)=>{list.sort((a,b)=>(!!done[a.key]-!!done[b.key])||CORDER.indexOf(a.cat)-CORDER.indexOf(b.cat));let x=`<section class="card tsec">`+`<div class="tsh">${mono_}<h2>${esc(title)}</h2><span class="sub">${subtxt}</span></div>`;let lastC=null;
+    for(const l of list){if(!done[l.key]&&l.cat!==lastC){x+=`<div class="cat">${esc(l.cat)}</div>`;lastC=l.cat}else if(done[l.key]&&lastC!=='__d'){x+=`<div class="cat">Checked off</div>`;lastC='__d'}x+=tripLine(l,done[l.key],false)}return x+'</section>'};
+  for(const s of order){const n=groups[s].length,c=groups[s].filter(l=>done[l.key]).length;h+=sec(s,mono(s),groups[s],`${c}/${n} · ${money(sub[s]||0)}`)}
+  if(groups.__any)h+=sec('Anywhere: no flyer deal','<span class="mono" style="--b:#8a6d1f">?</span>',groups.__any,`${groups.__any.length} at regular price`);
+  const ownL=L.filter(l=>own[l.key]);if(ownL.length)h+=`<section class="card tsec"><div class="tsh"><h2>Have it / skipped</h2><span class="sub">not in totals</span></div>${ownL.map(l=>`<div class="tline done" data-k="${esc(l.key)}"><div class="tb"><div class="tn">${esc(l.name)}</div><div class="tact"><button class="tbtn" data-own="${esc(l.key)}">↩ Need it</button></div></div></div>`).join('')}</section>`;
+  // one store vs split
+  const priced=act.filter(l=>l.P.kind==='sale'&&!l.P.pinned&&l.P.cost!=null);if(priced.length>1){const rows=[];
+    for(const s of Object.keys(DATA.stores)){if(DATA.stores[s].status!=='ok')continue;let t=0,k=0;for(const l of priced){const ds=(l.P.alt||[]).filter(d=>d.store===s);let b=null;for(const d of ds){const one=l.qs.length===1?l.qs[0]:null;const c=one?Meals.costFor(one,d):null;const v=c?c.cost:(Meals.dealUnit(d)?.kind==='lb'?null:d.price);if(v!=null&&(b==null||v<b))b=v}if(b!=null){t+=b;k++}}rows.push([s,t,k])}
+    rows.sort((a,b)=>b[2]-a[2]||a[1]-b[1]);const split=priced.reduce((a,l)=>a+l.P.cost,0);
+    h+=`<section class="card cmp-card"><div class="ihead"><h2 style="text-transform:none">One store vs split</h2></div><div class="cmp"><div class="bl"><span><b>Split (as above)</b> · ${priced.length} items</span><b>${money(split)}</b></div>${rows.filter(r=>r[2]).map(r=>`<div class="bl"><span class="mst" style="font-size:14px;color:var(--text)">${mono(r[0])}${esc(r[0])} only · ${r[2]}/${priced.length} items</span><b>${money(r[1])}</b></div>`).join('')}<div class="tq" style="margin-top:6px">Compares the ${priced.length} sale-priced items only. A store missing items would need a second stop anyway.</div></div></section>`}
+  v.innerHTML=h;
+  v.querySelectorAll('.ck').forEach(b=>b.onclick=()=>{const k=b.closest('.tline').dataset.k,D=CK();D[k]?delete D[k]:D[k]=1;localStorage.setItem('cd_trip_done',JSON.stringify(D));renderTrip()});
+  v.querySelectorAll('[data-own]').forEach(b=>b.onclick=()=>{const k=b.dataset.own,O=OW();O[k]?delete O[k]:O[k]=1;localStorage.setItem('cd_trip_owned',JSON.stringify(O));renderTrip()});
+  $('tmode').onclick=()=>{localStorage.setItem('cd_instore',instore?'0':'1');renderTrip()};
+  $('tclear').onclick=()=>{localStorage.setItem('cd_trip_done','{}');renderTrip();toast('Cleared checked items')};
+  $('tprint').onclick=()=>window.print();
+  $('tcopy').onclick=()=>{let t='Concord Deals trip list\n';for(const s of order)t+=`\n${s}\n`+groups[s].map(l=>`[${done[l.key]?'x':' '}] ${l.name}${l.P.cost!=null?' · '+money(l.P.cost):''}`).join('\n')+'\n';
+    if(groups.__any)t+='\nAnywhere (no flyer deal)\n'+groups.__any.map(l=>`[ ] ${l.name}`).join('\n')+'\n';
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('List copied'),()=>toast('Copy not available on this browser'))}}
 $('go').onclick=()=>{render();const f=document.querySelector('#out .card');if(f)f.scrollIntoView({behavior:'smooth',block:'start'})};
 $('edit').onclick=()=>{$('list').scrollIntoView({behavior:'smooth',block:'center'});$('list').focus()};
 </script></body></html>
