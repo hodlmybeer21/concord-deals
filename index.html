@@ -54,19 +54,39 @@ textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(
 #go:active{transform:scale(.985)}#edit{height:54px;width:54px;border-radius:16px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:20px;cursor:pointer}
 @media (min-width:700px){.ihead h2{font-size:21px}}
 .unit{font-size:.7em;font-weight:500;opacity:.75;margin-left:2px}
+.tabs{display:flex;gap:4px;padding:4px;margin:0 0 10px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px}
+.tabs button{flex:1;min-height:40px;border:0;border-radius:10px;background:transparent;color:var(--muted);font:700 14.5px var(--font);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+.mcard{display:block;width:100%;background:transparent;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:14px 16px}.mcard:active{background:var(--surface-2)}
+.mtitle h2{margin:0;font-size:17px;letter-spacing:-.2px;overflow-wrap:break-word}.mtitle .pl{display:flex;align-items:baseline;gap:6px;margin-top:2px}
+.mtitle .price{font-size:20px;color:var(--accent)}.mtitle .sv{font-size:13px;color:var(--muted);white-space:nowrap}
+.mstores{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.mst{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);white-space:nowrap}.mst .mono{width:20px;height:20px;font-size:8.5px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;background:var(--b)}
+.mnote{font-size:12px;color:var(--warn);margin-top:6px}.mtags{font-size:12px;color:var(--faint);margin-top:6px}
+.back{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;margin:4px 0 0;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 14.5px var(--font);cursor:pointer}
+.sec{margin:0;padding:12px 16px 4px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--faint)}
+.ing .iname{font-weight:700;font-size:15px;overflow-wrap:break-word}.ing .iqty{font-size:13px;color:var(--muted);font-weight:500}
+.ing .share{font-size:13px;color:var(--muted);margin-top:2px;overflow-wrap:break-word}
+.tag.est{color:var(--warn);background:var(--warn-soft);border-color:transparent}.tag.unk{color:var(--bad);background:var(--bad-soft);border-color:transparent}
+.brk{padding:4px 16px 14px}.brk .bl{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:14px}.brk .bl:first-child{border-top:0}.brk .bl b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.brk .tot{font-size:16px;font-weight:800}.steps{margin:0;padding:4px 16px 14px 36px}.steps li{margin:0 0 8px}.pantry{padding:4px 16px 14px;color:var(--muted);font-size:14px}
+body.meals .dock{display:none}body.meals{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
 </style></head><body>
 <header><div class="wrap"><div class="top"><div class="logo" aria-hidden="true">CD</div><div><h1>Concord Deals</h1><p id="sub">Weekly flyer prices · Concord, NH 03301</p></div></div></div></header>
 <main class="wrap">
 <div id="stores" class="chips" role="list" aria-label="Stores"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
 <div id="detail" hidden></div>
+<div class="tabs" role="tablist" aria-label="View"><button role="tab" id="tab-list" aria-selected="true">Shopping list</button><button role="tab" id="tab-meals" aria-selected="false">Meals</button></div>
+<div id="listview">
 <section class="card editor"><label for="list">Your shopping list <span>one per line or commas</span></label>
 <textarea id="list" placeholder="milk&#10;eggs&#10;chicken, bananas" autocomplete="off" autocapitalize="none" spellcheck="false"></textarea>
 <div class="note legend"><span class="lg"><span class="tag">flyer</span> weekly flyer via Flipp (unofficial)</span> <span class="lg"><span class="tag">web</span> store website price</span> <span>⚠️ unit or product match unconfirmed — check the source link</span></div></section>
 <div id="out" aria-live="polite"><div class="card empty" aria-busy="true">Loading this week's flyers…</div></div>
+</div>
+<div id="mealsview" hidden aria-live="polite"><div class="card empty" aria-busy="true">Loading meals…</div></div>
 <p class="note">Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Costco coming next. Flyer prices compare different brands/sizes; check the flyer before you buy.</p>
 </main>
 <div class="dock"><div class="in"><button id="edit" aria-label="Edit list" title="Edit list">✎</button><button id="go">Compare prices</button></div></div>
-<script src="/match.js"></script>
+<script src="/match.js"></script><script src="/meals.js"></script>
 <script>
 const $=id=>document.getElementById(id);let DATA=null;
 const fmt=s=>s?new Date(s).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'America/New_York'}):'';
@@ -107,7 +127,47 @@ fetch('/api/deals').then(r=>r.json()).then(d=>{DATA=d;
     ?`<button class="chip" role="listitem" aria-expanded="false" data-k="${esc(k)}">${mono(k)}<span><b>${esc(k)}</b><span class="s">✓ ${v.count} ${v.source==='web'?'web prices':'deals · '+fmt(v.valid_from)+'–'+fmt(v.valid_to)} · <span class="tag">${esc(v.source)}</span>${v.web_status?' · web '+esc(v.web_status):''}</span></span></button>`
     :`<button class="chip bad" role="listitem" aria-expanded="false" data-k="${esc(k)}">${mono(k)}<span><b>${esc(k)}</b><span class="s">⚠️ unavailable${v.reason?' ('+esc(v.reason)+')':''}</span></span></button>`).join('');
   document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>showDetail(b.dataset.k,b));
-  render()}).catch(()=>{$('stores').innerHTML='';$('out').innerHTML='<div class="card err">⚠️ Could not load flyers — all stores unavailable. Check your connection and reload.</div>'});
+  render();route()}).catch(()=>{$('stores').innerHTML='';$('out').innerHTML='<div class="card err">⚠️ Could not load flyers — all stores unavailable. Check your connection and reload.</div>'});
+
+// ---- Meals tab ----
+let MEALS=null,REC=null,EST=null;const $$m=n=>'$'+n.toFixed(2);
+function loadMeals(){if(REC)return Promise.resolve();return Promise.all([fetch('/data/recipes.json').then(r=>r.json()),fetch('/data/price_estimates.json').then(r=>r.json())]).then(([r,e])=>{REC=r;EST=e})}
+function computeMeals(){if(!DATA||!REC)return;MEALS=Meals.priceAll(REC.recipes,DATA.deals,EST,DATA.stores)}
+const sv=m=>`serves ${m.recipe.serves}`;
+function mealList(){const v=$('mealsview');if(!MEALS){v.innerHTML='<div class="card empty" aria-busy="true">Loading meals…</div>';return}
+  let h=`<p class="note">${MEALS.length} meals built on this week's flyer deals, cheapest first. Totals mix stores for the lowest price; pantry staples aren't counted. Prices are flyer deals unless tagged <span class="tag est">estimate</span>. No savings are shown because the flyers don't list regular prices.</p>`;
+  MEALS.forEach((m,i)=>{const st=Object.keys(m.byStore).sort((a,b)=>m.byStore[b]-m.byStore[a]);
+    h+=`<article class="card"><button class="mcard" data-i="${i}" aria-label="${esc(m.recipe.name)}, ${$$m(m.total)}${m.partial?' partial':''}, ${sv(m)}"><div class="mtitle"><h2>${esc(m.recipe.name)}</h2><div class="pl"><span class="price">${$$m(m.total)}${m.partial?'+':''}</span><span class="sv">· ${sv(m)}</span></div></div>
+    <div class="mstores">${st.map(s=>`<span class="mst">${mono(s)}${esc(s)} ${$$m(m.byStore[s])}</span>`).join('')}${m.estimateTotal?`<span class="mst"><span class="tag est">estimate</span> ${$$m(m.estimateTotal)}</span>`:''}</div>
+    ${m.partial?`<div class="mnote">⚠️ Partial total: ${m.nUnk} item${m.nUnk>1?'s':''} price unknown</div>`:''}<div class="mtags">${m.nDeal} on sale${m.nEst?` · ${m.nEst} estimated`:''} · ${esc(m.recipe.tags.join(', '))}</div></button></article>`});
+  v.innerHTML=h;v.querySelectorAll('.mcard').forEach(b=>b.onclick=()=>{location.hash='meal-'+b.dataset.i})}
+function ingRow(l){const q=`<span class="iqty">${+l.ing.qty.toFixed(2)} ${esc(l.ing.unit)}</span>`;
+  if(l.type==='deal'){const d=l.deal;return `<div class="row ing"><div class="srow">${mono(l.store)}<div class="body"><div class="iname">${esc(l.ing.name)} ${q}</div>
+  <div class="pline"><span class="price">${$$m(l.cost)}</span><span class="unit">${esc(d.price_text)} / ${esc(d.unit)}</span></div><div class="share">${esc(l.share)}</div><div class="prod">${esc(l.store)} · ${esc(d.item)}</div>
+  <div class="meta"><span class="tag">${esc(d.source||'flyer')}</span><span>${fmt(d.valid_from)}–${fmt(d.valid_to)}</span><span>fetched ${ts(d)} ET</span><a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener">source ↗</a></div></div></div></div>`}
+  if(l.type==='estimate'){const e=l.est;return `<div class="row ing"><div class="srow"><span class="mono" style="--b:#8a6d1f" aria-hidden="true">≈</span><div class="body"><div class="iname">${esc(l.ing.name)} ${q}</div>
+  <div class="pline"><span class="price">${$$m(l.cost)}</span><span class="unit">not on sale, estimate</span></div><div class="share">${esc(l.share)}</div><div class="prod">${esc(e.title)} — BLS ${esc(e.area)}, ${esc(e.period)} (${esc(l.why)})</div>
+  <div class="meta"><span class="tag est">estimate</span><span>${esc(e.series_id)}</span><a class="src" href="${esc(e.source_url)}" target="_blank" rel="noopener">source ↗</a></div></div></div></div>`}
+  return `<div class="row ing"><div class="srow"><span class="mono" style="--b:#9aa5a1" aria-hidden="true">?</span><div class="body"><div class="iname">${esc(l.ing.name)} ${q}</div><div class="pline"><span class="price" style="color:var(--bad);font-size:16px">price unknown</span></div><div class="share">${esc(l.why)}; no sourced estimate, not in total</div><div class="meta"><span class="tag unk">unknown</span></div></div></div></div>`}
+function mealDetail(i){const m=MEALS[i],v=$('mealsview');if(!m){mealList();return}
+  const st=Object.keys(m.byStore).sort((a,b)=>m.byStore[b]-m.byStore[a]);
+  v.innerHTML=`<button class="back" id="mback">← All meals</button><article class="card"><div class="ihead" style="flex-wrap:wrap;gap:4px 10px"><h2 style="text-transform:none">${esc(m.recipe.name)}</h2><small>${sv(m)}</small></div>
+  <div class="hero"><span class="badge">${m.partial?'Partial total':'Total'}</span><div class="pline" style="margin-top:6px"><span class="price">${$$m(m.total)}</span><span class="unit">${$$m(m.total/m.recipe.serves)} per serving</span></div></div>
+  <h3 class="sec">By store</h3><div class="brk">${st.map(s=>`<div class="bl"><span class="mst" style="font-size:14px;color:var(--text)">${mono(s)}${esc(s)}</span><b>${$$m(m.byStore[s])}</b></div>`).join('')}
+  ${m.estimateTotal?`<div class="bl"><span><span class="tag est">estimate</span> not on sale</span><b>${$$m(m.estimateTotal)}</b></div>`:''}
+  ${m.partial?`<div class="bl" style="color:var(--bad)"><span>${m.nUnk} item${m.nUnk>1?'s':''} price unknown</span><b>not counted</b></div>`:''}
+  <div class="bl tot"><span>Total${m.partial?' (partial)':''}</span><b>${$$m(m.total)}</b></div></div>
+  <h3 class="sec">Ingredients</h3><div class="rows">${m.lines.map(ingRow).join('')}</div>
+  <h3 class="sec">Pantry (not counted)</h3><div class="pantry">${m.pantry.map(esc).join(', ')}</div>
+  <h3 class="sec">Steps</h3><ol class="steps">${m.recipe.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></article>
+  <p class="note">Package and multi-buy deals are counted in full even if the recipe uses part. Estimates are U.S. average regular prices from the Bureau of Labor Statistics, never counted as savings.</p>`;
+  $('mback').onclick=()=>{history.length>1?history.back():(location.hash='meals')};window.scrollTo(0,0)}
+function route(){const h=location.hash.slice(1),meals=h==='meals'||h.startsWith('meal-');
+  document.body.classList.toggle('meals',meals);$('listview').hidden=meals;$('mealsview').hidden=!meals;
+  $('tab-list').setAttribute('aria-selected',!meals);$('tab-meals').setAttribute('aria-selected',meals);
+  if(!meals)return;loadMeals().then(()=>{if(!MEALS)computeMeals();h.startsWith('meal-')?mealDetail(+h.slice(5)):mealList()}).catch(()=>{$('mealsview').innerHTML='<div class="card err">⚠️ Could not load recipes.</div>'})}
+$('tab-list').onclick=()=>{history.replaceState(null,'',location.pathname);route()};$('tab-meals').onclick=()=>{location.hash='meals'};
+window.addEventListener('hashchange',route);
 $('go').onclick=()=>{render();const f=document.querySelector('#out .card');if(f)f.scrollIntoView({behavior:'smooth',block:'start'})};
 $('edit').onclick=()=>{$('list').scrollIntoView({behavior:'smooth',block:'center'});$('list').focus()};
 </script></body></html>

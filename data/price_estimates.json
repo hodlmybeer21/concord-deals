@@ -1,0 +1,292 @@
+{
+ "source_note": "U.S. Bureau of Labor Statistics, Average Price Data (CPI), U.S. city average, not seasonally adjusted. Estimates of regular price, NOT sale prices.",
+ "fetched_at": "2026-10-12T20:12:34.792Z",
+ "estimates": {
+  "chicken whole": {
+   "value": 2.012,
+   "unit": "lb",
+   "title": "Chicken, fresh, whole, per lb.",
+   "series_id": "APU0000706111",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000706111",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000706111",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "chicken breast": {
+   "value": 4.173,
+   "unit": "lb",
+   "title": "Chicken breast, boneless, per lb.",
+   "series_id": "APU0000FF1101",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000FF1101",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000FF1101",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "chicken thighs": {
+   "value": 1.67,
+   "unit": "lb",
+   "title": "Chicken legs, bone-in, per lb. (closest BLS series)",
+   "series_id": "APU0000706212",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000706212",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000706212",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "ground beef": {
+   "value": 6.923,
+   "unit": "lb",
+   "title": "Ground beef, 100% beef, per lb.",
+   "series_id": "APU0000703112",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000703112",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000703112",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "beef steak": {
+   "value": 12.813,
+   "unit": "lb",
+   "title": "All uncooked beef steaks, per lb.",
+   "series_id": "APU0000FC3101",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000FC3101",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000FC3101",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "beef roast": {
+   "value": 9.368,
+   "unit": "lb",
+   "title": "All uncooked beef roasts, per lb.",
+   "series_id": "APU0000FC2101",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000FC2101",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000FC2101",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "bacon": {
+   "value": 6.605,
+   "unit": "lb",
+   "title": "Bacon, sliced, per lb.",
+   "series_id": "APU0000704111",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000704111",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000704111",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "ham": {
+   "value": 4.405,
+   "unit": "lb",
+   "title": "All ham (excl. canned), per lb.",
+   "series_id": "APU0000FD2101",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000FD2101",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000FD2101",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "pork chops": {
+   "value": 4.239,
+   "unit": "lb",
+   "title": "All pork chops, per lb.",
+   "series_id": "APU0000FD3101",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000FD3101",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000FD3101",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "pork other": {
+   "value": 3.737,
+   "unit": "lb",
+   "title": "All other pork, per lb.",
+   "series_id": "APU0000FD4101",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000FD4101",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000FD4101",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "eggs": {
+   "value": 2.272,
+   "unit": "dozen",
+   "title": "Eggs, grade A, large, per doz.",
+   "series_id": "APU0000708111",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000708111",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000708111",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "milk": {
+   "value": 4.229,
+   "unit": "gal",
+   "title": "Milk, fresh, whole, per gal.",
+   "series_id": "APU0000709112",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000709112",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000709112",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "cheddar cheese": {
+   "value": 5.983,
+   "unit": "lb",
+   "title": "Cheddar cheese, natural, per lb.",
+   "series_id": "APU0000710212",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000710212",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000710212",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "butter": {
+   "value": 4.021,
+   "unit": "lb",
+   "title": "Butter, stick, per lb.",
+   "series_id": "APU0000FS1101",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000FS1101",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000FS1101",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "yogurt": {
+   "value": 1.584,
+   "unit": "8 oz",
+   "title": "Yogurt, per 8 oz.",
+   "series_id": "APU0000FJ4101",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000FJ4101",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000FJ4101",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "bananas": {
+   "value": 0.652,
+   "unit": "lb",
+   "title": "Bananas, per lb.",
+   "series_id": "APU0000711211",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000711211",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000711211",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "lemons": {
+   "value": 2.114,
+   "unit": "lb",
+   "title": "Lemons, per lb.",
+   "series_id": "APU0000711412",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000711412",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000711412",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "oranges": {
+   "value": 1.709,
+   "unit": "lb",
+   "title": "Oranges, Navel, per lb.",
+   "series_id": "APU0000711311",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000711311",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000711311",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "potatoes": {
+   "value": 0.976,
+   "unit": "lb",
+   "title": "Potatoes, white, per lb.",
+   "series_id": "APU0000712112",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000712112",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000712112",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "lettuce": {
+   "value": 3.286,
+   "unit": "lb",
+   "title": "Lettuce, romaine, per lb.",
+   "series_id": "APU0000FL2101",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000FL2101",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000FL2101",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "tomatoes": {
+   "value": 1.977,
+   "unit": "lb",
+   "title": "Tomatoes, field grown, per lb.",
+   "series_id": "APU0000712311",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000712311",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000712311",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "corn": {
+   "value": 1.274,
+   "unit": "lb",
+   "title": "Corn, canned, per lb.",
+   "series_id": "APU0000714221",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000714221",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000714221",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "beans dried": {
+   "value": 1.63,
+   "unit": "lb",
+   "title": "Beans, dried, per lb.",
+   "series_id": "APU0000714233",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000714233",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000714233",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "bread": {
+   "value": 1.823,
+   "unit": "lb",
+   "title": "Bread, white, pan, per lb.",
+   "series_id": "APU0000702111",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000702111",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000702111",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "rice": {
+   "value": 1.111,
+   "unit": "lb",
+   "title": "Rice, white, long grain, uncooked, per lb.",
+   "series_id": "APU0000701312",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000701312",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000701312",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  },
+  "pasta": {
+   "value": 1.374,
+   "unit": "lb",
+   "title": "Spaghetti and macaroni, per lb.",
+   "series_id": "APU0000701322",
+   "period": "August 2026",
+   "area": "U.S. city average",
+   "source_url": "https://data.bls.gov/timeseries/APU0000701322",
+   "api_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/APU0000701322",
+   "fetched_at": "2026-10-12T20:12:34.792Z"
+  }
+ }
+}

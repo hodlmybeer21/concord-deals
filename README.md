@@ -29,3 +29,9 @@ Web pricing status (Oct 12, 2026):
 - **Sam's Club**: blocked by site (PerimeterX captcha after 2 slow requests). Flyer used. `scripts/web_samsclub.mjs` prices a ~40-item basket slowly and stops on any challenge; it is not run in production.
 - **Aldi / Shaw's**: own sites are client-rendered/store-scoped; flyer used.
 We do not use proxies, header spoofing, or browser automation to get around bot protection. Getting web prices would need an official API/affiliate feed (e.g. Walmart Affiliate API key) or the user's OK for a browser-based pass.
+
+## Meals tab (branch `meals`)
+- `data/recipes.json`: 43 hand-written recipes (serves 4) built around this week's deals. Each ingredient has `q` (deal search terms), optional `not` (excluded words) and `est` (estimate key). Pantry staples are listed, never priced.
+- `meals.js`: strict matching (every query word must appear as a whole word, so "eggs" never matches "eggplant"; prepared foods are blocked). Only deals with a confirmed unit are used. Per-lb deals cost price × lb; package, each and multi-buy deals are counted whole (multi-buy = the whole N/$X rule), with the share used shown. Picks the cheapest store per ingredient, which mixes stores.
+- No usable deal → regular-price **estimate** from `data/price_estimates.json` (BLS Average Price Data, APU series, U.S. city average; series id, period and source URL stored). No estimate → "price unknown", left out of the total, and the total is marked partial. Estimates never count as savings; the flyers carry no regular prices, so no savings figure is shown.
+- `node scripts/meals_report.mjs v` prints every recipe's pricing.
