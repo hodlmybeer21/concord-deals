@@ -10,7 +10,7 @@ button{font-size:16px;padding:10px 16px;border:0;border-radius:8px;background:#0
 .price{font-weight:700;white-space:nowrap}.none{color:#a00}.note{font-size:.8rem;color:#555}small{color:#666}
 </style></head><body>
 <h1>🛒 Concord NH Flyer Deals</h1>
-<div class="note">Prices from weekly flyers via Flipp (unofficial). Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Costco coming next.</div>
+<div class="note">Prices from weekly flyers via Flipp (unofficial). Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Tags: [flyer] = weekly flyer via Flipp, [web] = store website price. ⚠️ = unit or product match unconfirmed — check the source link. Costco coming next.</div>
 <div id="stores" class="bar">Loading flyers…</div>
 <textarea id="list" placeholder="milk&#10;eggs&#10;chicken, bananas"></textarea>
 <button id="go">Find deals</button>
@@ -31,14 +31,14 @@ function render(){
     html+=`<div class="card"><div class="q">${esc(it)}</div>`;
     for(const s of Object.keys(DATA.stores)){const d=m.byStore[s];
       if(DATA.stores[s].status!=='ok'){html+=`<div class="row"><span>${s}</span><span class="none">store unavailable</span></div>`;continue}
-      html+=d?`<div class="row ${d===m.best||d.store===m.best.store?'best':''}"><span><b>${s}</b>${d.store===m.best.store?' ⭐ cheapest':''}<br>${esc(d.item)}<br><small>${fmt(d.valid_from)}–${fmt(d.valid_to)}</small></span><span class="price">${esc(d.price_text)}</span></div>`
+      html+=d?`<div class="row ${d===m.best||d.store===m.best.store?'best':''}"><span><b>${s}</b>${d.store===m.best.store?' ⭐ cheapest':''}<br>${esc(d.item)}<br><small>[${d.source||'flyer'}] ${d.source==='web'?'web price':fmt(d.valid_from)+'–'+fmt(d.valid_to)} · fetched ${new Date(d.fetched_at||DATA.fetched_at).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})} ET · <a href="${esc(d.source_url)}" target="_blank">source</a></small>${d.flag?`<br><small style="color:#b45309">⚠️ ${esc(d.flag)}</small>`:''}</span><span class="price">${esc(d.price_text)}${d.flag?' ⚠️':''}</span></div>`
         :`<div class="row"><span>${s}</span><span class="none">no deal</span></div>`}
     html+='</div>'}
   if(none.length)html+=`<div class="card"><div class="q">No deal found this week</div>${none.map(n=>`<div class="row none">${esc(n)}</div>`).join('')}</div>`;
   $('out').innerHTML=html+'<p class="note">Flyer prices compare different brands/sizes; check the flyer before you buy.</p>';
 }
 fetch('/api/deals').then(r=>r.json()).then(d=>{DATA=d;
-  $('stores').innerHTML=Object.entries(d.stores).map(([k,v])=>v.status==='ok'?`<span class="pill">✅ ${k}: ${v.count} deals, ${fmt(v.valid_from)}–${fmt(v.valid_to)}</span>`:`<span class="pill bad">⚠️ ${k}: unavailable${v.reason?' ('+v.reason+')':''}</span>`).join('');
+  $('stores').innerHTML=Object.entries(d.stores).map(([k,v])=>v.status==='ok'?`<span class="pill">✅ ${k} [${v.source}]: ${v.count} ${v.source==='web'?'web prices':'deals, '+fmt(v.valid_from)+'–'+fmt(v.valid_to)}${v.web_status?' · web '+v.web_status:''}</span>`:`<span class="pill bad">⚠️ ${k}: unavailable${v.reason?' ('+v.reason+')':''}</span>`).join('');
   render()}).catch(()=>{$('stores').innerHTML='<span class="pill bad">⚠️ Could not load flyers — all stores unavailable</span>'});
 $('go').onclick=render;
 </script></body></html>

@@ -14,6 +14,20 @@ module.exports = async (req, res) => {
       out.deals.push(...snap.deals.filter(d => d.store === s));
     } else if (!st) out.stores[s] = { status: 'unavailable', reason: 'fetch failed' };
   }
+  // web-priced stores (cached basket from the store's own site) replace flyer data when available
+  try {
+    const w = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'web_samsclub.json'), 'utf8'));
+    if (w.items.length && !w.blocked) {
+      out.deals = out.deals.filter(d => d.store !== w.store);
+      out.deals.push(...w.items);
+      out.stores[w.store] = { status: 'ok', source: 'web', count: w.items.length, fetched_at: w.fetched_at, note: w.note, unpriced: w.unpriced, source_url: 'https://www.samsclub.com' };
+    }
+  } catch {}
+  out.stores['Walmart'] = { ...(out.stores['Walmart'] || {}), web_status: 'blocked by site', web_reason: 'walmart.com redirects plain requests to a PerimeterX captcha (/blocked) on the first request; showing weekly flyer instead' };
+  if (!out.stores["Sam's Club"] || out.stores["Sam's Club"].source !== 'web') out.stores["Sam's Club"] = { ...(out.stores["Sam's Club"] || {}), web_status: 'blocked by site', web_reason: 'samsclub.com sent a PerimeterX are-you-human captcha after 2 slow (4s-spaced) search requests; showing weekly flyer instead' };
+  out.stores['Aldi'] = { ...(out.stores['Aldi'] || {}), web_status: 'not used', web_reason: 'aldi.us has no server-rendered search page (404); flyer used' };
+  out.stores["Shaw's"] = { ...(out.stores["Shaw's"] || {}), web_status: 'not used', web_reason: "shaws.com prices are client-rendered and store-specific; flyer used" };
+  for (const [k, v] of Object.entries(out.stores)) if (v.status === 'ok' && !v.source) v.source = 'flyer';
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=600');
   res.status(200).end(JSON.stringify(out));

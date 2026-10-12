@@ -19,3 +19,13 @@ Costco.
 
 ## Custom domain
 To serve this at `deals.goodbotai.tech`, add a Hostinger DNS CNAME `deals` -> `cname.vercel-dns.com`, then add the domain to the Vercel project.
+
+## Price sources and verification
+Every price carries `source` (`flyer` or `web`), `source_url`, and `fetched_at`; the UI shows a [flyer]/[web] tag, the fetch time, and a source link.
+Flyer items whose unit is not stated are flagged ⚠️ (per-lb vs each unclear) instead of shown as clean prices.
+
+Web pricing status (Oct 12, 2026):
+- **Walmart**: blocked by site (PerimeterX captcha on first plain request). Flyer used.
+- **Sam's Club**: blocked by site (PerimeterX captcha after 2 slow requests). Flyer used. `scripts/web_samsclub.mjs` prices a ~40-item basket slowly and stops on any challenge; it is not run in production.
+- **Aldi / Shaw's**: own sites are client-rendered/store-scoped; flyer used.
+We do not use proxies, header spoofing, or browser automation to get around bot protection. Getting web prices would need an official API/affiliate feed (e.g. Walmart Affiliate API key) or the user's OK for a browser-based pass.
