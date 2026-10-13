@@ -5,10 +5,11 @@ global.DealMatch = require('../match.js');
 // pull pure helpers out of index.html so the UI logic is tested as shipped
 const grab = re => { const m = SRC.match(re); assert.ok(m, 'missing ' + re); return m[0]; };
 const FixedDate = class extends Date { constructor(...a) { super(...(a.length ? a : [DATA.fetched_at])); } }; // freeze 'now' at the snapshot time
-const ctx = new Function('DATA', 'Date', `${grab(/const CATS=[\s\S]*?\nconst uFam/).replace(/\nconst uFam$/, '')};
+require('../alcohol.js');
+const ctx = new Function('DATA', 'Date', 'window', `const isAlcD=d=>!!(d.alc||(window.Alcohol&&Alcohol.classify(d.item)));${grab(/const CATS=[\s\S]*?\nconst uFam/).replace(/\nconst uFam$/, '')};
   let BEST=null;const STAPLES=${SRC.match(/const STAPLES=(\[[^\]]*\])/)[1]};const BX=${SRC.match(/const BX=(\{[^;]*);/)[1]};
   ${grab(/function bestDeals\(\)[\s\S]*?return BEST\}/)}; ${grab(/function cleanLines[\s\S]*?return out\.slice\(0,60\)\}/)};
-  return {bestDeals,cleanLines,cat};`)(DATA, FixedDate);
+  return {bestDeals,cleanLines,cat};`)(DATA, FixedDate, globalThis);
 
 test('flyer deep link uses the en-us viewer path with the postal code', () => assert.equal(flyerUrl(8185495), 'https://flipp.com/en-us/flyer/8185495?postal_code=03301'));
 test('thumbnails: only Flipp CDN images, forced to https', () => {
@@ -21,7 +22,7 @@ test('history rows copy flyer prices verbatim with source_url and fetched_at', (
   const j = JSON.parse(fs.readFileSync(f)); assert.equal(j.fetched_at, DATA.fetched_at); assert.equal(j.rows.length, DATA.deals.length); });
 test('best this week: every entry is a real confirmed-unit flyer deal, ranked by store coverage', () => {
   const B = ctx.bestDeals(); assert.ok(B.length > 10);
-  for (const b of B) { assert.ok(DATA.deals.includes(b.d), 'must be an actual deal object'); assert.ok(b.d.unit && !b.d.flag); assert.ok(b.d.source_url); assert.ok(b.d.fetched_at || DATA.fetched_at); }
+  for (const b of B) { assert.ok(DATA.deals.includes(b.d), 'must be an actual deal object'); assert.equal(globalThis.Alcohol.classify(b.d.item), null, 'no alcohol in best-this-week'); assert.ok(b.d.unit && !b.d.flag); assert.ok(b.d.source_url); assert.ok(b.d.fetched_at || DATA.fetched_at); }
   for (let i = 1; i < B.length; i++) assert.ok(B[i - 1].n >= B[i].n);
   const butter = B.find(b => b.q === 'butter'); assert.ok(!butter || /\bbutter\b/i.test(butter.d.item) && !/butternut|shea|peanut/i.test(butter.d.item)); });
 test('receipt/paste: keeps item names, drops prices, totals, payment and store lines', () => {
