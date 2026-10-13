@@ -43,3 +43,7 @@ Store-by-store checklist: every list item goes under the store with its cheapest
 
 ## PWA (branch `pwa`)
 Installable: `manifest.webmanifest`, icons in `/icons` (192, 512, maskable 512, apple-touch 180). `/sw.js` is served by `api/sw.js` (rewrite in `vercel.json`) with the deploy's commit sha as the cache version, so each deploy installs a new shell cache, deletes old ones, and shows "New deals available, tap to refresh". App shell + recipes/estimates are precached; `/api/deals` is network-first with a cached fallback marked `X-CD-Cache: offline`, which shows an "Offline, showing deals fetched …" banner (and says when flyers have expired). Lists, meal selections and trip check state are in localStorage, so they work offline.
+
+## Analytics (branch `analytics`)
+🔒 Privacy: no cookies, aggregate analytics only (Vercel Web Analytics). Lists, meal selections and trip state never leave the device; events carry only a name and small non-personal properties.
+Script: `/_vercel/insights/script.js` with the `window.va` queue (the service worker never caches or intercepts `/_vercel/*`). Events: `tab_view {tab}`, `add_to_list {source: manual|deal|meal, count}`, `meal_opened {meal}` (recipe name), `meal_added {count}`, `install_app {platform: android|ios}`, `offline_view`, `print_trip`. Custom events require Vercel Pro (2 properties per event, all ours fit); on Hobby only page views are collected (50,000 events/month, 1-month reporting window) and the calls are harmless no-ops. Enable in Vercel → Project → Analytics → Enable, then redeploy.

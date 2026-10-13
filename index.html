@@ -3,6 +3,7 @@
 <meta name="theme-color" content="#0f5132" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0b1210" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icons/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="NH Cart"><meta name="description" content="NH Cart: New Hampshire grocery flyer deals, meals and a store-by-store trip list. Flyers currently sourced for the Concord, NH area (03301).">
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script><script defer src="/_vercel/insights/script.js"></script>
 <title>NH Cart · New Hampshire grocery deals, meals & trip list</title>
 <meta property="og:type" content="website"><meta property="og:site_name" content="NH Cart"><meta property="og:title" content="NH Cart · New Hampshire grocery deals"><meta property="og:description" content="Compare this week's flyer prices at Market Basket, Hannaford, Aldi, Shaw's, Sam's Club and Walmart, plan meals and shop store by store. Flyers currently sourced for the Concord, NH area (03301)."><meta property="og:image" content="https://concord-deals.vercel.app/icons/icon-512.png"><meta name="twitter:card" content="summary"><meta name="application-name" content="NH Cart">
 <style>
@@ -122,6 +123,7 @@ body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
 </div>
 <div id="tripview" hidden></div>
 <div id="mealsview" hidden aria-live="polite"><div class="card empty" aria-busy="true">Loading meals…</div></div>
+<p class="note" id="privacy">🔒 Privacy: no cookies, aggregate analytics only. Your lists stay on your device.</p>
 <p class="note">NH Cart covers New Hampshire grocery chains; flyers are currently sourced for the Concord, NH area (03301), so prices may differ at other locations. Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Costco coming next. Flyer prices compare different brands/sizes; check the flyer before you buy.</p>
 </main>
 <div class="dock"><div class="in"><button id="edit" aria-label="Edit list" title="Edit list">✎</button><button id="go">Compare prices</button></div></div>
@@ -129,7 +131,9 @@ body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
 <div class="toast" id="toast" role="status" hidden></div>
 <script src="/match.js"></script><script src="/meals.js"></script>
 <script>
-const $=id=>document.getElementById(id);let DATA=null;
+const $=id=>document.getElementById(id);
+// Analytics: event names + small non-personal props only (never list contents or emails). Custom events need Vercel Pro; on Hobby they're dropped harmlessly.
+const track=(name,data)=>{try{window.va&&window.va('event',data?{name,data}:{name})}catch(e){}};let LASTTAB=null;if(localStorage.getItem('cd_an_n')==null)localStorage.setItem('cd_an_n',String((localStorage.getItem('cd_list')||'').split(/[\n,]+/).map(x=>x.trim()).filter(Boolean).length));let DATA=null;
 const fmt=s=>s?new Date(s).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'America/New_York'}):'';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const BRAND={'Market Basket':['MB','#1d7a3e'],'Hannaford':['H','#c8102e'],'Aldi':['A','#00205b'],"Shaw's":['S','#d6001c'],"Sam's Club":['SC','#0067a0'],'Walmart':['W','#0071ce']};
@@ -190,7 +194,7 @@ function ingRow(l){const q=`<span class="iqty">${+l.ing.qty.toFixed(2)} ${esc(l.
   <div class="pline"><span class="price">${$$m(l.cost)}</span><span class="unit">not on sale, estimate</span></div><div class="share">${esc(l.share)}</div><div class="prod">${esc(e.title)} — BLS ${esc(e.area)}, ${esc(e.period)} (${esc(l.why)})</div>
   <div class="meta"><span class="tag est">estimate</span><span>${esc(e.series_id)}</span><a class="src" href="${esc(e.source_url)}" target="_blank" rel="noopener">source ↗</a></div></div></div></div>`}
   return `<div class="row ing"><div class="srow"><span class="mono" style="--b:#9aa5a1" aria-hidden="true">?</span><div class="body"><div class="iname">${esc(l.ing.name)} ${q}</div><div class="pline"><span class="price" style="color:var(--bad);font-size:16px">price unknown</span></div><div class="share">${esc(l.why)}; no sourced estimate, not in total</div><div class="meta"><span class="tag unk">unknown</span></div></div></div></div>`}
-function mealDetail(i){const m=MEALS[i],v=$('mealsview');if(!m){mealList();return}
+function mealDetail(i){const m=MEALS[i],v=$('mealsview');if(!m){mealList();return}track('meal_opened',{meal:m.recipe.name});
   const st=Object.keys(m.byStore).sort((a,b)=>m.byStore[b]-m.byStore[a]);
   v.innerHTML=`<button class="back" id="mback">← All meals</button><article class="card"><div class="ihead" style="flex-wrap:wrap;gap:4px 10px"><h2 style="text-transform:none">${esc(m.recipe.name)}</h2><small>${sv(m)}</small></div><div class="msel" style="justify-content:flex-start;padding:4px 16px 4px;margin:0">${selBtn(m)}</div>
   <div class="hero"><span class="badge">${m.partial?'Partial total':'Total'}</span><div class="pline" style="margin-top:6px"><span class="price">${$$m(m.total)}</span><span class="unit">${$$m(m.total/m.recipe.serves)} per serving</span></div></div>
@@ -203,13 +207,13 @@ function mealDetail(i){const m=MEALS[i],v=$('mealsview');if(!m){mealList();retur
   <h3 class="sec">Steps</h3><ol class="steps">${m.recipe.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></article>
   <p class="note">Package and multi-buy deals are counted in full even if the recipe uses part. Estimates are U.S. average regular prices from the Bureau of Labor Statistics, never counted as savings.</p>`;
   wireSel(v);$('mback').onclick=()=>{history.length>1?history.back():(location.hash='meals')};window.scrollTo(0,0)}
-function route(){const h=location.hash.slice(1),meals=h==='meals'||h.startsWith('meal-'),trip=h==='trip';
+function route(){const h=location.hash.slice(1),meals=h==='meals'||h.startsWith('meal-'),trip=h==='trip';{const tb=trip?'trip':meals?'meals':'list';if(tb!==LASTTAB){LASTTAB=tb;track('tab_view',{tab:tb})}}
   document.body.classList.toggle('trip',trip);$('tripview').hidden=!trip;$('tab-trip').setAttribute('aria-selected',trip);if(trip){$('toast').hidden=true;document.body.classList.remove('meals');$('listview').hidden=true;$('mealsview').hidden=true;$('tab-list').setAttribute('aria-selected',false);$('tab-meals').setAttribute('aria-selected',false);renderTrip();return}
   document.body.classList.toggle('meals',meals);$('listview').hidden=meals;$('mealsview').hidden=!meals;
   $('tab-list').setAttribute('aria-selected',!meals);$('tab-meals').setAttribute('aria-selected',meals);
   if(!meals)return;loadMeals().then(()=>{if(!MEALS)computeMeals();h.startsWith('meal-')?mealDetail(+h.slice(5)):mealList()}).catch(()=>{$('mealsview').innerHTML='<div class="card err">⚠️ Could not load recipes.</div>'})}
 $('tab-list').onclick=()=>{history.replaceState(null,'',location.pathname);route()};$('tab-meals').onclick=()=>{location.hash='meals'};
-window.addEventListener('hashchange',route);$('tab-trip').onclick=()=>{location.hash='trip'};
+window.addEventListener('hashchange',route);addEventListener('beforeprint',()=>{if(location.hash==='#trip')track('print_trip')});$('tab-trip').onclick=()=>{location.hash='trip'};
 
 // ---- meal multi-select -> shopping list ----
 let SEL=new Set(JSON.parse(localStorage.getItem('cd_meal_sel')||'[]').filter(Boolean));
@@ -223,7 +227,7 @@ function addSelected(){if(!REC)return;const inc=$('mpantry').checked;const recs=
   const cur=$('list').value.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);const have=new Set(cur.map(normI));const add=[];
   const META=getMeta();for(const r of recs)for(const i of r.ingredients){if(i.pantry&&!inc)continue;const k=normI(i.name);const mm=META[k]||(META[k]={name:i.name,for:[],q:[]});if(!mm.for.includes(r.name)){mm.for.push(r.name);if(i.qty)mm.q.push({qty:i.qty,unit:i.unit,r:r.name})}if(have.has(k))continue;have.add(k);add.push(i.name)}
   localStorage.setItem('cd_meta',JSON.stringify(META));$('list').value=cur.concat(add).join('\n');localStorage.setItem('cd_list',$('list').value);
-  const n=recs.length;SEL.clear();saveSel();toast(`Added ${add.length} item${add.length===1?'':'s'} from ${n} meal${n===1?'':'s'}`);
+  const n=recs.length;track('meal_added',{count:n});if(add.length)track('add_to_list',{source:'meal',count:add.length});SEL.clear();saveSel();toast(`Added ${add.length} item${add.length===1?'':'s'} from ${n} meal${n===1?'':'s'}`);
   history.replaceState(null,'',location.pathname);route();render();window.scrollTo(0,0)}
 function toast(t){const el=$('toast');el.textContent=t;el.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>el.hidden=true,3500)}
 $('madd').onclick=addSelected;$('mclear').onclick=()=>{SEL.clear();saveSel();route()};updDock();
@@ -235,7 +239,7 @@ const pinKey=d=>String(d.flipp_item_id);
 function pinBtn(d,q){const on=getPins().some(p=>p.id===pinKey(d));return `<button class="pin" data-pid="${esc(pinKey(d))}" data-q="${esc(q)}" aria-pressed="${on}">${on?'✓ On trip list':'＋ add to list'}</button>`}
 function wirePins(root){root.querySelectorAll('.pin').forEach(b=>b.onclick=()=>{let P=getPins();const id=b.dataset.pid,i=P.findIndex(p=>p.id===id);
   if(i>=0)P.splice(i,1);else{const d=DATA.deals.find(x=>pinKey(x)===id);if(!d)return;P.push({id,store:d.store,item:d.item,q:b.dataset.q})}
-  localStorage.setItem('cd_pins',JSON.stringify(P));const on=i<0;b.setAttribute('aria-pressed',on);b.textContent=on?'✓ On trip list':'＋ add to list';if(on)toast(`Pinned to ${d0(id).store} on your trip list`)})}
+  localStorage.setItem('cd_pins',JSON.stringify(P));const on=i<0;if(on)track('add_to_list',{source:'deal',count:1});b.setAttribute('aria-pressed',on);b.textContent=on?'✓ On trip list':'＋ add to list';if(on)toast(`Pinned to ${d0(id).store} on your trip list`)})}
 const d0=id=>DATA.deals.find(x=>pinKey(x)===id)||{};
 const CATS=[['Produce',/\b(apple|grape|banana|lemon|lime|orange|avocado|tomato|potato|onion|garlic|pepper|broccoli|carrot|celery|lettuce|cabbage|cucumber|squash|mushroom|berr|spinach|bean(s)? green|green bean|herb|cilantro|parsley|fruit|salad|kale|corn on)/],
  ['Bakery',/\b(bread|bun|roll|bagel|tortilla|muffin|croissant|pita|cake|pie)/],['Deli',/\b(deli|provolone|ham\b|ham steak|rotisserie|salami|turkey breast|swiss|american cheese|hummus)/],
@@ -317,6 +321,7 @@ function offlineBar(){if(!DATA||!(OFFLINE||!navigator.onLine)){bar('offbar');ret
   const when=new Date(DATA.fetched_at).toLocaleString('en-US',{timeZone:'America/New_York',weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
   const now=new Date(),ok=Object.values(DATA.stores).filter(v=>v.status==='ok'),exp=ok.filter(v=>v.valid_to&&new Date(v.valid_to)<now);
   const e=!exp.length?'':exp.length===ok.length?' <b>All these flyers have expired</b>; prices may no longer apply.':` <b>${exp.length} of ${ok.length} flyers have expired</b>; check dates before you buy.`;
+  if(!offlineBar.sent){offlineBar.sent=1;track('offline_view')}
   bar('offbar','off',`<span>📴 <b>Offline</b>, showing deals fetched ${esc(when)} ET.${e}</span>`)}
 addEventListener('online',()=>{bar('offbar')});addEventListener('offline',offlineBar);
 if('serviceWorker' in navigator&&location.protocol!=='file:'){navigator.serviceWorker.register('/sw.js').then(reg=>{
@@ -327,11 +332,11 @@ if('serviceWorker' in navigator&&location.protocol!=='file:'){navigator.serviceW
   let reloaded=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!reloaded&&$('updbar')){reloaded=true;location.reload()}})}
 const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();DEFER=e;if(!standalone)$('install').hidden=false});
-$('install').onclick=()=>{if(!DEFER)return;DEFER.prompt();DEFER.userChoice.finally(()=>{DEFER=null;$('install').hidden=true})};
+$('install').onclick=()=>{if(!DEFER)return;track('install_app',{platform:'android'});DEFER.prompt();DEFER.userChoice.finally(()=>{DEFER=null;$('install').hidden=true})};
 addEventListener('appinstalled',()=>{$('install').hidden=true});
 if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone&&!localStorage.getItem('cd_ios_hint')){
   const el=bar('iosbar','ios','<span>📲 Install: tap <b>Share</b> <span aria-hidden="true">⎋</span> then <b>Add to Home Screen</b>.</span><button aria-label="Dismiss install hint">Got it</button>');
-  el.querySelector('button').onclick=()=>{localStorage.setItem('cd_ios_hint','1');bar('iosbar')}}
-$('go').onclick=()=>{render();const f=document.querySelector('#out .card');if(f)f.scrollIntoView({behavior:'smooth',block:'start'})};
+  el.querySelector('button').onclick=()=>{localStorage.setItem('cd_ios_hint','1');track('install_app',{platform:'ios'});bar('iosbar')}}
+$('go').onclick=()=>{const cnt=$('list').value.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean).length,prev=+(localStorage.getItem('cd_an_n')||0);if(cnt>prev)track('add_to_list',{source:'manual',count:cnt-prev});localStorage.setItem('cd_an_n',cnt);render();const f=document.querySelector('#out .card');if(f)f.scrollIntoView({behavior:'smooth',block:'start'})};
 $('edit').onclick=()=>{$('list').scrollIntoView({behavior:'smooth',block:'center'});$('list').focus()};
 </script></body></html>
