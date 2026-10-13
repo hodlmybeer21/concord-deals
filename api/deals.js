@@ -1,4 +1,5 @@
-const { fetchLive, STORES } = require('../lib/flipp');
+const { fetchLive, STORES, flyerUrl } = require('../lib/flipp');
+const relink = u => { const m = /^https:\/\/flipp\.com\/flyer\/(\d+)$/.exec(u || ''); return m ? flyerUrl(m[1]) : u; }; // same flyer, en-us viewer path (see lib/flipp.js)
 const fs = require('fs'), path = require('path');
 module.exports = async (req, res) => {
   let out;
@@ -11,7 +12,8 @@ module.exports = async (req, res) => {
     const st = out.stores[s];
     if ((!st || st.status !== 'ok') && snap && snap.stores[s] && snap.stores[s].status === 'ok' && new Date(snap.stores[s].valid_to) >= new Date()) {
       out.stores[s] = { ...snap.stores[s], from_snapshot: snap.fetched_at };
-      out.deals.push(...snap.deals.filter(d => d.store === s));
+      out.deals.push(...snap.deals.filter(d => d.store === s).map(d => ({ ...d, source_url: relink(d.source_url) })));
+      out.stores[s].source_url = relink(out.stores[s].source_url);
     } else if (!st) out.stores[s] = { status: 'unavailable', reason: 'fetch failed' };
   }
   // web-priced stores (cached basket from the store's own site) replace flyer data when available
