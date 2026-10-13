@@ -1,4 +1,4 @@
-const { fetchLive, STORES, flyerUrl } = require('../lib/flipp');
+const { fetchLive, STORES, flyerUrl, enrichAlcohol } = require('../lib/flipp');
 const relink = u => { const m = /^https:\/\/flipp\.com\/flyer\/(\d+)$/.exec(u || ''); return m ? flyerUrl(m[1]) : u; }; // same flyer, en-us viewer path (see lib/flipp.js)
 const fs = require('fs'), path = require('path');
 module.exports = async (req, res) => {
@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
   out.stores['Aldi'] = { ...(out.stores['Aldi'] || {}), web_status: 'not used', web_reason: 'aldi.us has no server-rendered search page (404); flyer used' };
   out.stores["Shaw's"] = { ...(out.stores["Shaw's"] || {}), web_status: 'not used', web_reason: "shaws.com prices are client-rendered and store-specific; flyer used" };
   for (const [k, v] of Object.entries(out.stores)) if (v.status === 'ok' && !v.source) v.source = 'flyer';
+  try { await enrichAlcohol(out.deals); } catch {} // snapshot-fallback deals get Beer & Wine pack sizes too
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=600');
   res.status(200).end(JSON.stringify(out));

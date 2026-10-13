@@ -46,10 +46,20 @@
     for (const t of q) { let ok = false; for (let i = 0; i < d.length && !ok; i++) if (d[i] === t && okAt(d, i, qset)) ok = true; if (ok) hit++; }
     return hit / q.length;
   }
+  // Beer & Wine: alcohol items get their category words ("beer", "wine", "cider", "seltzer") as extra search terms.
+  // An alcohol query ("beer", "wine", "cider", "ipa"…) only returns alcohol items (no wine vinegar / apple cider doughnuts),
+  // and generic grocery queries ("lemonade", "tea", "juice") don't return alcohol items unless they name a brand.
+  const ALQ = new Set(['beer','wine','cider','seltzer','ipa','lager','ale','stout','pilsner','merlot','cabernet','chardonnay','pinot','sauvignon','riesling','prosecco','champagne','moscato','malbec','zinfandel','sangria','rose','rosé','hard','boxed','rtd'].map(stem));
+  const NOTALQ = new Set(['root','ginger','birch','cooking','vinegar','glass','sparkling','water','apple','doughnut','donut'].map(stem));
+  const GENERIC = new Set(['lemonade','tea','juice','soda','water','lemon','lime','orange','cranberry','grapefruit','peach','mango','cherry','berry','black','white','red','light','ultra','box','pack','can','vodka','cream','apple','punch','cola'].map(stem));
+  const AL = () => root.Alcohol || (typeof require !== 'undefined' ? (() => { try { return require('./alcohol.js'); } catch { return null; } })() : null);
+  function isAlc(d) { if (d._alc === undefined) { const A = AL(); d._alc = !!(d.alc || (A && A.classify(d.item))); } return d._alc; }
   function match(query, deals) {
     const q = toks(query); const byStore = {};
+    const alcQ = q.some(w => ALQ.has(w)) && !q.some(w => NOTALQ.has(w)), brandish = q.some(w => !GENERIC.has(w) && !ALQ.has(w));
     for (const d of deals) {
-      d._t = d._t || toks(d.item);
+      if (!d._t) { const a = isAlc(d), A = AL(); const c = a && (d.alc || (A && A.classify(d.item))); d._t = toks(d.item + (c ? ' ' + c.kw : '')); }
+      if (alcQ && !isAlc(d)) continue; if (!alcQ && isAlc(d) && !brandish) continue;
       const s = score(q, d._t); if (s < 1 && !(q.length > 2 && s >= 0.67)) continue;
       const cur = byStore[d.store];
       if (!cur || d.price < cur.price) byStore[d.store] = Object.assign({ score: s }, d);

@@ -110,6 +110,10 @@ body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
 @media print{.pbar,#install{display:none!important}}
 .wm{font-weight:800}.wm span{color:var(--accent)}
 /* ---- review overhaul ---- */
+.alc{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:12px}.alc .per,.bcard .per{font-size:12px;color:var(--text);font-weight:600}.tag.na{color:var(--accent);background:var(--accent-soft);border-color:transparent}
+.alab{margin:4px 0 0;padding:0 0 0 16px;font-size:12px;color:var(--muted);width:100%}.alab li.fl{color:var(--text)}.age{font-size:12px;font-weight:700;color:var(--warn)}
+.bw summary{list-style:none;cursor:pointer;padding:0 0 2px}.bw summary::-webkit-details-marker{display:none}.bw summary h2::after{content:" ▸";color:var(--muted)}.bw details[open] summary h2::after{content:" ▾"}.bw h2 small{font-size:13px;color:var(--muted);font-weight:600}
+
 [hidden]{display:none!important}
 .chipwrap{position:relative}.chipwrap::after{content:"";position:absolute;top:0;right:-16px;bottom:0;width:48px;pointer-events:none;background:linear-gradient(to right,transparent,var(--bg));transition:opacity .2s}.chipwrap.end::after{opacity:0}
 .chiphint{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin:-6px 2px 8px}.chipwrap.end+.chiphint .sw{visibility:hidden}
@@ -159,6 +163,7 @@ details.paste{margin-top:10px;font-size:14px}details.paste summary{cursor:pointe
 <div id="sharein"></div></section>
 <section class="card watch" id="watch" hidden></section></div><div class="rcol">
 <section class="card best" id="best" hidden></section>
+<section class="card best bw" id="bw" hidden></section>
 <div id="out" aria-live="polite"><div class="card empty wide" aria-busy="true">Loading this week's flyers…</div></div>
 </div></div>
 <div id="tripview" hidden></div>
@@ -169,7 +174,7 @@ details.paste{margin-top:10px;font-size:14px}details.paste summary{cursor:pointe
 <div class="dock"><div class="in"><button id="edit" aria-label="Edit list" title="Edit list">✎</button><button id="go">Compare prices</button></div></div>
 <div class="dock" id="mdock"><div class="in"><label class="ptog"><input type="checkbox" id="mpantry"> Include pantry staples (salt, oil…)</label><div class="r"><button id="mclear">Clear</button><button id="madd">Add meals to list</button></div></div></div>
 <div class="toast" id="toast" role="status" hidden></div>
-<script src="/match.js"></script><script src="/meals.js"></script>
+<script src="/alcohol.js"></script><script src="/match.js"></script><script src="/meals.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 // Analytics: event names + small non-personal props only (never list contents or emails). Custom events need Vercel Pro; on Hobby they're dropped harmlessly.
@@ -196,15 +201,36 @@ const provHtml=d=>`<span class="tag">${esc(d.source||'flyer')}</span>${expPill(d
 function dealRow(s,d,hero,q){
   return `<div class="card2"><div class="main">${hero?'<span class="badge">★ Cheapest</span>':''}<div class="ptop"${hero?' style="margin-top:6px"':''}><span class="price">${esc(d.price_text)}</span>${unitHtml(d)}</div>
 <div class="sline">${mono(s)}<span>${esc(s)}</span></div><div class="prod">${esc(d.item)}</div><div class="pmeta">${provHtml(d)}</div>
-${d.flag?`<div class="warn"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}<div class="acts">${q!=null&&d.flipp_item_id?pinBtn(d,q):''}${repLink(d)}</div></div>${thumb(d)}</div>`}
+${d.flag?`<div class="warn"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}${alcHtml(d)}<div class="acts">${q!=null&&d.flipp_item_id?pinBtn(d,q):''}${repLink(d)}</div></div>${thumb(d)}</div>`}
 function mini(d,cls='mini'){return `<div class="${cls}">${thumb(d)}<div><b class="price">${esc(d.price_text)}</b> ${unitHtml(d)}<div class="it">${esc(d.item)}</div><div style="color:var(--muted)">${mono(d.store)} ${esc(d.store)} ${expPill(d)}</div><div class="pmeta" style="margin-top:2px">fetched ${ts(d)} ET · ${srcLink(d)}</div></div></div>`}
+/*bw*/
+// ---- Beer & Wine ----
+const isAlcD=d=>!!(d.alc||(window.Alcohol&&Alcohol.classify(d.item)));
+const perTxt=a=>a&&a.per?`$${a.per.v.toFixed(2)} per ${esc(a.per.u)} (price ÷ ${a.per.u==='750 ml'?'750 ml equivalents':'flyer pack count'})`:'';
+function alcHtml(d){const a=d.alc;if(!a&&!isAlcD(d))return '';const sub=a?a.sub:Alcohol.classify(d.item).sub;
+  return `<div class="alc"><span class="tag">${esc(sub)}</span>${a&&a.na==='all'?'<span class="tag na">NA · non-alcoholic</span>':''}${a&&a.per?`<span class="per">${perTxt(a)}</span>`:''}
+  ${a&&a.labels.length?`<ul class="alab">${a.labels.map(l=>`<li class="${l.src==='flyer'?'fl':'nc'}">${l.src==='flyer'?'Flyer: “'+esc(l.t)+'”':esc(l.t)}</li>`).join('')}</ul>`:''}<div class="age">21+ · NH stores only</div></div>`}
+let BWSUB='All';
+function renderBW(){const el=$('bw');if(!DATA){el.hidden=true;return}const now=new Date();
+  const L=DATA.deals.filter(d=>isAlcD(d)&&DATA.stores[d.store]&&DATA.stores[d.store].status==='ok'&&new Date(d.valid_to||8.64e15)>=now);if(!L.length){el.hidden=true;return}el.hidden=false;
+  const sub=d=>d.alc?d.alc.sub:Alcohol.classify(d.item).sub,subs=['All',...['Beer','Cider','Hard seltzer & RTD','Wine','Boxed wine'].filter(x=>L.some(d=>sub(d)===x))];
+  const list=L.filter(d=>BWSUB==='All'||sub(d)===BWSUB).sort((a,b)=>sub(a).localeCompare(sub(b))||a.price-b.price);
+  const open=localStorage.getItem('cd_bw_open')==='1';
+  el.innerHTML=`<details ${open?'open':''} id="bwd"><summary><span class="bh"><h2>🍺 Beer &amp; Wine <small>${L.length} flyer deals</small></h2><span>21+ · NH stores only · never counted in meals</span></span></summary>
+  <div class="cats" role="group" aria-label="Beer and wine type">${subs.map(c=>`<button data-bw="${esc(c)}" aria-pressed="${c===BWSUB}">${esc(c)}</button>`).join('')}</div>
+  <div class="bl2">${list.map(d=>`<div class="bcard">${thumb(d)}<span class="why">${esc(sub(d))}${d.alc&&d.alc.na==='all'?' · NA':''}</span><div><span class="price">${esc(d.price_text)}</span> ${unitHtml(d)}</div>${d.alc&&d.alc.per?`<div class="per">${perTxt(d.alc)}</div>`:''}<div class="it">${esc(d.item)}</div><div class="sline" style="margin-top:0">${mono(d.store)}<span>${esc(d.store)}</span></div>
+   ${d.flag?`<div class="warn" style="margin-top:2px"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}${d.alc&&d.alc.labels.length?`<ul class="alab">${d.alc.labels.map(l=>`<li class="${l.src==='flyer'?'fl':'nc'}">${l.src==='flyer'?'Flyer: “'+esc(l.t)+'”':esc(l.t)}</li>`).join('')}</ul>`:''}
+   <div class="pmeta" style="margin-top:0">${provHtml(d)}</div><div class="acts" style="margin-top:2px"><button class="ebtn" data-addq="${esc(d.item)}">＋ Add</button>${repLink(d)}</div></div>`).join('')}</div>
+  <p class="note" style="margin:6px 16px 0">21+ · NH stores only. Prices are the flyer's sale prices. Deposits, coupons and rebates are shown as the flyer words them and are not added or subtracted. Per-unit prices appear only when the flyer states both the pack count and the size.</p></details>`;
+  $('bwd').ontoggle=e=>localStorage.setItem('cd_bw_open',e.target.open?'1':'0');
+  el.querySelectorAll('[data-bw]').forEach(b=>b.onclick=()=>{BWSUB=b.dataset.bw;renderBW()});wireAddQ(el)}
 // ---- favorites / watch, best-this-week, suggestions, related ----
 const getFavs=()=>LS('cd_favs',[]),setFavs=f=>{localStorage.setItem('cd_favs',JSON.stringify(f));renderWatch()};
 const STAPLES=['chicken breast','chicken thighs','ground beef','pork chops','bacon','sausage','salmon','shrimp','steak','ham','turkey','eggs','milk','butter','cheese','yogurt','cream cheese','bread','bagels','tortillas','pasta','rice','cereal','coffee','orange juice','apples','bananas','grapes','strawberries','potatoes','onions','tomatoes','broccoli','lettuce','carrots','peppers','squash','avocados','lemons','frozen vegetables','ice cream','pizza','chips','soda','water','paper towels','toilet paper','peanut butter','soup','beans'];
 let BEST=null,BCAT='All';const BX={coffee:/creamer|mate|cake/i,pasta:/canned|sauce/i,peppers:/cayenne|seasoning|ground|flakes/i,tomatoes:/diced|canned|sauce|paste|chilies/i,'peanut butter':/pringles|cups|granola/i,potatoes:/chips/i,chips:/protein/i,cereal:/bars?\b/i};
 function bestDeals(){if(BEST)return BEST;BEST=[];const now=new Date();// strict: every query word is a whole word of the item AND the item falls in the same category (so "butter" ≠ butternut squash / shea butter)
   for(const q of STAPLES){const qt=DealMatch.toks(q),c=cat(q),by={};
-    for(const d of DATA.deals){const st=DATA.stores[d.store];if(!st||st.status!=='ok'||d.flag||!d.unit||new Date(d.valid_to||8.64e15)<now)continue;d._t=d._t||DealMatch.toks(d.item);
+    for(const d of DATA.deals){const st=DATA.stores[d.store];if(isAlcD(d))continue;if(!st||st.status!=='ok'||d.flag||!d.unit||new Date(d.valid_to||8.64e15)<now)continue;d._t=d._t||DealMatch.toks(d.item);
       if(!qt.every(w=>d._t.includes(w))||cat(d.item)!==c||(qt.length>1&&!d._t.join(' ').includes(qt.join(' ')))||(BX[q]&&BX[q].test(d.item)))continue;if(!by[d.store]||d.price<by[d.store].price)by[d.store]=d}
     const L=Object.values(by).sort((x,y)=>x.price-y.price);if(L.length)BEST.push({q,d:L[0],n:L.length,c})}
   BEST.sort((a,b)=>b.n-a.n);return BEST}
@@ -223,12 +249,12 @@ function renderWatch(){const el=$('watch');if(!DATA)return;const F=getFavs();if(
   el.innerHTML=`<h2>★ Watching</h2>${F.map(f=>{const m=DealMatch.match(f,DATA.deals),b=m.best;return b?`<div class="wrow on"><span>★ ${esc(f)}</span><span class="st">On sale: ${esc(b.price_text)}${b.unit&&!b.flag?' / '+esc(b.unit):''} at ${esc(b.store)} ${expPill(b)}<br><span style="font-weight:400">fetched ${ts(b)} ET · ${srcLink(b)}</span></span></div>`:`<div class="wrow"><span>☆ ${esc(f)}</span><span class="st">not in this week's flyers</span></div>`}).join('')}<p class="note" style="margin:6px 0 0">Saved on this device. No account and no alerts yet: check here after the Sunday and Wednesday flyers.</p>`}
 function favBtn(it){const on=getFavs().some(f=>f.toLowerCase()===it.toLowerCase());return `<button class="fav" data-fav="${esc(it)}" aria-pressed="${on}" aria-label="${on?'Stop watching':'Watch'} ${esc(it)}">${on?'★ Watching':'☆ Watch'}</button>`}
 function wireFavs(root){root.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>{const it=b.dataset.fav;let F=getFavs();const i=F.findIndex(f=>f.toLowerCase()===it.toLowerCase());i>=0?F.splice(i,1):F.push(it);setFavs(F);const on=i<0;b.setAttribute('aria-pressed',on);b.textContent=on?'★ Watching':'☆ Watch';toast(on?`Watching “${it}”`:`Stopped watching “${it}”`)})}
-function related(it,shown){const q=DealMatch.toks(it);if(!q.length)return [];const ids=new Set(shown.map(d=>d.flipp_item_id));const out=[];
-  for(const d of DATA.deals){if(ids.has(d.flipp_item_id)||d.flag||!d.unit||!DATA.stores[d.store]||DATA.stores[d.store].status!=='ok')continue;d._t=d._t||DealMatch.toks(d.item);const hit=q.filter(w=>d._t.includes(w)).length;if(hit&&hit<q.length||(hit===q.length&&!shown.some(x=>x.store===d.store&&x.item===d.item)))out.push([hit,d])}
+function related(it,shown){const q=DealMatch.toks(it);if(!q.length)return [];const alcOK=shown.some(isAlcD);const ids=new Set(shown.map(d=>d.flipp_item_id));const out=[];
+  for(const d of DATA.deals){if(isAlcD(d)!==alcOK)continue;if(ids.has(d.flipp_item_id)||d.flag||!d.unit||!DATA.stores[d.store]||DATA.stores[d.store].status!=='ok')continue;d._t=d._t||DealMatch.toks(d.item);const hit=q.filter(w=>d._t.includes(w)).length;if(hit&&hit<q.length||(hit===q.length&&!shown.some(x=>x.store===d.store&&x.item===d.item)))out.push([hit,d])}
   return out.sort((a,b)=>b[0]-a[0]||a[1].price-b[1].price).slice(0,6).map(x=>x[1])}
 function render(){
   if(!DATA)return;const items=$('list').value.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
-  localStorage.setItem('cd_list',$('list').value);renderBest();renderWatch();
+  localStorage.setItem('cd_list',$('list').value);renderBest();renderBW();renderWatch();
   if(!items.length){$('out').innerHTML=`<div class="card empty wide"><div class="big">🧺</div><b>Your list is empty</b><br>Add items like milk, eggs or bananas, or tap a suggestion from this week's flyers:${sugHtml()}</div>`;wireAddQ($('out'));return}
   const stores=Object.keys(DATA.stores);const none=[];let html='';
   for(const it of items){const m=DealMatch.match(it,DATA.deals);
@@ -261,7 +287,7 @@ fetch('/api/deals').then(r=>{OFFLINE=r.headers.get('X-CD-Cache')==='offline';if(
 // ---- Meals tab ----
 let MEALS=null,REC=null,EST=null;const $$m=n=>'$'+n.toFixed(2);
 function loadMeals(){if(REC)return Promise.resolve();return Promise.all([fetch('/data/recipes.json').then(r=>r.json()),fetch('/data/price_estimates.json').then(r=>r.json())]).then(([r,e])=>{REC=r;EST=e})}
-function computeMeals(){if(!DATA||!REC)return;MEALS=Meals.priceAll(REC.recipes,DATA.deals,EST,DATA.stores)}
+function computeMeals(){if(!DATA||!REC)return;MEALS=Meals.priceAll(REC.recipes,DATA.deals.filter(d=>!isAlcD(d)),EST,DATA.stores)/* alcohol never prices a meal */}
 const sv=m=>`serves ${m.recipe.serves}`;
 function mealList(){const v=$('mealsview');if(!MEALS){v.innerHTML='<div class="card empty" aria-busy="true">Loading meals…</div>';return}
   let h=`<p class="note">${MEALS.length} meals built on this week's flyer deals, cheapest first. Totals mix stores for the lowest price; pantry staples aren't counted. Prices are flyer deals unless tagged <span class="tag est">estimate</span>. No savings are shown because the flyers don't list regular prices.</p>`;
@@ -331,8 +357,8 @@ const CATS=[['Produce',/\b(apple|grape|banana|lemon|lime|orange|avocado|tomato|p
  ['Pantry',/\b(pasta|rice|sauce|salsa|bean|can|tomatoes canned|canned|soup|broth|flour|sugar|oil|vinegar|spice|seasoning|salt|pepper|cereal|oat|peanut|tuna|corn|chip|cracker|honey|syrup|coffee|tea)/],
  ['Household',/\b(paper|towel|tissue|detergent|soap|trash|bag|foil|wrap|clean|dish|laundry|diaper|shampoo|toothpaste|downy|tide)/],
  ['Dairy & eggs',/\b(milk|egg|cheese|butter|yogurt|cream|ricotta|feta|parmesan|sour cream)/],['Frozen',/\b(frozen|ice cream|waffle|pizza)/]];
-const CORDER=CATS.map(c=>c[0]).concat('Other');
-function cat(n){n=String(n).toLowerCase();if(/\bcanned\b|\btuna\b/.test(n))return 'Pantry';if(/\b(milk|eggs?|cheese|butter|yogurt|ricotta|feta|parmesan)\b/.test(n))return 'Dairy & eggs';
+const CORDER=CATS.map(c=>c[0]).concat('Beer & Wine','Other');
+function cat(n){if(window.Alcohol&&Alcohol.classify(n))return 'Beer & Wine';n=String(n).toLowerCase();if(/\bcanned\b|\btuna\b/.test(n))return 'Pantry';if(/\b(milk|eggs?|cheese|butter|yogurt|ricotta|feta|parmesan)\b/.test(n))return 'Dairy & eggs';
   if(/\bfrozen\b/.test(n))return 'Frozen';for(const[c,re]of CATS)if(re.test(n))return c;return 'Other'}
 const uFam=u=>u==='lb'||u==='oz'?['lb',u==='oz'?1/16:1]:u==='each'||u==='dozen'?['each',u==='dozen'?12:1]:[u,1];
 function sumQ(qs){const m={};for(const q of qs){const[f,k]=uFam(q.unit);m[f]=(m[f]||0)+q.qty*k}return Object.entries(m).map(([unit,qty])=>unit==='lb'&&qty<1?{qty:Math.round(qty*1600)/100,unit:'oz'}:{qty:Math.round(qty*100)/100,unit})}

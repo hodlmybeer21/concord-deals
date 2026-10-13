@@ -71,7 +71,9 @@
     const nDeal = lines.filter(l => l.type === 'deal').length, nEst = lines.filter(l => l.type === 'estimate').length, nUnk = lines.filter(l => l.type === 'unknown').length;
     return { recipe, lines, pantry, byStore, estimateTotal: r2(est), total: r2(total), partial: nUnk > 0, nDeal, nEst, nUnk, wellMatched: nDeal >= 2 && nDeal / lines.length >= 0.5 };
   }
-  function priceAll(recipes, deals, EST, stores) { return recipes.map(r => price(r, deals, EST, stores)).sort((a, b) => a.total - b.total); }
+  const ALC = root.Alcohol || (typeof require !== 'undefined' ? require('./alcohol.js') : null);
+  const noAlc = deals => deals.filter(d => !d.alc && !(ALC && ALC.classify(d.item))); // beer & wine never price a meal
+  function priceAll(recipes, deals, EST, stores) { deals = noAlc(deals); return recipes.map(r => price(r, deals, EST, stores)).sort((a, b) => a.total - b.total); }
   root.Meals = { priceAll, price, dealUnit, candidates, costFor, estimateFor };
   if (typeof module !== 'undefined') module.exports = root.Meals;
 })(typeof window !== 'undefined' ? window : globalThis);
