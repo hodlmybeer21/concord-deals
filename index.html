@@ -7,43 +7,43 @@
 <title>NH Cart · New Hampshire grocery deals, meals & trip list</title>
 <meta property="og:type" content="website"><meta property="og:site_name" content="NH Cart"><meta property="og:title" content="NH Cart · New Hampshire grocery deals"><meta property="og:description" content="Compare this week's flyer prices at Market Basket, Hannaford, Aldi, Shaw's, Sam's Club and Walmart, plan meals and shop store by store. Flyers currently sourced for the Concord, NH area (03301)."><meta property="og:image" content="https://concord-deals.vercel.app/icons/icon-512.png"><meta name="twitter:card" content="summary"><meta name="application-name" content="NH Cart">
 <style>
-:root{--bg:#f3f5f4;--surface:#fff;--surface-2:#f7f9f8;--line:#e3e8e6;--text:#0f1a16;--muted:#5d6b66;--faint:#8a9792;
+:root{--bg:#f3f5f4;--surface:#fff;--surface-2:#f7f9f8;--line:#e3e8e6;--text:#0f1a16;--muted:#56645f;--faint:#66736e;
 --accent:#0f7a43;--accent-ink:#fff;--accent-soft:#e6f5ec;--accent-line:#9fd8b6;--warn:#9a5b00;--warn-soft:#fff4dc;--bad:#b42318;--bad-soft:#fdecea;
 --r-lg:20px;--r-md:14px;--r-sm:10px;--shadow:0 1px 2px rgba(16,24,20,.06),0 4px 16px rgba(16,24,20,.06);
 --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
-@media (prefers-color-scheme:dark){:root{--bg:#0b1210;--surface:#121b18;--surface-2:#17221e;--line:#24322d;--text:#eef4f1;--muted:#a3b3ad;--faint:#7b8a85;
+@media (prefers-color-scheme:dark){:root{--bg:#0b1210;--surface:#121b18;--surface-2:#17221e;--line:#24322d;--text:#eef4f1;--muted:#a3b3ad;--faint:#94a39e;
 --accent:#34c47c;--accent-ink:#04130b;--accent-soft:#11291d;--accent-line:#1f5a3a;--warn:#f2b54b;--warn-soft:#2a2210;--bad:#ff8a7a;--bad-soft:#2c1512;--shadow:0 1px 2px rgba(0,0,0,.4)}}
-*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 var(--font);-webkit-font-smoothing:antialiased;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-padding-bottom:120px;scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 var(--font);-webkit-font-smoothing:antialiased;padding-bottom:calc(112px + env(safe-area-inset-bottom))}
 a{color:var(--accent)}:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:8px}
 .wrap{max-width:640px;margin:0 auto;padding:0 16px}
 header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
 .top{display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top)) 0 10px}
 .logo{width:36px;height:36px;border-radius:11px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:800;font-size:17px;letter-spacing:-.5px}
-.top h1{font-size:18px;line-height:1.1;margin:0;letter-spacing:-.3px}.top p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.top h1{font-size:17px;line-height:1.1;margin:0;letter-spacing:-.3px}.top p{margin:2px 0 0;font-size:13px;color:var(--muted)}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;margin:0 -16px;scroll-snap-type:x proximity;scroll-padding-inline:16px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
 .chip{scroll-snap-align:start;flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:44px;padding:6px 12px 6px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font:inherit;color:inherit;cursor:pointer;text-align:left}
-.chip .mono{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:11px;background:var(--b)}
-.chip b{display:block;font-size:13px;line-height:1.15}.chip span.s{display:block;font-size:11.5px;color:var(--muted);line-height:1.2}
+.chip .mono{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px;background:var(--b)}
+.chip b{display:block;font-size:13px;line-height:1.15}.chip span.s{display:block;font-size:12px;color:var(--muted);line-height:1.2}
 .chip.bad{border-color:var(--bad);background:var(--bad-soft)}.chip[aria-expanded=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
 .detail{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;margin:0 0 12px;font-size:13px;color:var(--muted)}.detail b{color:var(--text)}
 .skel{height:44px;width:150px;border-radius:999px;background:linear-gradient(90deg,var(--surface) 0,var(--surface-2) 50%,var(--surface) 100%);background-size:200% 100%;animation:sh 1.2s infinite;flex:0 0 auto}
 @keyframes sh{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){.skel{animation:none}}
 .card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);border:1px solid var(--line);margin:14px 0;overflow:hidden}
-.editor{padding:14px 16px}.editor label{display:flex;justify-content:space-between;font-weight:700;font-size:14px;margin-bottom:8px}.editor label span{font-weight:500;color:var(--faint);font-size:12.5px}
+.editor{padding:14px 16px}.editor label{display:flex;justify-content:space-between;font-weight:700;font-size:14px;margin-bottom:8px}.editor label span{font-weight:500;color:var(--faint);font-size:13px}
 textarea{width:100%;min-height:128px;resize:vertical;font:16px/1.5 var(--font);color:var(--text);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px}
 textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-.note{font-size:12.5px;color:var(--muted);margin:10px 2px}.legend{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
-.ihead{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px 4px}.ihead h2{margin:0;font-size:19px;text-transform:capitalize;letter-spacing:-.3px}.ihead small{color:var(--faint);font-size:12px}
+.note{font-size:13px;color:var(--muted);margin:10px 2px}.legend{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.ihead{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px 4px}.ihead h2{margin:0;font-size:20px;text-transform:capitalize;letter-spacing:-.3px}.ihead small{color:var(--faint);font-size:12px}
 .hero{margin:8px 12px 4px;padding:14px;border-radius:var(--r-md);background:var(--accent-soft);border:1px solid var(--accent-line)}
-.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:3px 8px;border-radius:999px}
-.srow{display:flex;gap:12px;align-items:flex-start}.srow .mono{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;font-size:10.5px;font-weight:800;margin-top:1px}
-.srow .body{flex:1;min-width:0}.store{font-weight:700;font-size:14.5px}.prod{font-size:14px;color:var(--text);margin-top:4px;overflow-wrap:break-word;word-break:normal;hyphens:manual}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:3px 8px;border-radius:999px}
+.srow{display:flex;gap:12px;align-items:flex-start}.srow .mono{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;margin-top:1px}
+.srow .body{flex:1;min-width:0}.store{font-weight:700;font-size:14px}.prod{font-size:14px;color:var(--text);margin-top:4px;overflow-wrap:break-word;word-break:normal;hyphens:manual}
 .pline{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 6px;margin-top:2px}.pline .price{text-align:left}
 .pline .unit{font-size:13px;font-weight:500;color:var(--muted);opacity:1;margin:0;min-width:0;overflow-wrap:break-word}.hero .pline .unit{color:var(--text);opacity:.8}
 .price{font-variant-numeric:tabular-nums;font-weight:800;font-size:20px;white-space:nowrap;letter-spacing:-.4px;text-align:right}.hero .price{font-size:28px;color:var(--accent)}
 .meta>span{white-space:nowrap}.meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12px;color:var(--muted);margin-top:6px}
-.tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:2px 7px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
+.tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:2px 7px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
 .src{display:inline-flex;align-items:center;min-height:36px;padding:0 8px;margin:-8px -8px;white-space:nowrap;border-radius:8px;font-weight:600;text-decoration:none}.src:active{background:var(--accent-soft)}
 .warn{display:flex;gap:6px;margin-top:8px;font-size:12px;color:var(--warn);background:var(--warn-soft);padding:6px 9px;border-radius:8px}
 .wicon{font-size:13px;color:var(--warn)}.row.muted .srow{align-items:center}.row.muted .price{white-space:normal;text-align:right}
@@ -52,21 +52,21 @@ textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(
 .row.muted .store{color:var(--muted);font-weight:600}.row.muted .price{font-size:13px;font-weight:600;color:var(--faint)}.row.unav .price{color:var(--bad)}
 .none-list{padding:4px 16px 14px;display:flex;flex-wrap:wrap;gap:8px}.none-list span{padding:6px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:14px;text-transform:capitalize}
 .empty{padding:28px 20px;text-align:center;color:var(--muted)}.empty .big{font-size:34px}.err{border-color:var(--bad);background:var(--bad-soft);color:var(--bad);padding:14px 16px;font-weight:600}
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:6;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 70%,transparent)}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:6;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line);box-shadow:0 -6px 16px rgba(16,24,20,.06)}
 .dock .in{max-width:640px;margin:0 auto;display:flex;gap:10px}
 #go{flex:1;height:54px;border:0;border-radius:16px;background:var(--accent);color:var(--accent-ink);font:700 17px var(--font);box-shadow:0 6px 20px color-mix(in srgb,var(--accent) 35%,transparent);cursor:pointer}
 #go:active{transform:scale(.985)}#edit{height:54px;width:54px;border-radius:16px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:20px;cursor:pointer}
-@media (min-width:700px){.ihead h2{font-size:21px}}
-.unit{font-size:.7em;font-weight:500;opacity:.75;margin-left:2px}
+@media (min-width:700px){.ihead h2{font-size:20px}}
+.unit{font-size:13px;font-weight:500;color:var(--muted);margin-left:2px}
 .tabs{display:flex;gap:4px;padding:4px;margin:0 0 10px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px}
-.tabs button{flex:1;min-height:40px;border:0;border-radius:10px;background:transparent;color:var(--muted);font:700 14.5px var(--font);cursor:pointer}
+.tabs button{flex:1;min-height:40px;border:0;border-radius:10px;background:transparent;color:var(--muted);font:700 14px var(--font);cursor:pointer}
 .tabs button[aria-selected=true]{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
 .mcard{display:block;width:100%;background:transparent;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:14px 16px}.mcard:active{background:var(--surface-2)}
 .mtitle h2{margin:0;font-size:17px;letter-spacing:-.2px;overflow-wrap:break-word}.mtitle .pl{display:flex;align-items:baseline;gap:6px;margin-top:2px}
 .mtitle .price{font-size:20px;color:var(--accent)}.mtitle .sv{font-size:13px;color:var(--muted);white-space:nowrap}
-.mstores{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.mst{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);white-space:nowrap}.mst .mono{width:20px;height:20px;font-size:8.5px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;background:var(--b)}
+.mstores{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.mst{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);white-space:nowrap}.mst .mono{width:24px;height:24px;font-size:12px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;background:var(--b)}
 .mnote{font-size:12px;color:var(--warn);margin-top:6px}.mtags{font-size:12px;color:var(--faint);margin-top:6px}
-.back{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;margin:4px 0 0;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 14.5px var(--font);cursor:pointer}
+.back{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;margin:4px 0 0;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 14px var(--font);cursor:pointer}
 .sec{margin:0;padding:12px 16px 4px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--faint)}
 .ing .iname{font-weight:700;font-size:15px;overflow-wrap:break-word}.ing .iqty{font-size:13px;color:var(--muted);font-weight:500}
 .ing .share{font-size:13px;color:var(--muted);margin-top:2px;overflow-wrap:break-word}
@@ -85,19 +85,19 @@ body.meals .dock{display:none}body.meals{padding-bottom:calc(24px + env(safe-are
 .ptog{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:14px;cursor:pointer}.ptog input{width:22px;height:22px;accent-color:var(--accent)}
 .toast{position:fixed;left:16px;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:9;max-width:608px;margin:0 auto;padding:14px 16px;border-radius:14px;background:var(--text);color:var(--bg);font-weight:600;box-shadow:var(--shadow)}
 .tline{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-top:1px solid var(--line)}.tsec .tline:first-of-type{border-top:0}
-.ck{flex:0 0 auto;width:48px;height:48px;border-radius:50%;border:2px solid var(--line);background:var(--surface-2);display:grid;place-items:center;font-size:22px;color:transparent;cursor:pointer}
+.ck{flex:0 0 auto;width:48px;height:48px;border-radius:50%;border:2px solid var(--line);background:var(--surface-2);display:grid;place-items:center;font-size:20px;color:transparent;cursor:pointer}
 .tline.done .ck{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}.tline.done .tn{text-decoration:line-through;color:var(--faint)}.tline.done{opacity:.7}
-.tb{flex:1;min-width:0}.tn{font-size:18px;font-weight:700;line-height:1.25;overflow-wrap:break-word;text-transform:capitalize}
-.tq{font-size:13.5px;color:var(--muted);margin-top:2px;overflow-wrap:break-word}.tfor{font-size:12.5px;color:var(--accent);margin-top:3px;overflow-wrap:break-word}
+.tb{flex:1;min-width:0}.tn{font-size:17px;font-weight:700;line-height:1.25;overflow-wrap:break-word;text-transform:capitalize}
+.tq{font-size:14px;color:var(--muted);margin-top:2px;overflow-wrap:break-word}.tfor{font-size:13px;color:var(--accent);margin-top:3px;overflow-wrap:break-word}
 .tp{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;margin-top:4px;font-size:13px;color:var(--muted)}.tp b{font-size:17px;color:var(--text);font-variant-numeric:tabular-nums}
 .tag.sale{color:var(--accent);background:var(--accent-soft);border-color:transparent}
 .tact{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}.tbtn{min-height:36px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font:600 13px var(--font);cursor:pointer}
-.tsh{display:flex;align-items:center;gap:10px;padding:14px 14px 10px;border-bottom:1px solid var(--line)}.tsh h2{margin:0;font-size:19px;flex:1;min-width:0}.tsh .sub{font-size:13px;color:var(--muted);white-space:nowrap}.tsh .mono{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px;background:var(--b)}
-.cat{padding:8px 14px 2px;font-size:11.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--faint)}
+.tsh{display:flex;align-items:center;gap:10px;padding:14px 14px 10px;border-bottom:1px solid var(--line)}.tsh h2{margin:0;font-size:20px;flex:1;min-width:0}.tsh .sub{font-size:13px;color:var(--muted);white-space:nowrap}.tsh .mono{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px;background:var(--b)}
+.cat{padding:8px 14px 2px;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--faint)}
 .tbar{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}.tbar::-webkit-scrollbar{display:none}.tbar .tbtn{flex:0 0 auto;min-height:44px;color:var(--text)}.tbar .tbtn[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.tot{padding:14px 16px}.tot .g{display:flex;justify-content:space-between;align-items:baseline}.tot .g b{font-size:26px;color:var(--accent);font-variant-numeric:tabular-nums}
+.tot{padding:14px 16px}.tot .g{display:flex;justify-content:space-between;align-items:baseline}.tot .g b{font-size:28px;color:var(--accent);font-variant-numeric:tabular-nums}
 .cmp{padding:0 16px 14px}.cmp .bl{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:14px}.cmp .bl b{white-space:nowrap;font-variant-numeric:tabular-nums}
-body.instore .tp,body.instore .tact,body.instore .tfor,body.instore .tot,body.instore .cmp-card,body.instore .tsh .sub{display:none}body.instore .tn{font-size:21px}
+body.instore .tp,body.instore .tact,body.instore .tfor,body.instore .tot,body.instore .cmp-card,body.instore .tsh .sub{display:none}body.instore .tn{font-size:20px}
 .pin{min-height:36px;padding:0 10px;margin-top:8px;border-radius:10px;border:1px solid var(--accent-line);background:var(--accent-soft);color:var(--accent);font:700 13px var(--font);cursor:pointer}.pin[aria-pressed=true]{background:var(--accent);color:var(--accent-ink)}
 body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
 @media print{header,.tabs,.chips,#detail,.dock,.tbar,.toast,.note,.tot,.cmp-card,.tact,.tp,#listview,#mealsview{display:none!important}body{background:#fff;color:#000;padding:0;font-size:12pt}
@@ -109,18 +109,58 @@ body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
 #install{margin-left:auto;min-height:40px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 13px var(--font);cursor:pointer}
 @media print{.pbar,#install{display:none!important}}
 .wm{font-weight:800}.wm span{color:var(--accent)}
+/* ---- review overhaul ---- */
+[hidden]{display:none!important}
+.chipwrap{position:relative}.chipwrap::after{content:"";position:absolute;top:0;right:-16px;bottom:0;width:48px;pointer-events:none;background:linear-gradient(to right,transparent,var(--bg));transition:opacity .2s}.chipwrap.end::after{opacity:0}
+.chiphint{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin:-6px 2px 8px}.chipwrap.end+.chiphint .sw{visibility:hidden}
+.card2{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}.card2 .main{min-width:0}
+.ptop{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}.sline{display:flex;align-items:center;gap:8px;margin-top:4px;font-weight:700;font-size:14px}.sline .mono{width:24px;height:24px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;flex:0 0 auto}
+.thumb{width:72px;height:72px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);object-fit:contain;display:block}.hero .thumb{width:88px;height:88px;background:#fff}.thumb.ph{display:grid;place-items:center;color:var(--faint);font-size:12px;text-align:center}
+.pmeta{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:12px;color:var(--muted);margin-top:6px}.pmeta a{font-weight:600}
+.exp{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted);white-space:nowrap}.exp.soon{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}.acts .pin{margin-top:0}.rep{font-size:12px;color:var(--muted)}
+.pin[aria-pressed=true]{border:2px solid var(--accent);text-decoration:underline;text-underline-offset:3px}
+.nodeal{padding:10px 16px 14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px;align-items:center}.nodeal .mono{width:22px;height:22px;border-radius:50%;background:var(--b);color:#fff;display:inline-grid;place-items:center;font-size:12px;font-weight:800}
+.fav{margin-left:auto;min-height:36px;min-width:36px;padding:0 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font:600 13px var(--font);cursor:pointer;white-space:nowrap}.fav[aria-pressed=true]{color:var(--warn);border:2px solid var(--warn);background:var(--warn-soft)}
+.ihead{gap:10px;align-items:center}.ihead small{white-space:nowrap}
+.rel{padding:8px 16px 14px;border-top:1px solid var(--line)}.rel h3{margin:0 0 6px;font-size:13px;color:var(--muted)}.rel .rl{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.mini{flex:0 0 220px;display:grid;grid-template-columns:48px 1fr;gap:8px;padding:8px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:13px}.mini .thumb{width:48px;height:48px;border-radius:8px}.mini b{font-size:15px}.mini .it{overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.best{padding:14px 0 12px}.best .bh{display:flex;flex-direction:column;gap:2px;padding:0 16px}.best h2{margin:0;font-size:17px}.best .bh span{font-size:12px;color:var(--muted)}
+.cats{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 16px 4px}.cats button{flex:0 0 auto;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font:600 13px var(--font);cursor:pointer}.cats button[aria-pressed=true]{background:var(--text);color:var(--bg);border-color:var(--text)}.cats button[aria-pressed=true]::before{content:"✓ "}
+.bl2{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;padding:8px 16px 4px;scrollbar-width:thin}
+.bcard{flex:0 0 210px;scroll-snap-align:start;border:1px solid var(--line);border-radius:14px;padding:10px;background:var(--surface);display:flex;flex-direction:column;gap:4px;font-size:13px}.bcard .thumb{width:100%;height:110px;background:#fff}.bcard .price{text-align:left;font-size:20px}.bcard .it{font-size:14px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:2.9em}.bcard .why{color:var(--accent);font-weight:700;font-size:12px}
+.watch{padding:12px 16px}.watch h2{margin:0 0 6px;font-size:17px}.wrow{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);font-size:14px}.wrow:first-of-type{border-top:0}.wrow.on{font-weight:700}.wrow.on .st{color:var(--accent)}.wrow .st{font-size:13px;color:var(--muted);text-align:left;flex:1 1 220px}
+.erow{display:flex;gap:8px;margin-top:10px}.ebtn{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 13px var(--font);cursor:pointer}
+.sugs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}.sugs button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--accent-line);background:var(--accent-soft);color:var(--accent);font:700 14px var(--font);cursor:pointer}
+details.paste{margin-top:10px;font-size:14px}details.paste summary{cursor:pointer;font-weight:600;color:var(--accent);min-height:36px;display:flex;align-items:center}details.paste textarea{min-height:110px;margin-top:6px}
+.sharebar{margin:10px 0 0;padding:12px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--accent-line);font-size:14px}.sharebar .erow{margin-top:8px}
+.signup{padding:14px 16px}.signup h2{margin:0 0 4px;font-size:17px}.signup .f{display:flex;gap:8px;margin-top:8px}.signup input{flex:1;min-width:0;min-height:44px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);font:16px var(--font);color:var(--text)}.signup button{min-height:44px;padding:0 14px;border-radius:10px;border:0;background:var(--accent);color:var(--accent-ink);font:700 14px var(--font)}.signup button:disabled,.signup input:disabled{opacity:.6;cursor:not-allowed}
+.tline .ck::after{content:""}.tline:not(.done) .ck{color:transparent}.tline.done .tn::before{content:"✓ ";text-decoration:none}
+.go2{display:none}
+@media (min-width:1000px){.wrap{max-width:1180px}.dock:not(#mdock){display:none}body{padding-bottom:32px}
+ #listview{display:grid;grid-template-columns:360px minmax(0,1fr);gap:0 24px;align-items:start}#listview .lcol{position:sticky;top:96px;max-height:calc(100vh - 110px);overflow:auto;padding-bottom:8px}#listview .rcol{min-width:0}#listview .rcol>.card:first-child{margin-top:14px}
+ .go2{display:block;width:100%;height:48px;margin-top:10px;border:0;border-radius:14px;background:var(--accent);color:var(--accent-ink);font:700 15px var(--font);cursor:pointer}
+ #out{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px;align-items:start}#out>.card{margin:14px 0 0}#out>.card.wide{grid-column:1/-1}
+ #mealsview.mlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px;align-items:start}#mealsview.mlist>.note{grid-column:1/-1}#mealsview.mlist>.card{margin:14px 0 0}#tripview{max-width:760px;margin:0 auto}.chiphint .sw{display:none}}
+
 </style></head><body>
 <header><div class="wrap"><div class="top"><div class="logo" aria-hidden="true"><svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 24h11l10 36h40l8-26H30"/></g><g fill="currentColor"><circle cx="42" cy="77" r="7"/><circle cx="70" cy="77" r="7"/></g></svg></div><div><h1 class="wm">NH <span>Cart</span></h1><p id="sub">New Hampshire grocery deals · flyers for Concord area (03301)</p></div><button id="install" hidden>Install app</button></div><div id="pwabars"></div></div></header>
 <main class="wrap">
-<div id="stores" class="chips" role="list" aria-label="Stores"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+<div class="chipwrap" id="chipwrap"><div id="stores" class="chips" role="list" aria-label="Stores"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div></div><div class="chiphint"><span>6 stores · tap one for flyer details</span><span class="sw" aria-hidden="true">swipe for more →</span></div>
 <div id="detail" hidden></div>
 <div class="tabs" role="tablist" aria-label="View"><button role="tab" id="tab-list" aria-selected="true">Shopping list</button><button role="tab" id="tab-meals" aria-selected="false">Meals</button><button role="tab" id="tab-trip" aria-selected="false">Trip</button></div>
-<div id="listview">
+<div id="listview"><div class="lcol">
 <section class="card editor"><label for="list">Your shopping list <span>one per line or commas</span></label>
 <textarea id="list" placeholder="milk&#10;eggs&#10;chicken, bananas" autocomplete="off" autocapitalize="none" spellcheck="false"></textarea>
-<div class="note legend"><span class="lg"><span class="tag">flyer</span> weekly flyer via Flipp (unofficial)</span> <span class="lg"><span class="tag">web</span> store website price</span> <span>⚠️ unit or product match unconfirmed — check the source link</span></div></section>
-<div id="out" aria-live="polite"><div class="card empty" aria-busy="true">Loading this week's flyers…</div></div>
-</div>
+<div class="note legend"><span class="lg"><span class="tag">flyer</span> weekly flyer via Flipp (unofficial)</span> <span class="lg"><span class="tag">web</span> store website price</span> <span>⚠️ unit or product match unconfirmed — check the source link</span></div>
+<button class="go2" id="go2">Compare prices</button>
+<div class="erow"><button class="ebtn" id="share">🔗 Share list</button><button class="ebtn" id="addfav">★ Add watched items</button></div>
+<details class="paste"><summary>Paste a receipt or long list</summary><textarea id="paste" placeholder="Paste receipt or list text. Only item names are used; any prices in it are ignored."></textarea><button class="ebtn" id="pastego">Match items to this week's deals</button><div class="note" id="pasteout"></div></details>
+<div id="sharein"></div></section>
+<section class="card watch" id="watch" hidden></section></div><div class="rcol">
+<section class="card best" id="best" hidden></section>
+<div id="out" aria-live="polite"><div class="card empty wide" aria-busy="true">Loading this week's flyers…</div></div>
+</div></div>
 <div id="tripview" hidden></div>
 <div id="mealsview" hidden aria-live="polite"><div class="card empty" aria-busy="true">Loading meals…</div></div>
 <p class="note" id="privacy">🔒 Privacy: no cookies, aggregate analytics only. Your lists stay on your device.</p>
@@ -141,27 +181,71 @@ const mono=s=>{const b=BRAND[s]||[s[0],'#555'];return `<span class="mono" style=
 const ts=d=>new Date(d.fetched_at||DATA.fetched_at).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 $('list').value=localStorage.getItem('cd_list')||'milk\neggs\nchicken\nbananas';
 let _t;$('list').addEventListener('input',()=>{localStorage.setItem('cd_list',$('list').value);clearTimeout(_t);_t=setTimeout(render,400)});
+const MAILTO='nhcart@mail.grokbot.com';
+const etDay=d=>new Date(new Date(d).toLocaleDateString('en-CA',{timeZone:'America/New_York'})+'T00:00:00');
+function expPill(d){if(d.source==='web'||!d.valid_to)return '';const end=new Date(d.valid_to),now=new Date();if(end<now)return `<span class="exp soon">⏳ ended ${fmt(d.valid_to)}</span>`;
+  const days=Math.round((etDay(end)-etDay(now))/864e5),wd=end.toLocaleDateString('en-US',{weekday:'short',timeZone:'America/New_York'});
+  return `<span class="exp${days<=1?' soon':''}" title="Flyer valid through ${esc(fmt(d.valid_to))}">⏳ ${days<=0?'ends today':days===1?'ends tomorrow':days<7?'ends '+wd:'ends '+fmt(d.valid_to)}</span>`}
+function imgErr(el){const ph=document.createElement('div');ph.className=el.className+' ph';ph.textContent='no image';el.replaceWith(ph)}
+const thumb=d=>d.image_url?`<img class="thumb" src="${esc(d.image_url)}" alt="" loading="lazy" decoding="async" width="72" height="72" onerror="imgErr(this)">`:'<div class="thumb ph">no image</div>';
+function repLink(d){const b=`Item: ${d.item}\nStore: ${d.store}\nPrice shown: ${d.price_text}${d.unit?' / '+d.unit:''}${d.flag?' (unit unconfirmed)':''}\nFlyer dates: ${fmt(d.valid_from)}–${fmt(d.valid_to)}\nSource: ${d.source_url}\nFetched: ${d.fetched_at||DATA.fetched_at}\nFlipp item id: ${d.flipp_item_id||'n/a'}\n\nWhat's wrong (correct price/unit if you know it):\n`;
+  return `<a class="rep" href="mailto:${MAILTO}?subject=${encodeURIComponent('Wrong price: '+d.item+' at '+d.store)}&body=${encodeURIComponent(b)}">Report wrong price</a>`}
+const srcLink=d=>`<a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener" title="Opens ${d.source==='web'?'the store website':'the Flipp flyer viewer'}">${d.source==='web'?'store site ↗':'Flipp flyer ↗'}</a>`;
+const unitHtml=d=>d.unit&&!d.flag?`<span class="unit" title="${esc(d.unit_source||'')}">/ ${esc(d.unit)}</span>`:d.flag?'<span class="wicon" title="unit unconfirmed">⚠️ unit?</span>':'';
+const provHtml=d=>`<span class="tag">${esc(d.source||'flyer')}</span>${expPill(d)}<span>${d.source==='web'?'web price':fmt(d.valid_from)+'–'+fmt(d.valid_to)}</span><span>fetched ${ts(d)} ET</span>${srcLink(d)}`;
 function dealRow(s,d,hero,q){
-  return `<div class="srow">${mono(s)}<div class="body">${hero?'<span class="badge">★ Cheapest</span>':''}<div class="store"${hero?' style="margin-top:6px"':''}>${esc(s)}</div><div class="pline"><span class="price">${esc(d.price_text)}</span>${d.unit&&!d.flag?`<span class="unit" title="${esc(d.unit_source||'')}">/ ${esc(d.unit)}</span>`:''}${d.flag?'<span class="wicon" title="unit unconfirmed">⚠️</span>':''}</div><div class="prod">${esc(d.item)}</div>
-<div class="meta"><span class="tag">${esc(d.source||'flyer')}</span><span>${d.source==='web'?'web price':fmt(d.valid_from)+'–'+fmt(d.valid_to)}</span><span>fetched ${ts(d)} ET</span><a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener">source ↗</a></div>
-${d.flag?`<div class="warn"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}${q!=null&&d.flipp_item_id?pinBtn(d,q):''}</div></div>`}
+  return `<div class="card2"><div class="main">${hero?'<span class="badge">★ Cheapest</span>':''}<div class="ptop"${hero?' style="margin-top:6px"':''}><span class="price">${esc(d.price_text)}</span>${unitHtml(d)}</div>
+<div class="sline">${mono(s)}<span>${esc(s)}</span></div><div class="prod">${esc(d.item)}</div><div class="pmeta">${provHtml(d)}</div>
+${d.flag?`<div class="warn"><span>⚠️</span><span>${esc(d.flag)}</span></div>`:''}<div class="acts">${q!=null&&d.flipp_item_id?pinBtn(d,q):''}${repLink(d)}</div></div>${thumb(d)}</div>`}
+function mini(d,cls='mini'){return `<div class="${cls}">${thumb(d)}<div><b class="price">${esc(d.price_text)}</b> ${unitHtml(d)}<div class="it">${esc(d.item)}</div><div style="color:var(--muted)">${mono(d.store)} ${esc(d.store)} ${expPill(d)}</div><div class="pmeta" style="margin-top:2px">fetched ${ts(d)} ET · ${srcLink(d)}</div></div></div>`}
+// ---- favorites / watch, best-this-week, suggestions, related ----
+const getFavs=()=>LS('cd_favs',[]),setFavs=f=>{localStorage.setItem('cd_favs',JSON.stringify(f));renderWatch()};
+const STAPLES=['chicken breast','chicken thighs','ground beef','pork chops','bacon','sausage','salmon','shrimp','steak','ham','turkey','eggs','milk','butter','cheese','yogurt','cream cheese','bread','bagels','tortillas','pasta','rice','cereal','coffee','orange juice','apples','bananas','grapes','strawberries','potatoes','onions','tomatoes','broccoli','lettuce','carrots','peppers','squash','avocados','lemons','frozen vegetables','ice cream','pizza','chips','soda','water','paper towels','toilet paper','peanut butter','soup','beans'];
+let BEST=null,BCAT='All';const BX={coffee:/creamer|mate|cake/i,pasta:/canned|sauce/i,peppers:/cayenne|seasoning|ground|flakes/i,tomatoes:/diced|canned|sauce|paste|chilies/i,'peanut butter':/pringles|cups|granola/i,potatoes:/chips/i,chips:/protein/i,cereal:/bars?\b/i};
+function bestDeals(){if(BEST)return BEST;BEST=[];const now=new Date();// strict: every query word is a whole word of the item AND the item falls in the same category (so "butter" ≠ butternut squash / shea butter)
+  for(const q of STAPLES){const qt=DealMatch.toks(q),c=cat(q),by={};
+    for(const d of DATA.deals){const st=DATA.stores[d.store];if(!st||st.status!=='ok'||d.flag||!d.unit||new Date(d.valid_to||8.64e15)<now)continue;d._t=d._t||DealMatch.toks(d.item);
+      if(!qt.every(w=>d._t.includes(w))||cat(d.item)!==c||(qt.length>1&&!d._t.join(' ').includes(qt.join(' ')))||(BX[q]&&BX[q].test(d.item)))continue;if(!by[d.store]||d.price<by[d.store].price)by[d.store]=d}
+    const L=Object.values(by).sort((x,y)=>x.price-y.price);if(L.length)BEST.push({q,d:L[0],n:L.length,c})}
+  BEST.sort((a,b)=>b.n-a.n);return BEST}
+function renderBest(){const el=$('best');const B=bestDeals();if(!B.length){el.hidden=true;return}el.hidden=false;
+  const cats=['All',...[...new Set(B.map(b=>b.c))].sort()];const list=B.filter(b=>BCAT==='All'||b.c===BCAT).slice(0,12);
+  el.innerHTML=`<div class="bh"><h2>Best this week</h2><span>cheapest flyer deal per item · ranked by how many stores have one</span></div>
+  <div class="cats" role="group" aria-label="Filter by category">${cats.map(c=>`<button data-c="${esc(c)}" aria-pressed="${c===BCAT}">${esc(c)}</button>`).join('')}</div>
+  <div class="bl2">${list.map(b=>`<div class="bcard">${thumb(b.d)}<span class="why">“${esc(b.q)}”: cheapest of ${b.n} store${b.n>1?'s':''}</span><div><span class="price">${esc(b.d.price_text)}</span> ${unitHtml(b.d)}</div><div class="it">${esc(b.d.item)}</div><div class="sline" style="margin-top:0">${mono(b.d.store)}<span>${esc(b.d.store)}</span></div><div class="pmeta" style="margin-top:0">${provHtml(b.d)}</div><div class="acts" style="margin-top:2px"><button class="ebtn" data-addq="${esc(b.q)}">＋ Add “${esc(b.q)}”</button></div></div>`).join('')}</div>
+  <p class="note" style="margin:6px 16px 0">Different brands and sizes; no savings shown because flyers don't list regular prices.</p>`;
+  el.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{BCAT=b.dataset.c;renderBest()});wireAddQ(el)}
+function addToList(qs){const cur=$('list').value.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean),have=new Set(cur.map(x=>x.toLowerCase()));let n=0;for(const q of qs)if(!have.has(q.toLowerCase())){cur.push(q);have.add(q.toLowerCase());n++}
+  $('list').value=cur.join('\n');localStorage.setItem('cd_list',$('list').value);if(n)track('add_to_list',{source:'suggest',count:n});render();return n}
+function wireAddQ(root){root.querySelectorAll('[data-addq]').forEach(b=>b.onclick=()=>{const n=addToList([b.dataset.addq]);toast(n?`Added “${b.dataset.addq}” to your list`:'Already on your list')})}
+const sugHtml=()=>{const B=bestDeals().slice(0,6);return B.length?`<div class="sugs">${B.map(b=>`<button data-addq="${esc(b.q)}">＋ ${esc(b.q)}</button>`).join('')}</div>`:''};
+function renderWatch(){const el=$('watch');if(!DATA)return;const F=getFavs();if(!F.length){el.hidden=true;return}el.hidden=false;
+  el.innerHTML=`<h2>★ Watching</h2>${F.map(f=>{const m=DealMatch.match(f,DATA.deals),b=m.best;return b?`<div class="wrow on"><span>★ ${esc(f)}</span><span class="st">On sale: ${esc(b.price_text)}${b.unit&&!b.flag?' / '+esc(b.unit):''} at ${esc(b.store)} ${expPill(b)}<br><span style="font-weight:400">fetched ${ts(b)} ET · ${srcLink(b)}</span></span></div>`:`<div class="wrow"><span>☆ ${esc(f)}</span><span class="st">not in this week's flyers</span></div>`}).join('')}<p class="note" style="margin:6px 0 0">Saved on this device. No account and no alerts yet: check here after the Sunday and Wednesday flyers.</p>`}
+function favBtn(it){const on=getFavs().some(f=>f.toLowerCase()===it.toLowerCase());return `<button class="fav" data-fav="${esc(it)}" aria-pressed="${on}" aria-label="${on?'Stop watching':'Watch'} ${esc(it)}">${on?'★ Watching':'☆ Watch'}</button>`}
+function wireFavs(root){root.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>{const it=b.dataset.fav;let F=getFavs();const i=F.findIndex(f=>f.toLowerCase()===it.toLowerCase());i>=0?F.splice(i,1):F.push(it);setFavs(F);const on=i<0;b.setAttribute('aria-pressed',on);b.textContent=on?'★ Watching':'☆ Watch';toast(on?`Watching “${it}”`:`Stopped watching “${it}”`)})}
+function related(it,shown){const q=DealMatch.toks(it);if(!q.length)return [];const ids=new Set(shown.map(d=>d.flipp_item_id));const out=[];
+  for(const d of DATA.deals){if(ids.has(d.flipp_item_id)||d.flag||!d.unit||!DATA.stores[d.store]||DATA.stores[d.store].status!=='ok')continue;d._t=d._t||DealMatch.toks(d.item);const hit=q.filter(w=>d._t.includes(w)).length;if(hit&&hit<q.length||(hit===q.length&&!shown.some(x=>x.store===d.store&&x.item===d.item)))out.push([hit,d])}
+  return out.sort((a,b)=>b[0]-a[0]||a[1].price-b[1].price).slice(0,6).map(x=>x[1])}
 function render(){
   if(!DATA)return;const items=$('list').value.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
-  localStorage.setItem('cd_list',$('list').value);
-  if(!items.length){$('out').innerHTML='<div class="card empty"><div class="big">🧺</div><b>Your list is empty</b><br>Add items like milk, eggs or bananas, then tap Compare prices.</div>';return}
+  localStorage.setItem('cd_list',$('list').value);renderBest();renderWatch();
+  if(!items.length){$('out').innerHTML=`<div class="card empty wide"><div class="big">🧺</div><b>Your list is empty</b><br>Add items like milk, eggs or bananas, or tap a suggestion from this week's flyers:${sugHtml()}</div>`;wireAddQ($('out'));return}
   const stores=Object.keys(DATA.stores);const none=[];let html='';
   for(const it of items){const m=DealMatch.match(it,DATA.deals);
     if(!m.best){none.push(it);continue}
     const n=stores.filter(s=>m.byStore[s]).length;
-    html+=`<article class="card"><div class="ihead"><h2>${esc(it)}</h2><small>${n} of ${stores.length} stores</small></div>`;
+    html+=`<article class="card"><div class="ihead"><h2>${esc(it)}</h2><small>${n} of ${stores.length} stores</small>${favBtn(it)}</div>`;
     html+=`<div class="hero">${dealRow(m.best.store,m.byStore[m.best.store],true,it)}</div><div class="rows">`;
-    const rest=stores.filter(s=>s!==m.best.store).sort((a,b)=>{const r=s=>DATA.stores[s].status!=='ok'?2e9+1:(m.byStore[s]?m.byStore[s].price:2e9);return r(a)-r(b)});
-    for(const s of rest){const d=m.byStore[s];
-      if(DATA.stores[s].status!=='ok'){html+=`<div class="row muted unav"><div class="srow">${mono(s)}<div class="body"><div class="store">${esc(s)}</div></div><div class="price">store unavailable</div></div></div>`;continue}
-      html+=d?`<div class="row">${dealRow(s,d,false,it)}</div>`:`<div class="row muted"><div class="srow">${mono(s)}<div class="body"><div class="store">${esc(s)}</div></div><div class="price">no deal</div></div></div>`}
-    html+='</div></article>'}
-  if(none.length)html+=`<section class="card"><div class="ihead"><h2 style="text-transform:none">No deal found this week</h2></div><div class="none-list">${none.map(n=>`<span>${esc(n)}</span>`).join('')}</div></section>`;
-  $('out').innerHTML=html;wirePins($('out'));
+    const rest=stores.filter(s=>s!==m.best.store&&m.byStore[s]&&DATA.stores[s].status==='ok').sort((a,b)=>m.byStore[a].price-m.byStore[b].price);
+    for(const s of rest)html+=`<div class="row">${dealRow(s,m.byStore[s],false,it)}</div>`;
+    const nod=stores.filter(s=>s!==m.best.store&&!m.byStore[s]&&DATA.stores[s].status==='ok'),un=stores.filter(s=>DATA.stores[s].status!=='ok');
+    html+='</div>';
+    if(nod.length)html+=`<div class="nodeal"><span>No flyer deal at</span>${nod.map(s=>`<span>${mono(s)} ${esc(s)}</span>`).join(' · ')}</div>`;
+    if(un.length)html+=`<div class="nodeal" style="color:var(--bad)"><span>Store unavailable:</span>${un.map(s=>`<span>${mono(s)} ${esc(s)}</span>`).join(' · ')}</div>`;
+    const rel=related(it,Object.values(m.byStore));if(rel.length)html+=`<div class="rel"><h3>Related deals</h3><div class="rl">${rel.map(d=>mini(d)).join('')}</div></div>`;
+    html+='</article>'}
+  if(none.length)html+=`<section class="card wide"><div class="ihead"><h2 style="text-transform:none">No deal found this week</h2></div><div class="none-list">${none.map(n=>`<span>${esc(n)}</span>`).join('')}</div><div class="note" style="margin:0 16px 14px">Try a simpler word (“chicken” instead of “chicken breast tenders”), or one of this week's deals:${sugHtml()}</div></section>`;
+  $('out').innerHTML=html;wirePins($('out'));wireFavs($('out'));wireAddQ($('out'));
 }
 function showDetail(k,btn){const v=DATA.stores[k],el=$('detail');const open=btn.getAttribute('aria-expanded')==='true';
   document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-expanded','false'));if(open){el.hidden=true;return}
@@ -171,8 +255,8 @@ fetch('/api/deals').then(r=>{OFFLINE=r.headers.get('X-CD-Cache')==='offline';if(
   $('stores').innerHTML=Object.entries(d.stores).map(([k,v])=>v.status==='ok'
     ?`<button class="chip" role="listitem" aria-expanded="false" data-k="${esc(k)}">${mono(k)}<span><b>${esc(k)}</b><span class="s">✓ ${v.count} ${v.source==='web'?'web prices':'deals · '+fmt(v.valid_from)+'–'+fmt(v.valid_to)} · <span class="tag">${esc(v.source)}</span>${v.web_status?' · web '+esc(v.web_status):''}</span></span></button>`
     :`<button class="chip bad" role="listitem" aria-expanded="false" data-k="${esc(k)}">${mono(k)}<span><b>${esc(k)}</b><span class="s">⚠️ unavailable${v.reason?' ('+esc(v.reason)+')':''}</span></span></button>`).join('');
-  document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>showDetail(b.dataset.k,b));
-  render();route()}).catch(()=>{$('stores').innerHTML='';$('out').innerHTML='<div class="card err">⚠️ Could not load flyers — all stores unavailable. Check your connection and reload.</div>'});
+  document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>showDetail(b.dataset.k,b));chipEnd();
+  render();route()}).catch(()=>{$('stores').innerHTML='';$('out').innerHTML='<div class="card err wide">⚠️ Could not load flyers — all stores unavailable. Check your connection and reload.</div>'});
 
 // ---- Meals tab ----
 let MEALS=null,REC=null,EST=null;const $$m=n=>'$'+n.toFixed(2);
@@ -185,7 +269,7 @@ function mealList(){const v=$('mealsview');if(!MEALS){v.innerHTML='<div class="c
     h+=`<article class="card${SEL.has(m.recipe.name)?' picked':''}"><button class="mcard" data-i="${i}" aria-label="${esc(m.recipe.name)}, ${$$m(m.total)}${m.partial?' partial':''}, ${sv(m)}"><div class="mtitle"><h2>${esc(m.recipe.name)}</h2><div class="pl"><span class="price">${$$m(m.total)}${m.partial?'+':''}</span><span class="sv">· ${sv(m)}</span></div></div>
     <div class="mstores">${st.map(s=>`<span class="mst">${mono(s)}${esc(s)} ${$$m(m.byStore[s])}</span>`).join('')}${m.estimateTotal?`<span class="mst"><span class="tag est">estimate</span> ${$$m(m.estimateTotal)}</span>`:''}</div>
     ${m.partial?`<div class="mnote">⚠️ Partial total: ${m.nUnk} item${m.nUnk>1?'s':''} price unknown</div>`:''}<div class="mtags">${m.nDeal} on sale${m.nEst?` · ${m.nEst} estimated`:''} · ${esc(m.recipe.tags.join(', '))}</div></button><div class="msel">${selBtn(m)}</div></article>`});
-  v.innerHTML=h;wireSel(v);v.querySelectorAll('.mcard').forEach(b=>b.onclick=()=>{location.hash='meal-'+b.dataset.i})}
+  v.classList.add('mlist');v.innerHTML=h;wireSel(v);v.querySelectorAll('.mcard').forEach(b=>b.onclick=()=>{location.hash='meal-'+b.dataset.i})}
 function ingRow(l){const q=`<span class="iqty">${+l.ing.qty.toFixed(2)} ${esc(l.ing.unit)}</span>`;
   if(l.type==='deal'){const d=l.deal;return `<div class="row ing"><div class="srow">${mono(l.store)}<div class="body"><div class="iname">${esc(l.ing.name)} ${q}</div>
   <div class="pline"><span class="price">${$$m(l.cost)}</span><span class="unit">${esc(d.price_text)} / ${esc(d.unit)}</span></div><div class="share">${esc(l.share)}</div><div class="prod">${esc(l.store)} · ${esc(d.item)}</div>
@@ -194,7 +278,7 @@ function ingRow(l){const q=`<span class="iqty">${+l.ing.qty.toFixed(2)} ${esc(l.
   <div class="pline"><span class="price">${$$m(l.cost)}</span><span class="unit">not on sale, estimate</span></div><div class="share">${esc(l.share)}</div><div class="prod">${esc(e.title)} — BLS ${esc(e.area)}, ${esc(e.period)} (${esc(l.why)})</div>
   <div class="meta"><span class="tag est">estimate</span><span>${esc(e.series_id)}</span><a class="src" href="${esc(e.source_url)}" target="_blank" rel="noopener">source ↗</a></div></div></div></div>`}
   return `<div class="row ing"><div class="srow"><span class="mono" style="--b:#9aa5a1" aria-hidden="true">?</span><div class="body"><div class="iname">${esc(l.ing.name)} ${q}</div><div class="pline"><span class="price" style="color:var(--bad);font-size:16px">price unknown</span></div><div class="share">${esc(l.why)}; no sourced estimate, not in total</div><div class="meta"><span class="tag unk">unknown</span></div></div></div></div>`}
-function mealDetail(i){const m=MEALS[i],v=$('mealsview');if(!m){mealList();return}track('meal_opened',{meal:m.recipe.name});
+function mealDetail(i){const m=MEALS[i],v=$('mealsview');v.classList.remove('mlist');if(!m){mealList();return}track('meal_opened',{meal:m.recipe.name});
   const st=Object.keys(m.byStore).sort((a,b)=>m.byStore[b]-m.byStore[a]);
   v.innerHTML=`<button class="back" id="mback">← All meals</button><article class="card"><div class="ihead" style="flex-wrap:wrap;gap:4px 10px"><h2 style="text-transform:none">${esc(m.recipe.name)}</h2><small>${sv(m)}</small></div><div class="msel" style="justify-content:flex-start;padding:4px 16px 4px;margin:0">${selBtn(m)}</div>
   <div class="hero"><span class="badge">${m.partial?'Partial total':'Total'}</span><div class="pline" style="margin-top:6px"><span class="price">${$$m(m.total)}</span><span class="unit">${$$m(m.total/m.recipe.serves)} per serving</span></div></div>
@@ -288,12 +372,12 @@ function tripLine(l,done,owned){const P=l.P,d=P.deal;const tag=P.kind==='sale'?`
 function renderTrip(){const v=$('tripview');if(!DATA){v.innerHTML='<div class="card empty" aria-busy="true">Loading this week\'s flyers…</div>';return}
   if(!EST){loadMeals().then(renderTrip).catch(()=>{EST={estimates:{}};renderTrip()});return}
   const L=buildTrip(),done=CK(),own=OW();const instore=localStorage.getItem('cd_instore')==='1';document.body.classList.toggle('instore',instore);
-  if(!L.length){v.innerHTML='<div class="card empty"><div class="big">🛒</div><b>Your trip list is empty</b><br>Add meals or deals, or type items on the Shopping list tab.</div>';return}
+  if(!L.length){v.innerHTML=`<div class="card empty"><div class="big">🛒</div><b>Your trip list is empty</b><br>Add meals or deals, or tap a suggestion to start:${sugHtml()}</div>`;wireAddQ(v);return}
   const act=L.filter(l=>!own[l.key]),groups={};for(const l of act){const g=l.P.store||'__any';(groups[g]=groups[g]||[]).push(l)}
   const order=Object.keys(DATA.stores).filter(s=>groups[s]);
   let sale=0,est=0,partial=0;const sub={};for(const l of act){if(l.P.cost==null){partial++;continue}if(l.P.kind==='est')est+=l.P.cost;else{sale+=l.P.cost;sub[l.P.store]=(sub[l.P.store]||0)+l.P.cost}}
-  let h=`<div class="tbar"><button class="tbtn" id="tmode" aria-pressed="${instore}">🛒 In-store mode</button><button class="tbtn" id="tclear">Clear checked</button><button class="tbtn" id="tcopy">Copy as text</button><button class="tbtn" id="tprint">Print</button></div>`;
-  h+=`<section class="card tot"><div class="g"><span><b style="font-size:15px;color:var(--text)">Trip total${partial?' (partial)':''}</b></span><b>${money(sale+est)}</b></div><div class="tq">${money(sale)} on sale across ${order.length} store${order.length===1?'':'s'}${est?` + ${money(est)} estimated regular (BLS U.S. avg)`:''}${partial?` · ${partial} item${partial>1?'s':''} not in total (price unknown or no quantity)`:''}. No savings shown: flyers don't list regular prices.</div></section>`;
+  let h=`<div class="tbar"><button class="tbtn" id="tmode" aria-pressed="${instore}">🛒 In-store mode</button><button class="tbtn" id="tclear">Clear checked</button><button class="tbtn" id="tcopy">Copy as text</button><button class="tbtn" id="tprint">Print</button><button class="tbtn" id="tshare">🔗 Share with family</button></div>`;
+  h+=`<section class="card tot"><div class="g"><span><b style="font-size:15px;color:var(--text)">Trip total${partial?' (partial)':''}</b></span><b>${money(sale+est)}</b></div><div class="tq">${money(sale)} on sale across ${order.length} store${order.length===1?'':'s'}${est?` + ${money(est)} estimated regular (BLS U.S. avg)`:''}${partial?` · ${partial} item${partial>1?'s':''} not in total (price unknown or no quantity)`:''}. No savings shown: flyers don't list regular prices.</div></section>`+signupHtml();
   const sec=(title,mono_,list,subtxt)=>{list.sort((a,b)=>(!!done[a.key]-!!done[b.key])||CORDER.indexOf(a.cat)-CORDER.indexOf(b.cat));let x=`<section class="card tsec">`+`<div class="tsh">${mono_}<h2>${esc(title)}</h2><span class="sub">${subtxt}</span></div>`;let lastC=null;
     for(const l of list){if(!done[l.key]&&l.cat!==lastC){x+=`<div class="cat">${esc(l.cat)}</div>`;lastC=l.cat}else if(done[l.key]&&lastC!=='__d'){x+=`<div class="cat">Checked off</div>`;lastC='__d'}x+=tripLine(l,done[l.key],false)}return x+'</section>'};
   for(const s of order){const n=groups[s].length,c=groups[s].filter(l=>done[l.key]).length;h+=sec(s,mono(s),groups[s],`${c}/${n} · ${money(sub[s]||0)}`)}
@@ -309,7 +393,7 @@ function renderTrip(){const v=$('tripview');if(!DATA){v.innerHTML='<div class="c
   v.querySelectorAll('[data-own]').forEach(b=>b.onclick=()=>{const k=b.dataset.own,O=OW();O[k]?delete O[k]:O[k]=1;localStorage.setItem('cd_trip_owned',JSON.stringify(O));renderTrip()});
   $('tmode').onclick=()=>{localStorage.setItem('cd_instore',instore?'0':'1');renderTrip()};
   $('tclear').onclick=()=>{localStorage.setItem('cd_trip_done','{}');renderTrip();toast('Cleared checked items')};
-  $('tprint').onclick=()=>window.print();
+  $('tprint').onclick=()=>window.print();$('tshare').onclick=shareList;wireSignup();
   $('tcopy').onclick=()=>{let t='NH Cart trip list\n';for(const s of order)t+=`\n${s}\n`+groups[s].map(l=>`[${done[l.key]?'x':' '}] ${l.name}${l.P.cost!=null?' · '+money(l.P.cost):''}`).join('\n')+'\n';
     if(groups.__any)t+='\nAnywhere (no flyer deal)\n'+groups.__any.map(l=>`[ ] ${l.name}`).join('\n')+'\n';
     (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('List copied'),()=>toast('Copy not available on this browser'))}}
@@ -339,4 +423,38 @@ if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone&&!localStorage.get
   el.querySelector('button').onclick=()=>{localStorage.setItem('cd_ios_hint','1');track('install_app',{platform:'ios'});bar('iosbar')}}
 $('go').onclick=()=>{const cnt=$('list').value.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean).length,prev=+(localStorage.getItem('cd_an_n')||0);if(cnt>prev)track('add_to_list',{source:'manual',count:cnt-prev});localStorage.setItem('cd_an_n',cnt);render();const f=document.querySelector('#out .card');if(f)f.scrollIntoView({behavior:'smooth',block:'start'})};
 $('edit').onclick=()=>{$('list').scrollIntoView({behavior:'smooth',block:'center'});$('list').focus()};
+
+// ---- chips scroll hint ----
+function chipEnd(){const c=$('stores'),w=$('chipwrap');w.classList.toggle('end',c.scrollLeft+c.clientWidth>=c.scrollWidth-4)}
+$('stores').addEventListener('scroll',chipEnd,{passive:true});addEventListener('resize',chipEnd);
+$('go2').onclick=()=>$('go').click();
+// ---- shareable list (family list without accounts): state lives in the URL hash ----
+const b64e=o=>btoa(String.fromCharCode(...new TextEncoder().encode(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const b64d=t=>JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(t.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0))));
+function shareList(){const l=$('list').value.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean);if(!l.length){toast('Your list is empty');return}
+  const url=location.origin+'/#share='+b64e({v:1,l,p:getPins().map(p=>({id:p.id,q:p.q}))});track('share_list');
+  if(navigator.share)navigator.share({title:'NH Cart list',text:`Shopping list (${l.length} items)`,url}).catch(()=>{});else (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(()=>toast('Share link copied: anyone with it gets a copy of this list'),()=>prompt('Copy this link',url))}
+$('share').onclick=shareList;
+function readShare(){const m=/^#share=([A-Za-z0-9_-]+)/.exec(location.hash);if(!m)return;let o;try{o=b64d(m[1])}catch{return}if(!o||!Array.isArray(o.l))return;
+  history.replaceState(null,'',location.pathname+location.search);const items=o.l.map(String).slice(0,100);
+  $('sharein').innerHTML=`<div class="sharebar"><b>Shared list: ${items.length} item${items.length>1?'s':''}</b><div class="note" style="margin:4px 0 0">${esc(items.slice(0,8).join(', '))}${items.length>8?'…':''}</div><div class="erow"><button class="ebtn" id="shrep">Replace my list</button><button class="ebtn" id="shadd">Add to my list</button><button class="ebtn" id="shno">Dismiss</button></div></div>`;
+  const pins=()=>{if(!Array.isArray(o.p))return;const P=getPins();for(const x of o.p)if(x&&x.id&&!P.some(p=>p.id===String(x.id))&&DATA&&DATA.deals.some(d=>String(d.flipp_item_id)===String(x.id)))P.push({id:String(x.id),q:String(x.q||'')});localStorage.setItem('cd_pins',JSON.stringify(P))};
+  $('shrep').onclick=()=>{$('list').value=items.join('\n');pins();$('sharein').innerHTML='';render();toast('List replaced with the shared list')};
+  $('shadd').onclick=()=>{const n=addToList(items);pins();$('sharein').innerHTML='';toast(`Added ${n} item${n===1?'':'s'}`)};$('shno').onclick=()=>$('sharein').innerHTML=''}
+readShare();addEventListener('hashchange',readShare);
+// ---- receipt / pasted text to list: only item names are kept; any prices in the text are ignored ----
+function cleanLines(t){const ABBR={grnd:'ground',chkn:'chicken',chk:'chicken',bnls:'boneless',bf:'beef',brst:'breast',org:'organic',veg:'vegetable',ckn:'chicken',tom:'tomato',pot:'potato',bnna:'banana',bnn:'banana'},SIZE=/\b(lg|lrg|large|med|sm|small|doz|dozen|ct|pk|pack|ea|each|lb|lbs|oz|fl|gal|qt|pt|ml|ltr|kg|g)\b/g;
+  const SKIP=/\b(market basket|hannaford|aldi|shaw'?s|sam'?s club|walmart|sub ?total|total|tax|change|cash|visa|mastercard|amex|debit|credit|balance|savings|you saved|coupon|thank|store|cashier|receipt|tel|phone|www\.|\.com|approved|auth|ref|items? sold)\b/i;const out=[],seen=new Set();
+  for(let l of t.split(/\r?\n|,/)){l=l.replace(/\$?\s*-?\d+[.,]\d{2}\s*[A-Z]{0,2}\b/g,' ').replace(/@.*$/,' ').replace(/\b\d+(\.\d+)?\s*(lb|lbs|oz|ct|pk|ea|x)\b/gi,' ').replace(/\b\d{4,}\b/g,' ').replace(/[^A-Za-z&' ]+/g,' ').toLowerCase().replace(/\b[a-z]+\b/g,w=>ABBR[w]||w).replace(SIZE,' ').replace(/\s+/g,' ').trim();
+    if(/#\s*\d/.test(l)){}if(!l||SKIP.test(l)||l.replace(/[^a-z]/gi,'').length<3)continue;l=l.toLowerCase();if(!seen.has(l)){seen.add(l);out.push(l)}}return out.slice(0,60)}
+$('pastego').onclick=()=>{if(!DATA)return;const names=cleanLines($('paste').value);if(!names.length){$('pasteout').textContent='No item names found.';return}
+  const hit=names.filter(n=>DealMatch.match(n,DATA.deals).best),miss=names.filter(n=>!hit.includes(n));
+  $('pasteout').innerHTML=`Found ${names.length} item${names.length>1?'s':''}: <b>${hit.length} with a deal this week</b>${hit.length?' ('+esc(hit.slice(0,10).join(', '))+(hit.length>10?'…':'')+')':''}${miss.length?`, ${miss.length} without (${esc(miss.slice(0,8).join(', '))}${miss.length>8?'…':''})`:''}.<div class="erow"><button class="ebtn" id="pasteadd">＋ Add all ${names.length}</button>${hit.length&&miss.length?`<button class="ebtn" id="pastehit">＋ Add the ${hit.length} on sale</button>`:''}</div>`;
+  $('pasteadd').onclick=()=>{const n=addToList(names);toast(`Added ${n} item${n===1?'':'s'}`)};if($('pastehit'))$('pastehit').onclick=()=>{const n=addToList(hit);toast(`Added ${n} item${n===1?'':'s'}`)}};
+$('addfav').onclick=()=>{const F=getFavs();if(!F.length){toast('Tap ☆ Watch on any item to save it');return}const n=addToList(F);toast(n?`Added ${n} watched item${n===1?'':'s'}`:'Watched items are already on your list')};
+// ---- weekly email signup: inert "coming soon" until the email backend reports it's open (needs MAIL_POSTAL_ADDRESS; PR #5) ----
+let SIGNUP=null;fetch('/api/subscribe?status=1',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(j=>{SIGNUP=!!(j&&j.open===true);if(SIGNUP&&$('signup'))renderTrip()}).catch(()=>SIGNUP=false);
+function signupHtml(){const open=SIGNUP===true;return `<section class="card signup" id="signup"><h2>📬 Weekly deals email</h2><div class="tq">Sunday's best flyer deals and cheapest meals, plus a short Wednesday update when new flyers start. ${open?'Confirm by email; unsubscribe anytime.':'<b>Coming soon.</b> Signups open once the sender address is set up.'}</div>
+  <form class="f" id="sform"><label class="sr" for="semail" style="position:absolute;left:-9999px">Email</label><input id="semail" type="email" placeholder="you@example.com" autocomplete="email" ${open?'required':'disabled'}><button ${open?'':'disabled aria-disabled="true"'}>${open?'Sign up':'Coming soon'}</button></form></section>`}
+function wireSignup(){const f=$('sform');if(!f)return;f.onsubmit=e=>{e.preventDefault();if(SIGNUP!==true)return;fetch('/api/subscribe',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:$('semail').value})}).then(r=>r.json()).then(j=>toast(j.message||(j.ok?'Check your email to confirm':'Signup failed'))).catch(()=>toast('Signup failed'))}}
 </script></body></html>
