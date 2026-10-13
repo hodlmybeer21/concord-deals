@@ -53,6 +53,10 @@ Endpoints: `POST /api/subscribe` (honeypot `website`, min fill time, 5 req / 10 
 
 Schedule (`vercel.json`): `18 15 * * 0,3` = Sun + Wed 15:18 UTC = 11:18 ET in daylight time (10:18 ET in winter). Hobby runs each cron at most once a day and may fire anywhere within that hour.
 
+Why Sun + Wed: flyer cycles are Market Basket & Hannaford Sun–Sat, Shaw's Fri–Thu, Aldi & Walmart Wed–Tue, Sam's Club Thu–Wed. Sunday is the full digest (MB/Hannaford start that day, after the 7:18 AM data refresh). Wednesday is a short midweek update that only covers flyers that started after Sunday (Aldi, Walmart), so it never repeats Sunday's stores; if nothing is new and fresh, the cron sends nothing.
+
+Freshness: a deal/flyer is included only if it is still valid 36h after the send (so nothing that ends the day after). Meal prices in the email use only those deals; meals with fewer than two valid deals are dropped, others may be marked partial. Stores left out are listed with the reason. Dry-run at a simulated time: `/api/digest?dry=1&at=<ISO>` or `node scripts/render_digest_at.js <ISO> out.html`.
+
 Env vars (set in Vercel → Project → Settings → Environment Variables, Production):
 | var | what |
 |---|---|
@@ -62,7 +66,7 @@ Env vars (set in Vercel → Project → Settings → Environment Variables, Prod
 | `MAIL_POSTAL_ADDRESS` | **required by CAN-SPAM**: a real postal address (street, PO box or registered mailbox) |
 | `EMAIL_TOKEN_SECRET` | random 32+ byte string (`openssl rand -base64 32`) |
 | `CRON_SECRET` | random string; Vercel Cron sends it as a Bearer token |
-| `SITE_URL` | optional, defaults to https://concord-deals.vercel.app |
+| `SITE_URL` | optional, defaults to https://nhcart.goodbotai.tech (set on Production + Preview) |
 
 Setup: 1) sign up at resend.com; 2) Domains → add `nhcart.goodbotai.tech` (or the sending domain you choose) and add the DNS records Resend shows (a TXT `resend._domainkey…` DKIM record, an MX + TXT SPF record on the `send.` subdomain, optional DMARC TXT `_dmarc`) at Hostinger; wait for Verified; 3) API Keys → create a key; 4) Audiences → create "NH Cart" and copy its id; 5) set the env vars above; 6) redeploy. Test with `curl -H "Authorization: Bearer $CRON_SECRET" "$SITE/api/digest?dry=1"`.
 
