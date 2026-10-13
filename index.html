@@ -109,6 +109,13 @@ body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
 #install{margin-left:auto;min-height:40px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 13px var(--font);cursor:pointer}
 @media print{.pbar,#install{display:none!important}}
 .wm{font-weight:800}.wm span{color:var(--accent)}
+.mail{padding:16px}.mail h2{margin:0 0 4px;font-size:18px;letter-spacing:-.2px}.mail p{margin:0 0 10px;color:var(--muted);font-size:14px}
+.mail form{display:flex;flex-direction:column;gap:10px}.mail input[type=email]{width:100%;min-height:52px;font:16px var(--font);color:var(--text);background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:0 14px}
+.mail input[type=email]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.mail button[type=submit]{min-height:52px;border:0;border-radius:14px;background:var(--accent);color:var(--accent-ink);font:700 16px var(--font);cursor:pointer}
+.mail button[disabled]{opacity:.6}.mail .fine{font-size:12px;color:var(--faint);margin:0}.mail .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}.mail .msg{font-size:14px;padding:10px 12px;border-radius:12px}.mail .msg.ok{background:var(--accent-soft);color:var(--accent)}.mail .msg.bad{background:var(--bad-soft);color:var(--bad)}
+.mail .done{text-align:center;padding:10px 0}.mail .done .big{font-size:40px}.mini{display:flex;align-items:center;gap:12px;padding:14px 16px}.mini b{display:block}.mini span{font-size:13px;color:var(--muted)}.mini a{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:12px;background:var(--accent-soft);color:var(--accent);font-weight:700;text-decoration:none}
+.wk li{margin:0 0 6px}body.weekly .dock{display:none}@media print{#mailmini,#weeklyview{display:none!important}}
+[hidden]{display:none!important}
 </style></head><body>
 <header><div class="wrap"><div class="top"><div class="logo" aria-hidden="true"><svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 24h11l10 36h40l8-26H30"/></g><g fill="currentColor"><circle cx="42" cy="77" r="7"/><circle cx="70" cy="77" r="7"/></g></svg></div><div><h1 class="wm">NH <span>Cart</span></h1><p id="sub">New Hampshire grocery deals · flyers for Concord area (03301)</p></div><button id="install" hidden>Install app</button></div><div id="pwabars"></div></div></header>
 <main class="wrap">
@@ -123,6 +130,11 @@ body.trip .dock#mdock,body.trip .dock:not(#mdock){display:none}
 </div>
 <div id="tripview" hidden></div>
 <div id="mealsview" hidden aria-live="polite"><div class="card empty" aria-busy="true">Loading meals…</div></div>
+<div id="weeklyview" hidden><button class="back" id="wback">← Back</button><section class="card mail" id="weekly"><h2>The NH Cart weekly email</h2><p>Every Sunday and Wednesday, after the new flyers come out:</p>
+<ul class="wk" style="margin:0 0 12px;padding-left:20px;color:var(--muted);font-size:14px"><li>The best flyer deals at each store, with source links</li><li>This week's 5 cheapest meals for 4</li><li>No invented prices, no fake "savings"</li></ul><form class="mf" novalidate><label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label><input type="hidden" name="t">
+<input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@example.com" aria-label="Email address"><button type="submit">Get the weekly email</button>
+<p class="fine">Free. At most twice a week. We'll send one email to confirm first; nothing is sent until you confirm. Unsubscribe with one click any time. We only use your email for NH Cart.</p><div class="msg" role="status" hidden></div></form></section></div>
+<section class="card mini" id="mailmini"><div><b>📬 Weekly deals by email</b><span>Best flyer picks + cheapest meals, twice a week.</span></div><a href="#weekly">Sign up</a></section>
 <p class="note" id="privacy">🔒 Privacy: no cookies, aggregate analytics only. Your lists stay on your device.</p>
 <p class="note">NH Cart covers New Hampshire grocery chains; flyers are currently sourced for the Concord, NH area (03301), so prices may differ at other locations. Stores: Market Basket, Hannaford, Aldi, Shaw's, Sam's Club, Walmart. Costco coming next. Flyer prices compare different brands/sizes; check the flyer before you buy.</p>
 </main>
@@ -207,13 +219,14 @@ function mealDetail(i){const m=MEALS[i],v=$('mealsview');if(!m){mealList();retur
   <h3 class="sec">Steps</h3><ol class="steps">${m.recipe.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></article>
   <p class="note">Package and multi-buy deals are counted in full even if the recipe uses part. Estimates are U.S. average regular prices from the Bureau of Labor Statistics, never counted as savings.</p>`;
   wireSel(v);$('mback').onclick=()=>{history.length>1?history.back():(location.hash='meals')};window.scrollTo(0,0)}
-function route(){const h=location.hash.slice(1),meals=h==='meals'||h.startsWith('meal-'),trip=h==='trip';{const tb=trip?'trip':meals?'meals':'list';if(tb!==LASTTAB){LASTTAB=tb;track('tab_view',{tab:tb})}}
+function route(){const h=location.hash.slice(1),meals=h==='meals'||h.startsWith('meal-'),trip=h==='trip',wk=h==='weekly';{const tb=trip?'trip':meals?'meals':'list';if(tb!==LASTTAB){LASTTAB=tb;track('tab_view',{tab:tb})}}
+  document.body.classList.toggle('weekly',wk);$('weeklyview').hidden=!wk;$('mailmini').hidden=wk;if(wk){['listview','mealsview','tripview'].forEach(i=>$(i).hidden=true);document.body.classList.remove('meals','trip');document.querySelectorAll('.tabs [role=tab]').forEach(t=>t.setAttribute('aria-selected',false));window.scrollTo(0,0);return}
   document.body.classList.toggle('trip',trip);$('tripview').hidden=!trip;$('tab-trip').setAttribute('aria-selected',trip);if(trip){$('toast').hidden=true;document.body.classList.remove('meals');$('listview').hidden=true;$('mealsview').hidden=true;$('tab-list').setAttribute('aria-selected',false);$('tab-meals').setAttribute('aria-selected',false);renderTrip();return}
   document.body.classList.toggle('meals',meals);$('listview').hidden=meals;$('mealsview').hidden=!meals;
   $('tab-list').setAttribute('aria-selected',!meals);$('tab-meals').setAttribute('aria-selected',meals);
   if(!meals)return;loadMeals().then(()=>{if(!MEALS)computeMeals();h.startsWith('meal-')?mealDetail(+h.slice(5)):mealList()}).catch(()=>{$('mealsview').innerHTML='<div class="card err">⚠️ Could not load recipes.</div>'})}
 $('tab-list').onclick=()=>{history.replaceState(null,'',location.pathname);route()};$('tab-meals').onclick=()=>{location.hash='meals'};
-window.addEventListener('hashchange',route);addEventListener('beforeprint',()=>{if(location.hash==='#trip')track('print_trip')});$('tab-trip').onclick=()=>{location.hash='trip'};
+window.addEventListener('hashchange',route);addEventListener('beforeprint',()=>{if(location.hash==='#trip')track('print_trip')});$('tab-trip').onclick=()=>{location.hash='trip'};$('wback').onclick=()=>{history.length>1?history.back():(location.hash='')};
 
 // ---- meal multi-select -> shopping list ----
 let SEL=new Set(JSON.parse(localStorage.getItem('cd_meal_sel')||'[]').filter(Boolean));
@@ -337,6 +350,14 @@ addEventListener('appinstalled',()=>{$('install').hidden=true});
 if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone&&!localStorage.getItem('cd_ios_hint')){
   const el=bar('iosbar','ios','<span>📲 Install: tap <b>Share</b> <span aria-hidden="true">⎋</span> then <b>Add to Home Screen</b>.</span><button aria-label="Dismiss install hint">Got it</button>');
   el.querySelector('button').onclick=()=>{localStorage.setItem('cd_ios_hint','1');track('install_app',{platform:'ios'});bar('iosbar')}}
+
+// ---- weekly email signup ----
+document.querySelectorAll('.mf').forEach(f=>{f.t.value=Date.now();f.onsubmit=async e=>{e.preventDefault();const m=f.querySelector('.msg'),b=f.querySelector('button[type=submit]');const email=f.email.value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)){m.hidden=false;m.className='msg bad';m.textContent='Please enter a valid email address.';f.email.focus();return}
+  b.disabled=true;b.textContent='Sending…';try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,website:f.website.value,t:f.t.value})});const j=await r.json().catch(()=>({}));
+    if(!r.ok||!j.ok)throw new Error(j.error||'Something went wrong. Please try again.');
+    f.innerHTML=`<div class="done"><div class="big">📬</div><h2>Check your email</h2><p>We sent a confirmation link to <b>${esc(email)}</b>. Tap it to start the weekly email. Don't see it? Check spam or promotions.</p></div>`}
+  catch(err){m.hidden=false;m.className='msg bad';m.textContent=navigator.onLine?err.message:'You’re offline. Try again when you’re connected.';b.disabled=false;b.textContent='Get the weekly email'}}});
 $('go').onclick=()=>{const cnt=$('list').value.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean).length,prev=+(localStorage.getItem('cd_an_n')||0);if(cnt>prev)track('add_to_list',{source:'manual',count:cnt-prev});localStorage.setItem('cd_an_n',cnt);render();const f=document.querySelector('#out .card');if(f)f.scrollIntoView({behavior:'smooth',block:'start'})};
 $('edit').onclick=()=>{$('list').scrollIntoView({behavior:'smooth',block:'center'});$('list').focus()};
 </script></body></html>
