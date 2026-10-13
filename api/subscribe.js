@@ -12,9 +12,10 @@ module.exports = async (req, res) => {
   if (!E.validEmail(email)) return json(res, 400, { ok: false, error: 'Please enter a valid email address.' });
   const miss = E.missingEnv(['send', 'audience']);
   if (miss.length) { console.error('subscribe disabled, missing env:', miss.join(', ')); return json(res, 503, { ok: false, error: 'Email signup isn’t switched on yet. Please check back soon.', missing: miss }); }
+  if (E.missingEnv(['postal']).length) return json(res, 503, { ok: false, error: 'Signups are opening soon. Please check back in a few days.', reason: 'postal address required' });
   const url = `${E.SITE}/api/confirm?token=${encodeURIComponent(E.confirmToken(email, process.env.EMAIL_TOKEN_SECRET))}`;
   const m = E.confirmEmail(email, url);
-  try { await E.resend('/emails', 'POST', { from: `NH Cart <${process.env.MAIL_FROM}>`, to: [email], subject: m.subject, html: m.html, text: m.text }); }
+  try { await E.resend('/emails', 'POST', { from: `NH Cart <${process.env.MAIL_FROM}>`, to: [email], reply_to: E.REPLY_TO(), subject: m.subject, html: m.html, text: m.text }); }
   catch (e) { console.error(e.message); return json(res, 502, { ok: false, error: 'Couldn’t send the confirmation email. Please try again later.' }); }
   return json(res, 200, { ok: true });
 };
