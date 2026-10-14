@@ -27,8 +27,9 @@
   function costFor(ing, d) {
     const u = dealUnit(d), n = need(ing); if (!u) return null;
     if (u.kind === 'lb') { if (n.oz == null) return null; return { cost: r2(d.price * n.oz / 16), share: `${qtyTxt(ing)} × $${d.price.toFixed(2)}/lb` }; }
-    if (u.kind === 'each') { if (n.ct != null) return { cost: r2(d.price * n.ct), share: `${n.ct} × $${d.price.toFixed(2)} each` };
-      if (n.pk != null) { const k = Math.ceil(n.pk - 1e-9); return { cost: r2(d.price * k), share: `${k} × $${d.price.toFixed(2)} each` }; } return null; }
+    if (u.kind === 'each') { const mn = d.unit_min || 1, up = q => Math.ceil(q / mn - 1e-9) * mn, why = mn > 1 ? ` (${mn}-for deal, counted in whole bundles)` : '';
+      if (n.ct != null) { const k = up(n.ct); return { cost: r2(d.price * k), share: `${k} × $${d.price.toFixed(2)} each${why}` }; }
+      if (n.pk != null) { const k = up(Math.ceil(n.pk - 1e-9)); return { cost: r2(d.price * k), share: `${k} × $${d.price.toFixed(2)} each${why}` }; } return null; }
     if (u.kind === 'multi') { // counts the whole multi-buy rule; only for count/package needs (size not stated)
       const q = n.ct != null ? n.ct : n.pk; if (q == null) return null; const k = Math.ceil(q / u.n - 1e-9);
       return { cost: r2(d.price * k), share: `uses ${q} of ${u.n * k} (${k > 1 ? k + ' × ' : ''}${d.unit} deal, counted in full)` }; }

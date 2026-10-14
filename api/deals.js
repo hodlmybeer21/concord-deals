@@ -1,7 +1,15 @@
 const { fetchLive, STORES, flyerUrl, enrichAlcohol } = require('../lib/flipp');
 const relink = u => { const m = /^https:\/\/flipp\.com\/flyer\/(\d+)$/.exec(u || ''); return m ? flyerUrl(m[1]) : u; }; // same flyer, en-us viewer path (see lib/flipp.js)
 const fs = require('fs'), path = require('path');
-module.exports = async (req, res) => {
+const Cond = require('../conditions.js');
+const readJ = f => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', f), 'utf8')); } catch { return null; } };
+// conditional-price labels (multi-buy, must buy N, digital coupon, limits…) from Flipp item-detail text + hand-checked overrides
+function addConditions(deals) {
+  const det = (readJ('item_details.json') || {}).items || {}, ov = readJ('condition_overrides.json') || {}, at = (readJ('item_details.json') || {}).fetched_at || null;
+  for (const d of deals) { const id = String(d.flipp_item_id || ''); const c = Cond.detect(d, det[id], ov[id]);
+    if (c) { c.detail_url = det[id] ? `https://backflipp.wishabi.com/flipp/items/${id}` : null; c.detail_fetched_at = det[id] ? at : null; if (ov[id]) c.override = { basis: ov[id].basis, image: ov[id].image }; d.cond = c; } else delete d.cond; }
+}
+module.exports = Object.assign(async (req, res) => {
   let out;
   try { out = await fetchLive(); } catch (e) { out = null; }
   // fall back per-store to committed snapshot (real scraped data, never fabricated)
@@ -31,7 +39,8 @@ module.exports = async (req, res) => {
   out.stores["Shaw's"] = { ...(out.stores["Shaw's"] || {}), web_status: 'not used', web_reason: "shaws.com prices are client-rendered and store-specific; flyer used" };
   for (const [k, v] of Object.entries(out.stores)) if (v.status === 'ok' && !v.source) v.source = 'flyer';
   try { await enrichAlcohol(out.deals); } catch {} // snapshot-fallback deals get Beer & Wine pack sizes too
+  try { addConditions(out.deals); } catch {}
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=600');
   res.status(200).end(JSON.stringify(out));
-};
+}, { addConditions });
