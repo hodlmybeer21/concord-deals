@@ -5,9 +5,9 @@ const Cond = require('../conditions.js');
 const readJ = f => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', f), 'utf8')); } catch { return null; } };
 // conditional-price labels (multi-buy, must buy N, digital coupon, limits…) from Flipp item-detail text + hand-checked overrides
 function addConditions(deals) {
-  const det = (readJ('item_details.json') || {}).items || {}, ov = readJ('condition_overrides.json') || {}, at = (readJ('item_details.json') || {}).fetched_at || null;
-  for (const d of deals) { const id = String(d.flipp_item_id || ''); const c = Cond.detect(d, det[id], ov[id]);
-    if (c) { c.detail_url = det[id] ? `https://backflipp.wishabi.com/flipp/items/${id}` : null; c.detail_fetched_at = det[id] ? at : null; if (ov[id]) c.override = { basis: ov[id].basis, image: ov[id].image }; d.cond = c; } else delete d.cond; }
+  const det = (readJ('item_details.json') || {}).items || {}, ov = readJ('condition_overrides.json') || {}, badge = (readJ('badge_reads.json') || {}).items || {}, at = (readJ('item_details.json') || {}).fetched_at || null;
+  for (const d of deals) { const id = String(d.flipp_item_id || ''); const o = ov[id] || badge[id]; const c = Cond.detect(d, det[id], o);
+    if (c) { c.detail_url = det[id] ? `https://backflipp.wishabi.com/flipp/items/${id}` : null; c.detail_fetched_at = det[id] ? at : null; if (o) c.override = { basis: o.basis, image: o.image }; d.cond = c; } else delete d.cond; }
 }
 module.exports = Object.assign(async (req, res) => {
   let out;

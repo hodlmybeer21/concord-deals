@@ -65,3 +65,8 @@ Script: `/_vercel/insights/script.js` with the `window.va` queue (the service wo
 - Pack sizes come from Flipp's item-detail endpoint (`/flipp/items/<id>`: description, sale_story, disclaimer_text). `lib/flipp.js` `enrichAlcohol` runs inside `fetchLive`, so the Sun/Wed `node scripts/snapshot.mjs` run picks it up, and `/api/deals` applies it to snapshot-fallback deals as well. Units read like "12 × 12 oz cans" instead of "12 oz pkg". Per-unit prices are shown only when the flyer states both the count and the size; otherwise the item is flagged "pack size unconfirmed".
 - Labels: flyer text is quoted word for word (deposit, coupon, rebate, limits, regional exclusions, select varieties, mix & match). NH Cart's own notes (rebate not subtracted, final cost after coupon, any listed brand, includes a non-alcoholic option) are shown separately. Every card says "21+ · NH stores only".
 - Alcohol is never used in Meals, meal totals, best-this-week or related deals for grocery items. It appears in its own collapsible "🍺 Beer & Wine" strip with type filters. A search for "beer", "wine", "cider", "seltzer" or a brand finds it.
+
+## Conditional prices (weekly refresh)
+- `node scripts/snapshot.mjs --history-only` now also fetches Flipp item details for every deal (about 1.4k calls, 6 at a time, on the box) into `data/item_details.json`. It keeps the previous file if under 80% succeed. Pass `--no-details` to skip.
+- Optional: `python3 scripts/shaws_badges.py` (needs `tesseract`) reads Shaw's DIGITAL COUPON badges into `data/badge_reads.json`. It only adds labels: 22 hits on 2026-10-14, all correct by eye, but it found only about 55% of the known coupon tiles.
+- Hand-checked facts go in `data/condition_overrides.json`, with the source tile image.

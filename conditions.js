@@ -31,6 +31,9 @@
     if (d.store === "Shaw's" && num(info.original_price) && num(info.original_price) > price) { coupon = true; if (regular == null) { regular = num(info.original_price); regular_basis = `price before the For U digital coupon (Flipp original_price ${$(regular)}; flyer tile shows SALE PRICE ${$(regular)} and the coupon)`; } }
     if (ov && ov.coupon) coupon = true;
     if (ov && ov.regular) { regular = ov.regular; regular_basis = ov.basis; }
+    // Shaw's coupon tiles print "SALE PRICE X, -Y": with a coupon confirmed (override or badge read) and no original_price,
+    // Flipp's dollars_off is that coupon amount, so the pre-coupon price is price + dollars_off (checked on Lucerne butter and Swanson broth tiles).
+    if (ov && ov.coupon && regular == null && d.store === "Shaw's" && num(info.dollars_off)) { regular = n2(price + num(info.dollars_off)); regular_basis = `price before the For U coupon: flyer price ${$(price)} + Flipp dollars_off ${$(num(info.dollars_off))} (tile prints SALE PRICE and the coupon)`; }
     if (coupon) { conditional = true; labels.push({ type: 'coupon', text: d.store === "Shaw's" ? 'Digital coupon / For U' : 'Digital coupon' }); }
     // was-price (not Shaw's coupon tiles): label only; no rollback claim
     if (!coupon && num(info.original_price) && num(info.original_price) > price) labels.push({ type: 'was', text: `Was ${$(num(info.original_price))}` });
@@ -38,6 +41,16 @@
     if (/rebate|mail-in/i.test(all)) labels.push({ type: 'rebate', text: 'Rebate, not subtracted' });
     else if ((m = all.match(/\bearn\s+\$?(\d+(?:\.\d\d)?)/i))) labels.push({ type: 'rebate', text: `Earn $${m[1]} back, not subtracted` });
     if (/instant coupon/i.test(all)) labels.push({ type: 'instant', text: 'Instant coupon at register' });
+    if (/\bpoints?\b/i.test(all) && /\d/.test((all.match(/[^|.]*points?[^|.]*/i) || [''])[0])) labels.push({ type: 'rebate', text: 'Bonus points, not subtracted' });
+    // loyalty / member / card price: conditional; the regular price is only what the flyer states (original_price)
+    if (!coupon && /my hannaford rewards|rewards members?|with (your )?(store )?card|card price|member price|members? only|loyalty/i.test(all)) {
+      conditional = true; labels.push({ type: 'coupon', text: 'Member / card price' });
+      if (regular == null && num(info.original_price) > price) { regular = num(info.original_price); regular_basis = `Flipp original_price ${$(regular)}`; } }
+    if (/instant savings/i.test(all)) labels.push({ type: 'instant', text: 'Instant Savings (no clip)' });
+    if (/\brollback\b/i.test(all)) labels.push({ type: 'was', text: 'Rollback (as stated)' });
+    if (/\bclearance\b/i.test(all)) labels.push({ type: 'was', text: 'Clearance (as stated)' });
+    if (/participating|restrictions apply/i.test(all) && !labels.some(l => l.type === 'must' || l.type === 'spend')) labels.push({ type: 'fine', text: 'Participating items only' });
+    if (/not available (in|at)|select (stores|locations)|available only (in|at)/i.test(all)) labels.push({ type: 'fine', text: 'Select stores only' });
     if (d.store === "Sam's Club") labels.push({ type: 'member', text: 'Membership required' });
     if (!labels.length) return null;
     const each = kind === 'multi' && n ? n2(price / n) : null;

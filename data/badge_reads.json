@@ -1,0 +1,119 @@
+{
+ "_note": "Weekly Shaw's DIGITAL COUPON badge pass (optional; run from the refresh routine on the box, needs `tesseract`).",
+ "method": "tesseract psm 6, tile rotated 270, autocontrast, 3x",
+ "fetched_at": "2026-10-14T11:50:00+00:00",
+ "scanned": 272,
+ "errors": 0,
+ "items": {
+  "1044809776": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057653/1790797913/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044809817": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057659/1790797916/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044810086": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436058157/1790797925/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044809975": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436058149/1790797920/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044809857": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057664/1790797919/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044809762": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057502/1790797921/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044809920": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436058145/1790797917/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044809725": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057497/1790797918/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044809749": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057500/1790797920/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044809882": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057666/1790797920/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044809990": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436058150/1790797920/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044810848": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057720/1790797926/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044811245": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057923/1790797937/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044810610": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057696/1790797910/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044810594": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057695/1790797909/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044811413": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057955/1790797912/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044812153": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436058513/1790797929/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044812091": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436058501/1790797921/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044812308": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436058032/1790797918/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044811575": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436057980/1790797927/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044811353": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436058129/1790797938/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  },
+  "1044812437": {
+   "coupon": true,
+   "image": "https://f.wishabi.net/page_items/436058050/1790797930/extra_large.jpg",
+   "basis": "OCR read \"DIGITAL COUPON\" on the flyer tile"
+  }
+ }
+}
