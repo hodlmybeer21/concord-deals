@@ -1,0 +1,10 @@
+{
+ "_note": "Hand-checked conditional-price facts read from the flyer tile image when Flipp's text fields don't state them. Keyed by Flipp item id. Only what the image prints is recorded.",
+ "1044810848": {
+  "item": "Lucerne Butter (Shaw's)",
+  "coupon": true,
+  "regular": 2.99,
+  "basis": "flyer tile shows SALE PRICE 2.99, -.50 For U DIGITAL COUPON, 2.49 (image read 2026-10-14)",
+  "image": "https://f.wishabi.net/page_items/436057720/1790797926/extra_large.jpg"
+ }
+}

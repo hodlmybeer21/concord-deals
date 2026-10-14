@@ -41,6 +41,7 @@ textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(
 .srow .body{flex:1;min-width:0}.store{font-weight:700;font-size:14px}.prod{font-size:14px;color:var(--text);margin-top:4px;overflow-wrap:break-word;word-break:normal;hyphens:manual}
 .pline{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 6px;margin-top:2px}.pline .price{text-align:left}
 .pline .unit{font-size:13px;font-weight:500;color:var(--muted);opacity:1;margin:0;min-width:0;overflow-wrap:break-word}.hero .pline .unit{color:var(--text);opacity:.8}
+.cchip{display:inline-block;font-size:12px;font-weight:600;padding:1px 6px;margin:2px 4px 0 0;border-radius:6px;border:1px solid #c9a227;background:#fff8dc;color:#6b5200;cursor:help}.cchip.info{border-color:var(--line);background:var(--surface-2);color:var(--muted)}.cond-low{opacity:.85;border-left:3px solid #c9a227}.condbar{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:6px 16px;font-size:14px}.condbar span{color:var(--muted);font-size:13px}.cnote{font-size:12px;color:var(--muted);margin-top:2px}
 .price{font-variant-numeric:tabular-nums;font-weight:800;font-size:20px;white-space:nowrap;letter-spacing:-.4px;text-align:right}.hero .price{font-size:28px;color:var(--accent)}
 .meta>span{white-space:nowrap}.meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12px;color:var(--muted);margin-top:6px}
 .tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:2px 7px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
@@ -152,6 +153,7 @@ details.paste{margin-top:10px;font-size:14px}details.paste summary{cursor:pointe
 <main class="wrap">
 <div class="chipwrap" id="chipwrap"><div id="stores" class="chips" role="list" aria-label="Stores"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div></div><div class="chiphint"><span>6 stores · tap one for flyer details</span><span class="sw" aria-hidden="true">swipe for more →</span></div>
 <div id="detail" hidden></div>
+<div class="condbar"><label><input type="checkbox" id="incc"> Include coupons &amp; bundles in prices</label><span id="condnote"></span></div>
 <div class="tabs" role="tablist" aria-label="View"><button role="tab" id="tab-list" aria-selected="true">Shopping list</button><button role="tab" id="tab-meals" aria-selected="false">Meals</button><button role="tab" id="tab-trip" aria-selected="false">Trip</button></div>
 <div id="listview"><div class="lcol">
 <section class="card editor"><label for="list">Your shopping list <span>one per line or commas</span></label>
@@ -174,7 +176,7 @@ details.paste{margin-top:10px;font-size:14px}details.paste summary{cursor:pointe
 <div class="dock"><div class="in"><button id="edit" aria-label="Edit list" title="Edit list">✎</button><button id="go">Compare prices</button></div></div>
 <div class="dock" id="mdock"><div class="in"><label class="ptog"><input type="checkbox" id="mpantry"> Include pantry staples (salt, oil…)</label><div class="r"><button id="mclear">Clear</button><button id="madd">Add meals to list</button></div></div></div>
 <div class="toast" id="toast" role="status" hidden></div>
-<script src="/alcohol.js"></script><script src="/match.js"></script><script src="/meals.js"></script>
+<script src="/alcohol.js"></script><script src="/match.js"></script><script src="/meals.js"></script><script src="/conditions.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 // Analytics: event names + small non-personal props only (never list contents or emails). Custom events need Vercel Pro; on Hobby they're dropped harmlessly.
@@ -196,7 +198,15 @@ const thumb=d=>d.image_url?`<img class="thumb" src="${esc(d.image_url)}" alt="" 
 function repLink(d){const b=`Item: ${d.item}\nStore: ${d.store}\nPrice shown: ${d.price_text}${d.unit?' / '+d.unit:''}${d.flag?' (unit unconfirmed)':''}\nFlyer dates: ${fmt(d.valid_from)}–${fmt(d.valid_to)}\nSource: ${d.source_url}\nFetched: ${d.fetched_at||DATA.fetched_at}\nFlipp item id: ${d.flipp_item_id||'n/a'}\n\nWhat's wrong (correct price/unit if you know it):\n`;
   return `<a class="rep" href="mailto:${MAILTO}?subject=${encodeURIComponent('Wrong price: '+d.item+' at '+d.store)}&body=${encodeURIComponent(b)}">Report wrong price</a>`}
 const srcLink=d=>`<a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener" title="Opens ${d.source==='web'?'the store website':'the Flipp flyer viewer'}">${d.source==='web'?'store site ↗':'Flipp flyer ↗'}</a>`;
-const unitHtml=d=>d.unit&&!d.flag?`<span class="unit" title="${esc(d.unit_source||'')}">/ ${esc(d.unit)}</span>`:d.flag?'<span class="wicon" title="unit unconfirmed">⚠️ unit?</span>':'';
+const CONDK=new Set(['multi','must','coupon']);
+function condHtml(d){const c=d.cond;if(!c)return '';const fine=c.fine||c.regular_basis||'';let pre='';
+  if(c.conditional&&d._mode==='regular')pre=`<div class="cnote">Regular ${esc('$'+c.regular.toFixed(2))} shown · <b>$${(c.each??RAWP(d)).toFixed(2)}</b> with ${c.labels.filter(l=>CONDK.has(l.type)).map(l=>esc(l.text)).join(', ')}</div>`;
+  else if(c.conditional&&c.regular!=null)pre=`<div class="cnote">Conditional price · regular $${c.regular.toFixed(2)}</div>`;
+  else if(c.conditional)pre=`<div class="cnote">Conditional price, regular price not listed</div>`;
+  return pre+'<div>'+c.labels.map(l=>`<span class="cchip${CONDK.has(l.type)?'':' info'}" title="${esc(fine)}">${esc(l.text)}</span>`).join('')+'</div>'}
+const RAWP=d=>{const r=RAWBY[d.flipp_item_id];return r?r.price:d.price};let RAWBY={};
+const unitHtml0=d=>d.unit&&!d.flag?`<span class="unit" title="${esc(d.unit_source||'')}">/ ${esc(d.unit)}</span>`:d.flag?'<span class="wicon" title="unit unconfirmed">⚠️ unit?</span>':'';
+const unitHtml=d=>unitHtml0(d)+condHtml(d);
 const provHtml=d=>`<span class="tag">${esc(d.source||'flyer')}</span>${expPill(d)}<span>${d.source==='web'?'web price':fmt(d.valid_from)+'–'+fmt(d.valid_to)}</span><span>fetched ${ts(d)} ET</span>${srcLink(d)}`;
 function dealRow(s,d,hero,q){
   return `<div class="card2"><div class="main">${hero?'<span class="badge">★ Cheapest</span>':''}<div class="ptop"${hero?' style="margin-top:6px"':''}><span class="price">${esc(d.price_text)}</span>${unitHtml(d)}</div>
@@ -258,12 +268,13 @@ function render(){
   if(!items.length){$('out').innerHTML=`<div class="card empty wide"><div class="big">🧺</div><b>Your list is empty</b><br>Add items like milk, eggs or bananas, or tap a suggestion from this week's flyers:${sugHtml()}</div>`;wireAddQ($('out'));return}
   const stores=Object.keys(DATA.stores);const none=[];let html='';
   for(const it of items){const m=DealMatch.match(it,DATA.deals);
-    if(!m.best){none.push(it);continue}
+    if(!m.best){const hm=DATA.hidden&&DealMatch.match(it,DATA.hidden);if(hm&&hm.best){html+=`<article class="card"><div class="ihead"><h2>${esc(it)}</h2><small>conditional deals only</small>${favBtn(it)}</div><div class="rows">${Object.values(hm.byStore).sort((a,b)=>a.price-b.price).map(d=>`<div class="row cond-low">${dealRow(d.store,d,false,it)}</div>`).join('')}</div></article>`;continue}none.push(it);continue}
     const n=stores.filter(s=>m.byStore[s]).length;
     html+=`<article class="card"><div class="ihead"><h2>${esc(it)}</h2><small>${n} of ${stores.length} stores</small>${favBtn(it)}</div>`;
     html+=`<div class="hero">${dealRow(m.best.store,m.byStore[m.best.store],true,it)}</div><div class="rows">`;
     const rest=stores.filter(s=>s!==m.best.store&&m.byStore[s]&&DATA.stores[s].status==='ok').sort((a,b)=>m.byStore[a].price-m.byStore[b].price);
     for(const s of rest)html+=`<div class="row">${dealRow(s,m.byStore[s],false,it)}</div>`;
+    if(DATA.hidden&&DATA.hidden.length){const hm=DealMatch.match(it,DATA.hidden);for(const d of Object.values(hm.byStore).sort((a,b)=>a.price-b.price))html+=`<div class="row cond-low">${dealRow(d.store,d,false,it)}</div>`}
     const nod=stores.filter(s=>s!==m.best.store&&!m.byStore[s]&&DATA.stores[s].status==='ok'),un=stores.filter(s=>DATA.stores[s].status!=='ok');
     html+='</div>';
     if(nod.length)html+=`<div class="nodeal"><span>No flyer deal at</span>${nod.map(s=>`<span>${mono(s)} ${esc(s)}</span>`).join(' · ')}</div>`;
@@ -277,20 +288,25 @@ function showDetail(k,btn){const v=DATA.stores[k],el=$('detail');const open=btn.
   document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-expanded','false'));if(open){el.hidden=true;return}
   btn.setAttribute('aria-expanded','true');el.hidden=false;
   el.innerHTML=`<div class="detail"><b>${esc(k)}</b> — ${v.status==='ok'?`<span class="tag">${esc(v.source)}</span> ${v.count} ${v.source==='web'?'web prices':'deals, '+fmt(v.valid_from)+'–'+fmt(v.valid_to)}${v.source_url?` · <a href="${esc(v.source_url)}" target="_blank" rel="noopener">flyer ↗</a>`:''}${v.web_status?`<br>Web: ${esc(v.web_status)}${v.web_reason?' — '+esc(v.web_reason):''}`:''}`:`unavailable${v.reason?' ('+esc(v.reason)+')':''}`}</div>`}
-fetch('/api/deals').then(r=>{OFFLINE=r.headers.get('X-CD-Cache')==='offline';if(!r.ok)throw 0;return r.json()}).then(d=>{DATA=d;offlineBar();
+fetch('/api/deals').then(r=>{OFFLINE=r.headers.get('X-CD-Cache')==='offline';if(!r.ok)throw 0;return r.json()}).then(d=>{DATA=d;DATA.raw=d.deals;RAWBY={};for(const x of d.raw)if(x.flipp_item_id)RAWBY[x.flipp_item_id]=x;applyMode();offlineBar();
   $('stores').innerHTML=Object.entries(d.stores).map(([k,v])=>v.status==='ok'
     ?`<button class="chip" role="listitem" aria-expanded="false" data-k="${esc(k)}">${mono(k)}<span><b>${esc(k)}</b><span class="s">✓ ${v.count} ${v.source==='web'?'web prices':'deals · '+fmt(v.valid_from)+'–'+fmt(v.valid_to)} · <span class="tag">${esc(v.source)}</span>${v.web_status?' · web '+esc(v.web_status):''}</span></span></button>`
     :`<button class="chip bad" role="listitem" aria-expanded="false" data-k="${esc(k)}">${mono(k)}<span><b>${esc(k)}</b><span class="s">⚠️ unavailable${v.reason?' ('+esc(v.reason)+')':''}</span></span></button>`).join('');
   document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>showDetail(b.dataset.k,b));chipEnd();
   render();route()}).catch(()=>{$('stores').innerHTML='';$('out').innerHTML='<div class="card err wide">⚠️ Could not load flyers — all stores unavailable. Check your connection and reload.</div>'});
 
+// ---- conditional prices: default ranks on the regular (non-conditional) price; toggle stored on this device ----
+const incC=()=>localStorage.getItem('cd_inc_cond')==='1';
+function applyMode(){const v=Cond.view(DATA.raw,incC());DATA.deals=v.deals;DATA.hidden=v.hidden;BEST=null;MEALS=null;
+  $('incc').checked=incC();$('condnote').textContent=incC()?'Coupon, multi-buy and must-buy prices count (multi-buys per item).':`Ranking uses regular prices; ${v.hidden.length} conditional deal${v.hidden.length===1?'':'s'} with no regular price listed are shown last, not ranked.`}
+$('incc').onchange=e=>{localStorage.setItem('cd_inc_cond',e.target.checked?'1':'0');if(!DATA)return;applyMode();render();route()};
 // ---- Meals tab ----
 let MEALS=null,REC=null,EST=null;const $$m=n=>'$'+n.toFixed(2);
 function loadMeals(){if(REC)return Promise.resolve();return Promise.all([fetch('/data/recipes.json').then(r=>r.json()),fetch('/data/price_estimates.json').then(r=>r.json())]).then(([r,e])=>{REC=r;EST=e})}
 function computeMeals(){if(!DATA||!REC)return;MEALS=Meals.priceAll(REC.recipes,DATA.deals.filter(d=>!isAlcD(d)),EST,DATA.stores)/* alcohol never prices a meal */}
 const sv=m=>`serves ${m.recipe.serves}`;
 function mealList(){const v=$('mealsview');if(!MEALS){v.innerHTML='<div class="card empty" aria-busy="true">Loading meals…</div>';return}
-  let h=`<p class="note">${MEALS.length} meals built on this week's flyer deals, cheapest first. Totals mix stores for the lowest price; pantry staples aren't counted. Prices are flyer deals unless tagged <span class="tag est">estimate</span>. No savings are shown because the flyers don't list regular prices.</p>`;
+  let h=`<p class="note">${MEALS.length} meals built on this week's flyer deals, cheapest first. Totals mix stores for the lowest price; pantry staples aren't counted. Prices are flyer deals unless tagged <span class="tag est">estimate</span>. ${incC()?'<b>Basis: coupon, multi-buy and must-buy prices included</b> (multi-buys counted in whole bundles).':'<b>Basis: regular prices</b>: coupon / multi-buy / must-buy prices are not used; deals with no regular price listed fall back to an estimate.'} No savings are shown because the flyers don't list regular prices.</p>`;
   MEALS.forEach((m,i)=>{const st=Object.keys(m.byStore).sort((a,b)=>m.byStore[b]-m.byStore[a]);
     h+=`<article class="card${SEL.has(m.recipe.name)?' picked':''}"><button class="mcard" data-i="${i}" aria-label="${esc(m.recipe.name)}, ${$$m(m.total)}${m.partial?' partial':''}, ${sv(m)}"><div class="mtitle"><h2>${esc(m.recipe.name)}</h2><div class="pl"><span class="price">${$$m(m.total)}${m.partial?'+':''}</span><span class="sv">· ${sv(m)}</span></div></div>
     <div class="mstores">${st.map(s=>`<span class="mst">${mono(s)}${esc(s)} ${$$m(m.byStore[s])}</span>`).join('')}${m.estimateTotal?`<span class="mst"><span class="tag est">estimate</span> ${$$m(m.estimateTotal)}</span>`:''}</div>
@@ -298,7 +314,7 @@ function mealList(){const v=$('mealsview');if(!MEALS){v.innerHTML='<div class="c
   v.classList.add('mlist');v.innerHTML=h;wireSel(v);v.querySelectorAll('.mcard').forEach(b=>b.onclick=()=>{location.hash='meal-'+b.dataset.i})}
 function ingRow(l){const q=`<span class="iqty">${+l.ing.qty.toFixed(2)} ${esc(l.ing.unit)}</span>`;
   if(l.type==='deal'){const d=l.deal;return `<div class="row ing"><div class="srow">${mono(l.store)}<div class="body"><div class="iname">${esc(l.ing.name)} ${q}</div>
-  <div class="pline"><span class="price">${$$m(l.cost)}</span><span class="unit">${esc(d.price_text)} / ${esc(d.unit)}</span></div><div class="share">${esc(l.share)}</div><div class="prod">${esc(l.store)} · ${esc(d.item)}</div>
+  <div class="pline"><span class="price">${$$m(l.cost)}</span><span class="unit">${esc(d.price_text)} / ${esc(d.unit)}</span></div>${condHtml(d)}<div class="share">${esc(l.share)}</div><div class="prod">${esc(l.store)} · ${esc(d.item)}</div>
   <div class="meta"><span class="tag">${esc(d.source||'flyer')}</span><span>${fmt(d.valid_from)}–${fmt(d.valid_to)}</span><span>fetched ${ts(d)} ET</span><a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener">source ↗</a></div></div></div></div>`}
   if(l.type==='estimate'){const e=l.est;return `<div class="row ing"><div class="srow"><span class="mono" style="--b:#8a6d1f" aria-hidden="true">≈</span><div class="body"><div class="iname">${esc(l.ing.name)} ${q}</div>
   <div class="pline"><span class="price">${$$m(l.cost)}</span><span class="unit">not on sale, estimate</span></div><div class="share">${esc(l.share)}</div><div class="prod">${esc(e.title)} — BLS ${esc(e.area)}, ${esc(e.period)} (${esc(l.why)})</div>
@@ -393,7 +409,7 @@ function tripLine(l,done,owned){const P=l.P,d=P.deal;const tag=P.kind==='sale'?`
   const src=d?`<a class="src" href="${esc(d.source_url)}" target="_blank" rel="noopener">source ↗</a>`:P.est?`<a class="src" href="${esc(P.est.source_url)}" target="_blank" rel="noopener">BLS ${esc(P.est.series_id)} ↗</a>`:'';
   return `<div class="tline${done?' done':''}" data-k="${esc(l.key)}"><button class="ck" aria-pressed="${!!done}" aria-label="${done?'Uncheck':'Check off'} ${esc(l.name)}">✓</button><div class="tb">
   <div class="tn">${esc(l.name)}</div>${l.showQ?`<div class="tq">${esc(l.showQ)}</div>`:''}${l.for.length?`<div class="tfor">for: ${esc(l.for.join(', '))}</div>`:''}
-  <div class="tp">${price}${tag}${d?`<span>${esc(d.price_text)}${d.unit&&!d.flag?' / '+esc(d.unit):''}</span>`:''}${P.pinned?'<span class="tag">📌 pinned</span>':''}${P.warn?'<span title="unit unconfirmed">⚠️ unit unconfirmed</span>':''}</div>
+  <div class="tp">${price}${tag}${d?`<span>${esc(d.price_text)}${d.unit&&!d.flag?' / '+esc(d.unit):''}</span>`:''}${P.pinned?'<span class="tag">📌 pinned</span>':''}${P.warn?'<span title="unit unconfirmed">⚠️ unit unconfirmed</span>':''}</div>${d?condHtml(d):''}
   ${d?`<div class="tq">${esc(d.item)}</div>`:''}${P.share?`<div class="tq">${esc(P.share)}</div>`:''}<div class="tact">${src}<button class="tbtn" data-own="${esc(l.key)}">${owned?'↩ Need it':'Have it / skip'}</button></div></div></div>`}
 function renderTrip(){const v=$('tripview');if(!DATA){v.innerHTML='<div class="card empty" aria-busy="true">Loading this week\'s flyers…</div>';return}
   if(!EST){loadMeals().then(renderTrip).catch(()=>{EST={estimates:{}};renderTrip()});return}
