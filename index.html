@@ -268,13 +268,13 @@ function render(){
   if(!items.length){$('out').innerHTML=`<div class="card empty wide"><div class="big">🧺</div><b>Your list is empty</b><br>Add items like milk, eggs or bananas, or tap a suggestion from this week's flyers:${sugHtml()}</div>`;wireAddQ($('out'));return}
   const stores=Object.keys(DATA.stores);const none=[];let html='';
   for(const it of items){const m=DealMatch.match(it,DATA.deals);
-    if(!m.best){const hm=DATA.hidden&&DealMatch.match(it,DATA.hidden);if(hm&&hm.best){html+=`<article class="card"><div class="ihead"><h2>${esc(it)}</h2><small>conditional deals only</small>${favBtn(it)}</div><div class="rows">${Object.values(hm.byStore).sort((a,b)=>a.price-b.price).map(d=>`<div class="row cond-low">${dealRow(d.store,d,false,it)}</div>`).join('')}</div></article>`;continue}none.push(it);continue}
+    if(!m.best){const hm=DATA.hidden&&DealMatch.match(it,DATA.hidden);if(hm&&hm.best){html+=`<article class="card"><div class="ihead"><h2>${esc(it)}</h2><small>conditional deals only</small>${favBtn(it)}</div><div class="rows">${Object.values(hm.byStore).sort((a,b)=>a.price-b.price).map(d=>`<div class="row cond-low">${dealRow(d.store,perItem(d),false,it)}</div>`).join('')}</div></article>`;continue}none.push(it);continue}
     const n=stores.filter(s=>m.byStore[s]).length;
     html+=`<article class="card"><div class="ihead"><h2>${esc(it)}</h2><small>${n} of ${stores.length} stores</small>${favBtn(it)}</div>`;
     html+=`<div class="hero">${dealRow(m.best.store,m.byStore[m.best.store],true,it)}</div><div class="rows">`;
     const rest=stores.filter(s=>s!==m.best.store&&m.byStore[s]&&DATA.stores[s].status==='ok').sort((a,b)=>m.byStore[a].price-m.byStore[b].price);
     for(const s of rest)html+=`<div class="row">${dealRow(s,m.byStore[s],false,it)}</div>`;
-    if(DATA.hidden&&DATA.hidden.length){const hm=DealMatch.match(it,DATA.hidden);for(const d of Object.values(hm.byStore).sort((a,b)=>a.price-b.price))html+=`<div class="row cond-low">${dealRow(d.store,d,false,it)}</div>`}
+    if(DATA.hidden&&DATA.hidden.length){const hm=DealMatch.match(it,DATA.hidden);for(const d of Object.values(hm.byStore).sort((a,b)=>a.price-b.price))html+=`<div class="row cond-low">${dealRow(d.store,perItem(d),false,it)}</div>`}
     const nod=stores.filter(s=>s!==m.best.store&&!m.byStore[s]&&DATA.stores[s].status==='ok'),un=stores.filter(s=>DATA.stores[s].status!=='ok');
     html+='</div>';
     if(nod.length)html+=`<div class="nodeal"><span>No flyer deal at</span>${nod.map(s=>`<span>${mono(s)} ${esc(s)}</span>`).join(' · ')}</div>`;
@@ -296,6 +296,7 @@ fetch('/api/deals').then(r=>{OFFLINE=r.headers.get('X-CD-Cache')==='offline';if(
   render();route()}).catch(()=>{$('stores').innerHTML='';$('out').innerHTML='<div class="card err wide">⚠️ Could not load flyers — all stores unavailable. Check your connection and reload.</div>'});
 
 // ---- conditional prices: default ranks on the regular (non-conditional) price; toggle stored on this device ----
+const perItem=d=>d.cond&&d.cond.each!=null?Object.assign({},d,{price_text:'$'+d.cond.each.toFixed(2)+' ea',unit:null,flag:null}):d;// conditional-only rows: multi-buys show the per-item price; the 'N for $X' chip says the condition
 const incC=()=>localStorage.getItem('cd_inc_cond')==='1';
 function applyMode(){const v=Cond.view(DATA.raw,incC());DATA.deals=v.deals;DATA.hidden=v.hidden;BEST=null;MEALS=null;
   $('incc').checked=incC();$('condnote').textContent=incC()?'Coupon, multi-buy and must-buy prices count (multi-buys per item).':`Ranking uses regular prices; ${v.hidden.length} conditional deal${v.hidden.length===1?'':'s'} with no regular price listed are shown last, not ranked.`}
