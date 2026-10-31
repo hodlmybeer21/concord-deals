@@ -70,11 +70,20 @@
     const byStore = {}; let total = 0, est = 0;
     for (const l of lines) { if (l.type === 'deal') { byStore[l.store] = r2((byStore[l.store] || 0) + l.cost); total += l.cost; } else if (l.type === 'estimate') { est += l.cost; total += l.cost; } }
     const nDeal = lines.filter(l => l.type === 'deal').length, nEst = lines.filter(l => l.type === 'estimate').length, nUnk = lines.filter(l => l.type === 'unknown').length;
-    return { recipe, lines, pantry, byStore, estimateTotal: r2(est), total: r2(total), partial: nUnk > 0, nDeal, nEst, nUnk, wellMatched: nDeal >= 2 && nDeal / lines.length >= 0.5 };
+    const saleShare = lines.length ? nDeal / lines.length : 0, mainOnSale = !!(lines[0] && lines[0].type === 'deal'); // first non-pantry ingredient = the meal's main item
+    return { recipe, lines, pantry, byStore, estimateTotal: r2(est), total: r2(total), partial: nUnk > 0, nDeal, nEst, nUnk, saleShare, mainOnSale,
+      priced: nDeal + nEst > 0, wellMatched: qualifies({ nDeal, saleShare }) };
   }
   const ALC = root.Alcohol || (typeof require !== 'undefined' ? require('./alcohol.js') : null);
   const noAlc = deals => deals.filter(d => !d.alc && !(ALC && ALC.classify(d.item))); // beer & wine never price a meal
   function priceAll(recipes, deals, EST, stores) { deals = noAlc(deals); return recipes.map(r => price(r, deals, EST, stores)).sort((a, b) => a.total - b.total); }
-  root.Meals = { priceAll, price, dealUnit, candidates, costFor, estimateFor };
+  // A meal is only listed when it is really built on this week's sales: at least MIN_SALE ingredients priced from a flyer deal
+  // AND those cover at least MIN_SHARE of its non-pantry ingredients. One sale item in a long list doesn't count.
+  const MIN_SALE = 2, MIN_SHARE = 0.5;
+  function qualifies(m) { return m.nDeal >= MIN_SALE && m.saleShare >= MIN_SHARE; }
+  // Listed order: most of the list on sale first, then main item on sale, then fully priced before partial, then cheapest.
+  const rank = (a, b) => (b.saleShare - a.saleShare) || (b.mainOnSale - a.mainOnSale) || (a.partial - b.partial) || (a.total - b.total);
+  function onSale(priced) { return priced.filter(qualifies).sort(rank); }
+  root.Meals = { priceAll, price, dealUnit, candidates, costFor, estimateFor, onSale, qualifies, rank, MIN_SALE, MIN_SHARE };
   if (typeof module !== 'undefined') module.exports = root.Meals;
 })(typeof window !== 'undefined' ? window : globalThis);
