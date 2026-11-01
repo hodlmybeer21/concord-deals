@@ -86,7 +86,8 @@
      "not": [
       "ground",
       "caesar",
-      "salad"
+      "salad",
+      "marinated"
      ]
     },
     {
@@ -95,7 +96,8 @@
      "unit": "lb",
      "q": "broccoli",
      "not": [
-      "rabe"
+      "rabe",
+      "tray"
      ]
     },
     {
@@ -110,7 +112,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -152,7 +166,8 @@
      "not": [
       "ground",
       "caesar",
-      "salad"
+      "salad",
+      "marinated"
      ]
     },
     {
@@ -162,7 +177,14 @@
      "q": "lemon",
      "est": "lemons",
      "not": [
-      "lemonade"
+      "lemonade",
+      "perfect",
+      "wipe",
+      "clorox",
+      "lysol",
+      "disinfecting",
+      "water",
+      "pepper"
      ]
     },
     {
@@ -220,7 +242,8 @@
      "not": [
       "ground",
       "caesar",
-      "salad"
+      "salad",
+      "marinated"
      ]
     },
     {
@@ -290,7 +313,8 @@
      "not": [
       "ground",
       "caesar",
-      "salad"
+      "salad",
+      "marinated"
      ]
     },
     {
@@ -307,7 +331,8 @@
       "chef",
       "konjac",
       "salad",
-      "alfredo"
+      "alfredo",
+      "meatball"
      ]
     },
     {
@@ -316,7 +341,12 @@
      "unit": "jar",
      "q": "pasta sauce",
      "not": [
-      "alfredo"
+      "alfredo",
+      "chef",
+      "boyardee",
+      "rotel",
+      "ravioli",
+      "canned"
      ]
     },
     {
@@ -328,7 +358,12 @@
       "cup",
       "encrusted",
       "peppercorn",
-      "rao"
+      "rao",
+      "chicken",
+      "penne",
+      "fusilli",
+      "eggplant",
+      "pasta"
      ]
     },
     {
@@ -381,7 +416,14 @@
      "name": "winter squash",
      "qty": 2,
      "unit": "lb",
-     "q": "squash"
+     "q": "squash",
+     "not": [
+      "spaghetti",
+      "yellow",
+      "green",
+      "zucchini",
+      "summer"
+     ]
     },
     {
      "name": "onion",
@@ -444,7 +486,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -508,7 +562,8 @@
      "unit": "oz",
      "q": "carrot",
      "not": [
-      "cake"
+      "cake",
+      "tray"
      ]
     },
     {
@@ -551,7 +606,9 @@
      "q": "chicken thigh",
      "est": "chicken thighs",
      "not": [
-      "drumstick"
+      "drumstick",
+      "marinated",
+      "frank"
      ]
     },
     {
@@ -571,7 +628,8 @@
      "unit": "lb",
      "q": "broccoli",
      "not": [
-      "rabe"
+      "rabe",
+      "tray"
      ]
     },
     {
@@ -632,7 +690,15 @@
      "qty": 1,
      "unit": "lb",
      "q": "grape",
-     "est": "grapes"
+     "est": "grapes",
+     "not": [
+      "tomato",
+      "squeez",
+      "cetirizine",
+      "allergy",
+      "juice",
+      "jelly"
+     ]
     },
     {
      "name": "Greek yogurt",
@@ -642,7 +708,9 @@
      "est": "yogurt",
      "not": [
       "bar",
-      "multipack"
+      "multipack",
+      "shake",
+      "drink"
      ]
     },
     {
@@ -693,7 +761,8 @@
       "chef",
       "konjac",
       "salad",
-      "alfredo"
+      "alfredo",
+      "meatball"
      ]
     },
     {
@@ -702,7 +771,12 @@
      "unit": "jar",
      "q": "pasta sauce",
      "not": [
-      "alfredo"
+      "alfredo",
+      "chef",
+      "boyardee",
+      "rotel",
+      "ravioli",
+      "canned"
      ]
     },
     {
@@ -725,7 +799,12 @@
       "cup",
       "encrusted",
       "peppercorn",
-      "rao"
+      "rao",
+      "chicken",
+      "penne",
+      "fusilli",
+      "eggplant",
+      "pasta"
      ]
     },
     {
@@ -766,7 +845,14 @@
      "name": "hamburger buns",
      "qty": 1,
      "unit": "pkg",
-     "q": "bun"
+     "q": "bun",
+     "not": [
+      "bao",
+      "frank",
+      "length",
+      "cinnamon",
+      "pretzel"
+     ]
     },
     {
      "name": "shredded cheese",
@@ -787,7 +873,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -908,7 +1006,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -917,7 +1027,8 @@
      "unit": "oz",
      "q": "carrot",
      "not": [
-      "cake"
+      "cake",
+      "tray"
      ]
     },
     {
@@ -980,7 +1091,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -989,7 +1112,8 @@
      "unit": "oz",
      "q": "carrot",
      "not": [
-      "cake"
+      "cake",
+      "tray"
      ]
     },
     {
@@ -1057,7 +1181,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -1066,7 +1202,8 @@
      "unit": "oz",
      "q": "carrot",
      "not": [
-      "cake"
+      "cake",
+      "tray"
      ]
     },
     {
@@ -1188,7 +1325,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -1197,7 +1346,8 @@
      "unit": "lb",
      "q": "broccoli",
      "not": [
-      "rabe"
+      "rabe",
+      "tray"
      ]
     },
     {
@@ -1252,7 +1402,18 @@
       "doughnut",
       "strudel",
       "pop",
-      "applewood"
+      "applewood",
+      "airpod",
+      "watch",
+      "iphone",
+      "ipad",
+      "jack",
+      "cereal",
+      "bread",
+      "fritter",
+      "squeez",
+      "cheese",
+      "slice"
      ]
     },
     {
@@ -1318,7 +1479,14 @@
      "name": "hamburger buns",
      "qty": 1,
      "unit": "pkg",
-     "q": "bun"
+     "q": "bun",
+     "not": [
+      "bao",
+      "frank",
+      "length",
+      "cinnamon",
+      "pretzel"
+     ]
     },
     {
      "name": "brown sugar",
@@ -1352,13 +1520,24 @@
      "qty": 2.5,
      "unit": "lb",
      "q": "pork loin",
-     "est": "pork other"
+     "est": "pork other",
+     "not": [
+      "end",
+      "country"
+     ]
     },
     {
      "name": "winter squash",
      "qty": 2,
      "unit": "lb",
-     "q": "squash"
+     "q": "squash",
+     "not": [
+      "spaghetti",
+      "yellow",
+      "green",
+      "zucchini",
+      "summer"
+     ]
     },
     {
      "name": "apples",
@@ -1374,7 +1553,18 @@
       "doughnut",
       "strudel",
       "pop",
-      "applewood"
+      "applewood",
+      "airpod",
+      "watch",
+      "iphone",
+      "ipad",
+      "jack",
+      "cereal",
+      "bread",
+      "fritter",
+      "squeez",
+      "cheese",
+      "slice"
      ]
     },
     {
@@ -1412,14 +1602,21 @@
      "name": "ham steak",
      "qty": 2,
      "unit": "pkg",
-     "q": "ham steak"
+     "q": "ham steak",
+     "not": [
+      "diced",
+      "cubed"
+     ]
     },
     {
      "name": "eggs",
      "qty": 8,
      "unit": "each",
      "q": "egg",
-     "est": "eggs"
+     "est": "eggs",
+     "not": [
+      "nog"
+     ]
     },
     {
      "name": "potatoes",
@@ -1433,7 +1630,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -1472,7 +1681,9 @@
       "chicken",
       "cheddar",
       "bit",
-      "burnt"
+      "burnt",
+      "turkey",
+      "canadian"
      ]
     },
     {
@@ -1487,7 +1698,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -1510,7 +1733,12 @@
      "not": [
       "almond",
       "creamer",
-      "oat"
+      "oat",
+      "chocolate",
+      "cluster",
+      "mozzarella",
+      "cheese",
+      "nog"
      ]
     },
     {
@@ -1557,7 +1785,8 @@
      "unit": "oz",
      "q": "italian sausage",
      "not": [
-      "chicken"
+      "chicken",
+      "turkey"
      ]
     },
     {
@@ -1628,7 +1857,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -1647,7 +1888,10 @@
      "qty": 4,
      "unit": "each",
      "q": "egg",
-     "est": "eggs"
+     "est": "eggs",
+     "not": [
+      "nog"
+     ]
     },
     {
      "name": "oil",
@@ -1740,7 +1984,8 @@
       "burger",
       "cube",
       "encrusted",
-      "center"
+      "center",
+      "marinated"
      ]
     },
     {
@@ -1761,7 +2006,14 @@
      "q": "lemon",
      "est": "lemons",
      "not": [
-      "lemonade"
+      "lemonade",
+      "perfect",
+      "wipe",
+      "clorox",
+      "lysol",
+      "disinfecting",
+      "water",
+      "pepper"
      ]
     },
     {
@@ -1770,7 +2022,8 @@
      "unit": "lb",
      "q": "broccoli",
      "not": [
-      "rabe"
+      "rabe",
+      "tray"
      ]
     },
     {
@@ -1872,7 +2125,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -1895,7 +2160,12 @@
      "not": [
       "almond",
       "creamer",
-      "oat"
+      "oat",
+      "chocolate",
+      "cluster",
+      "mozzarella",
+      "cheese",
+      "nog"
      ]
     },
     {
@@ -1946,7 +2216,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -1956,7 +2238,14 @@
      "q": "lemon",
      "est": "lemons",
      "not": [
-      "lemonade"
+      "lemonade",
+      "perfect",
+      "wipe",
+      "clorox",
+      "lysol",
+      "disinfecting",
+      "water",
+      "pepper"
      ]
     },
     {
@@ -2017,7 +2306,8 @@
       "chef",
       "konjac",
       "salad",
-      "alfredo"
+      "alfredo",
+      "meatball"
      ]
     },
     {
@@ -2029,7 +2319,12 @@
       "cup",
       "encrusted",
       "peppercorn",
-      "rao"
+      "rao",
+      "chicken",
+      "penne",
+      "fusilli",
+      "eggplant",
+      "pasta"
      ]
     },
     {
@@ -2039,7 +2334,14 @@
      "q": "lemon",
      "est": "lemons",
      "not": [
-      "lemonade"
+      "lemonade",
+      "perfect",
+      "wipe",
+      "clorox",
+      "lysol",
+      "disinfecting",
+      "water",
+      "pepper"
      ]
     },
     {
@@ -2134,7 +2436,12 @@
      "name": "tuna",
      "qty": 3,
      "unit": "can",
-     "q": "tuna"
+     "q": "tuna",
+     "not": [
+      "roll",
+      "steak",
+      "sushi"
+     ]
     },
     {
      "name": "pasta",
@@ -2150,7 +2457,8 @@
       "chef",
       "konjac",
       "salad",
-      "alfredo"
+      "alfredo",
+      "meatball"
      ]
     },
     {
@@ -2169,7 +2477,12 @@
      "not": [
       "almond",
       "creamer",
-      "oat"
+      "oat",
+      "chocolate",
+      "cluster",
+      "mozzarella",
+      "cheese",
+      "nog"
      ]
     },
     {
@@ -2278,7 +2591,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -2323,7 +2648,10 @@
      "qty": 10,
      "unit": "each",
      "q": "egg",
-     "est": "eggs"
+     "est": "eggs",
+     "not": [
+      "nog"
+     ]
     },
     {
      "name": "mushrooms",
@@ -2390,7 +2718,8 @@
       "chef",
       "konjac",
       "salad",
-      "alfredo"
+      "alfredo",
+      "meatball"
      ]
     },
     {
@@ -2399,7 +2728,12 @@
      "unit": "jar",
      "q": "pasta sauce",
      "not": [
-      "alfredo"
+      "alfredo",
+      "chef",
+      "boyardee",
+      "rotel",
+      "ravioli",
+      "canned"
      ]
     },
     {
@@ -2424,7 +2758,12 @@
       "cup",
       "encrusted",
       "peppercorn",
-      "rao"
+      "rao",
+      "chicken",
+      "penne",
+      "fusilli",
+      "eggplant",
+      "pasta"
      ]
     },
     {
@@ -2505,7 +2844,7 @@
      "name": "acorn squash",
      "qty": 3,
      "unit": "lb",
-     "q": "squash"
+     "q": "acorn squash"
     },
     {
      "name": "white rice",
@@ -2532,7 +2871,18 @@
       "doughnut",
       "strudel",
       "pop",
-      "applewood"
+      "applewood",
+      "airpod",
+      "watch",
+      "iphone",
+      "ipad",
+      "jack",
+      "cereal",
+      "bread",
+      "fritter",
+      "squeez",
+      "cheese",
+      "slice"
      ]
     },
     {
@@ -2582,7 +2932,8 @@
       "chef",
       "konjac",
       "salad",
-      "alfredo"
+      "alfredo",
+      "meatball"
      ]
     },
     {
@@ -2607,7 +2958,12 @@
       "cup",
       "encrusted",
       "peppercorn",
-      "rao"
+      "rao",
+      "chicken",
+      "penne",
+      "fusilli",
+      "eggplant",
+      "pasta"
      ]
     },
     {
@@ -2650,7 +3006,8 @@
      "not": [
       "ground",
       "caesar",
-      "salad"
+      "salad",
+      "marinated"
      ]
     },
     {
@@ -2667,7 +3024,18 @@
       "doughnut",
       "strudel",
       "pop",
-      "applewood"
+      "applewood",
+      "airpod",
+      "watch",
+      "iphone",
+      "ipad",
+      "jack",
+      "cereal",
+      "bread",
+      "fritter",
+      "squeez",
+      "cheese",
+      "slice"
      ]
     },
     {
@@ -2675,7 +3043,15 @@
      "qty": 1,
      "unit": "lb",
      "q": "grape",
-     "est": "grapes"
+     "est": "grapes",
+     "not": [
+      "tomato",
+      "squeez",
+      "cetirizine",
+      "allergy",
+      "juice",
+      "jelly"
+     ]
     },
     {
      "name": "lettuce",
@@ -2716,7 +3092,10 @@
      "qty": 8,
      "unit": "each",
      "q": "egg",
-     "est": "eggs"
+     "est": "eggs",
+     "not": [
+      "nog"
+     ]
     },
     {
      "name": "breakfast sausage",
@@ -2736,7 +3115,19 @@
       "frozen",
       "hashbrown",
       "bread",
-      "sweet"
+      "sweet",
+      "savory",
+      "inspiration",
+      "twice",
+      "baked",
+      "pretzel",
+      "simply",
+      "scalloped",
+      "gratin",
+      "tot",
+      "fry",
+      "fries",
+      "wedge"
      ]
     },
     {
@@ -2793,7 +3184,8 @@
       "chef",
       "konjac",
       "salad",
-      "alfredo"
+      "alfredo",
+      "meatball"
      ]
     },
     {
@@ -2812,7 +3204,12 @@
      "not": [
       "almond",
       "creamer",
-      "oat"
+      "oat",
+      "chocolate",
+      "cluster",
+      "mozzarella",
+      "cheese",
+      "nog"
      ]
     },
     {
@@ -2821,7 +3218,8 @@
      "unit": "lb",
      "q": "broccoli",
      "not": [
-      "rabe"
+      "rabe",
+      "tray"
      ]
     },
     {
