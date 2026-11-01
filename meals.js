@@ -84,6 +84,8 @@
   // Listed order: most of the list on sale first, then main item on sale, then fully priced before partial, then cheapest.
   const rank = (a, b) => (b.saleShare - a.saleShare) || (b.mainOnSale - a.mainOnSale) || (a.partial - b.partial) || (a.total - b.total);
   function onSale(priced) { return priced.filter(qualifies).sort(rank); }
-  root.Meals = { priceAll, price, dealUnit, candidates, costFor, estimateFor, onSale, qualifies, rank, MIN_SALE, MIN_SHARE };
+  // Stable link id for a meal (used by #meal-<slug> on the site and in the weekly email).
+  const slug = name => String(name).toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  root.Meals = { priceAll, price, dealUnit, candidates, costFor, estimateFor, onSale, qualifies, rank, slug, MIN_SALE, MIN_SHARE };
   if (typeof module !== 'undefined') module.exports = root.Meals;
 })(typeof window !== 'undefined' ? window : globalThis);

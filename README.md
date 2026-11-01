@@ -44,6 +44,35 @@ Store-by-store checklist: every list item goes under the store with its cheapest
 ## PWA (branch `pwa`)
 Installable: `manifest.webmanifest`, icons in `/icons` (192, 512, maskable 512, apple-touch 180). `/sw.js` is served by `api/sw.js` (rewrite in `vercel.json`) with the deploy's commit sha as the cache version, so each deploy installs a new shell cache, deletes old ones, and shows "New deals available, tap to refresh". App shell + recipes/estimates are precached; `/api/deals` is network-first with a cached fallback marked `X-CD-Cache: offline`, which shows an "Offline, showing deals fetched …" banner (and says when flyers have expired). Lists, meal selections and trip check state are in localStorage, so they work offline.
 
+## Weekly email
+Double opt-in signup → confirmed subscribers get a digest twice a week. **Nothing sends until every env var below is set**; missing vars return a clear 503 and no email.
+
+**Storage: Resend Audiences/Contacts (no database).** Signup is stateless: `/api/subscribe` emails an HMAC-signed confirm link (72 h); only `/api/confirm` creates the contact; `/api/unsubscribe` sets Resend's `unsubscribed` flag. Resend is the sender anyway, so the list, suppression and unsubscribe state live in one free place (free plan: 3,000 emails/month, 100/day, 1 domain), with no table, migrations or PII in our own DB.
+
+Endpoints: `POST /api/subscribe` (honeypot `website`, min fill time, 5 req / 10 min per IP per instance) · `GET /api/confirm?token=` · `GET /api/subscribe?status=1` → `{open}` (true only when `MAIL_POSTAL_ADDRESS` and all send/audience vars are set; the site's signup box stays "Coming soon" otherwise) · `GET /api/unsubscribe?token=` shows a confirm button and changes nothing (so link scanners can't unsubscribe anyone); `POST` unsubscribes, from that button or RFC 8058 one-click (digest sends `List-Unsubscribe` + `List-Unsubscribe-Post: List-Unsubscribe=One-Click`) · `GET /api/digest` (needs `Authorization: Bearer $CRON_SECRET` or `?key=`; `?dry=1` renders without sending, `&format=text|json`).
+
+Schedule (`vercel.json`): `30 15 * * 0,3` = Sun + Wed in the 15:00 UTC hour = 10–11 AM ET in winter (11 AM–noon in daylight time), after the 8 AM ET Sun/Wed data refresh. Hobby allows at most one run per day per cron and fires anywhere within the scheduled hour (±59 min).
+
+Why Sun + Wed: flyer cycles are Market Basket & Hannaford Sun–Sat, Shaw's Fri–Thu, Aldi & Walmart Wed–Tue, Sam's Club Thu–Wed. Sunday is the full digest (MB/Hannaford start that day, after the 8 AM data refresh; the digest only has their deals if that refresh ran and deployed). Wednesday is a short midweek update that only covers flyers that started after Sunday (Aldi, Walmart), so it never repeats Sunday's stores; if nothing is new and fresh, the cron sends nothing.
+
+Freshness: a deal/flyer is included only if it is still valid 36h after the send (so nothing that ends the day after). Meal prices in the email use only those deals, and meals follow the site's Meals tab rule (`Meals.onSale`: at least 2 sale items covering at least half the list, most-on-sale first, fully priced before partial). Meal links are `#meal-<slug>` (`Meals.slug(recipe name)`), the same ids the Meals tab uses. Stores left out are listed with the reason. Dry-run at a simulated time: `/api/digest?dry=1&at=<ISO>` or `node scripts/render_digest_at.js <ISO> out.html`.
+
+Env vars (set in Vercel → Project → Settings → Environment Variables, Production):
+| var | what |
+|---|---|
+| `RESEND_API_KEY` | Resend API key (Sending + Contacts access) |
+| `RESEND_AUDIENCE_ID` | Resend Audience id for NH Cart subscribers |
+| `MAIL_FROM` | e.g. `deals@nhcart.goodbotai.tech` (domain verified in Resend) |
+| `MAIL_POSTAL_ADDRESS` | **required by CAN-SPAM**: a real postal address (street, PO box or registered mailbox) |
+| `EMAIL_TOKEN_SECRET` | random 32+ byte string (`openssl rand -base64 32`) |
+| `CRON_SECRET` | random string; Vercel Cron sends it as a Bearer token |
+| `SITE_URL` | optional, defaults to https://nhcart.goodbotai.tech (set on Production + Preview) |
+
+Setup: 1) sign up at resend.com; 2) Domains → add `nhcart.goodbotai.tech` (or the sending domain you choose) and add the DNS records Resend shows (a TXT `resend._domainkey…` DKIM record, an MX + TXT SPF record on the `send.` subdomain, optional DMARC TXT `_dmarc`) at Hostinger; wait for Verified; 3) API Keys → create a key; 4) Audiences → create "NH Cart" and copy its id; 5) set the env vars above; 6) redeploy. Test with `curl -H "Authorization: Bearer $CRON_SECRET" "$SITE/api/digest?dry=1"`.
+
+Tests: `npm test` (token sign/verify, tamper/expiry, missing-env fail-safe, honeypot, digest auth, status gate, click-to-unsubscribe). Digest tests use the frozen Oct 11 2026 week in `test/fixtures/deals-2026-10-11.json`. Samples: `node scripts/render_email_samples.js /tmp/em`.
+
+**Pre-launch rules (until `MAIL_POSTAL_ADDRESS` is set):** `/api/subscribe` answers 503 "Signups are opening soon" and sends no confirm emails; the cron/broadcast `/api/digest` answers 503 `postal address required` and sends nothing. The only send allowed is `/api/digest?test=1` (with `CRON_SECRET`), which sends one `[TEST]` digest to the hardcoded `hodlmybeer21@gmail.com`, with the footer address shown as `[mailing address goes here]`. All mail has Reply-To `MAIL_REPLY_TO` (default `nhcart@mail.grokbot.com`), listed as the footer contact.
 ## Analytics (branch `analytics`)
 🔒 Privacy: no cookies, aggregate analytics only (Vercel Web Analytics). Lists, meal selections and trip state never leave the device; events carry only a name and small non-personal properties.
 Script: `/_vercel/insights/script.js` with the `window.va` queue (the service worker never caches or intercepts `/_vercel/*`). Events: `tab_view {tab}`, `add_to_list {source: manual|deal|meal, count}`, `meal_opened {meal}` (recipe name), `meal_added {count}`, `install_app {platform: android|ios}`, `offline_view`, `print_trip`. Custom events require Vercel Pro (2 properties per event, all ours fit); on Hobby only page views are collected (50,000 events/month, 1-month reporting window) and the calls are harmless no-ops. Enable in Vercel → Project → Analytics → Enable, then redeploy.
@@ -56,7 +85,7 @@ Script: `/_vercel/insights/script.js` with the `window.va` queue (the service wo
 - **Share list / family list:** the list and pins are encoded in a `#share=` link (no backend). The recipient chooses Replace, Add or Dismiss.
 - **Paste a receipt or list:** extracts item names only and drops prices, totals, payment and store lines, then matches them against this week's deals.
 - **Related deals** on each item, collapsed "no flyer deal at …" rows, empty-state suggestions, chip scroll hint, 2-column desktop at ≥1000px, WCAG AA contrast, 7-step type scale (12–28px).
-- **Weekly email signup** sits after the Trip total. It stays inert ("Coming soon") unless `GET /api/subscribe?status=1` returns `{open:true}`. Nothing on main implements that yet.
+- **Weekly email signup** sits after the Trip total. It stays inert ("Coming soon") unless `GET /api/subscribe?status=1` returns `{open:true}`, which needs `MAIL_POSTAL_ADDRESS` (see Weekly email). Errors from the API are shown as-is.
 - **Price history:** run `node scripts/snapshot.mjs --history-only` from the repo root. It fetches the live Flipp flyers and writes `data/history/YYYY-MM-DD.json` (date in ET; raw flyer rows with price, price_text, unit or flag, valid dates, source_url and fetched_at). It doesn't touch `data/deals.json`. Commit only `data/history/`. The Sun/Wed refresh routine runs this as hodlmybeer21. `npm run snapshot` (no flag) also refreshes the `data/deals.json` fallback snapshot; after that, run `node scripts/resolve_units.mjs`.
 - **Matching:** `match.js` uses whole-word matching and skips compound products (e.g. "butter" does not match peanut butter, butternut squash, apple butter or buttermilk; "chicken" does not match chicken broth; "cream" does not match ice cream or cream cheese; "corn" does not match popcorn or corn flakes). It also skips appliances and cosmetics. A query that names the compound ("peanut butter") still matches it.
 
